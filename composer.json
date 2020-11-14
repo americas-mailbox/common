@@ -1,0 +1,14 @@
+{
+  "name": "amb/common",
+  "description": "AMB common code",
+  "minimum-stability": "dev",
+  "require": {
+    "codeception/codeception": "^4.0",
+    "php": ">=7.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "AMB\\": "src"
+    }
+  }
+}
