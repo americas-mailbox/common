@@ -7,8 +7,13 @@ use Notification\Notification;
 
 final class GenericNotification extends Notification
 {
-    protected function getEmailTemplate(): ?string
+    protected function getEmailHtmlTemplate(): ?string
     {
         return 'generic';
+    }
+
+    protected function getEmailTextTemplate(): ?string
+    {
+        return null;
     }
 }
