@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Interactor\Db;
+namespace Unit\Interactor\Db;
 
 use AMB\Interactor\Db\SQLToBool;
 use UnitTester;

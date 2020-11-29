@@ -1,13 +1,16 @@
 {
   "name": "amb/common",
   "description": "AMB common code",
+  "config": {
+    "sort-packages": true
+  },
   "minimum-stability": "dev",
   "require": {
     "php": ">=7.1 | ^8.0",
     "myclabs/php-enum": "^1.7"
   },
   "require-dev": {
-    "amb/codeception-amb": "^1.5",
+    "amb/codeception-amb": "^1.6",
     "codeception/codeception": "^4.0",
     "codeception/module-asserts": "^1.3"
   },
@@ -24,7 +27,8 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Tests\\Unit\\": "tests/unit"
+      "Functional\\": "tests/functional",
+      "Unit\\": "tests/unit"
     }
   }
 }
