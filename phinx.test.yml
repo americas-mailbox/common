@@ -1,0 +1,37 @@
+paths:
+    migrations:
+        - '%%PHINX_CONFIG_DIR%%/db/migrations'
+        - '%%PHINX_CONFIG_DIR%%/vendor/iampersistent/app-library/db/migrations'
+    seeds: '%%PHINX_CONFIG_DIR%%/vendor/amb/common/db/seeds'
+
+environments:
+    default_migration_table: phinxlog
+    default_database: development
+    production:
+        adapter: mysql
+        host: '%%PHINX_DBHOST%%'
+        name: '%%PHINX_DBNAME%%'
+        user: '%%PHINX_DBUSER%%'
+        pass: '%%PHINX_DBPASS%%'
+        port: '%%PHINX_DBPORT%%'
+        charset: utf8
+
+    development:
+        adapter: mysql
+        host: localhost
+        name: amb_api
+        user: amb
+        pass: password1
+        port: 3306
+        charset: utf8
+
+    testing:
+        adapter: mysql
+        host: localhost
+        name: americas_db_test
+        user: amb
+        pass: password1
+        port: 3306
+        charset: utf8
+
+version_order: creation
