@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests\Unit\Interactor;
+namespace Unit\Interactor;
 
 use AMB\Interactor\FullName;
 use UnitTester;

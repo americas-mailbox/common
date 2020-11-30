@@ -1,0 +1,6 @@
+actor: FunctionalTester
+modules:
+    enabled:
+        - AmbLibrary
+        - Asserts
+        - \Helper\Functional
