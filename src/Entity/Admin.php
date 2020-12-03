@@ -4,8 +4,9 @@ declare(strict_types=1);
 namespace AMB\Entity;
 
 use AMB\Interactor\Admin\RoleCheck;
+use App\Entity\Interfaces\PersonInterface;
 
-final class Admin
+final class Admin implements PersonInterface
 {
     /** @var int */
     private $id;

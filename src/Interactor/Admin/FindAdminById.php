@@ -5,8 +5,9 @@ namespace AMB\Interactor\Admin;
 
 use AMB\Entity\Admin;
 use AMB\Interactor\Db\HydrateAdmin;
+use App\Interactor\FindPersonByIdInterface;
 
-final class FindAdminById
+final class FindAdminById implements FindPersonByIdInterface
 {
     /** @var \AMB\Interactor\Admin\GatherAdminDataById */
     private $gatherAdminData;
