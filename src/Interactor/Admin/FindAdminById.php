@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Admin;
 
-use AMB\Entity\Admin;
+use App\Entity\Interfaces\PersonInterface;
 use AMB\Interactor\Db\HydrateAdmin;
 use App\Interactor\FindPersonByIdInterface;
 
@@ -20,7 +20,7 @@ final class FindAdminById implements FindPersonByIdInterface
         $this->hydrateAdmin = new HydrateAdmin();
     }
 
-    public function find($id): ?Admin
+    public function find($id): ?PersonInterface
     {
         if (!$data = $this->gatherAdminData->gather($id)) {
             return null;
