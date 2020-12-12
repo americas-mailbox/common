@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace AMB\Messenger;
 
-use AMB\App\Log\ActivityLog;
-use AMB\App\Message;
+use App\Log\ActivityLog;
+use App\Message;
 use AMB\Interactor\User\ActiveUser;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBus;

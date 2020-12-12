@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Messenger;
 
-use AMB\App\Message;
+use App\Message;
 use IamPersistent\SwiftMailer\Context\PartyContext;
 
 abstract class Event extends Message
