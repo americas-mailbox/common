@@ -11,7 +11,9 @@ final class HydrateAdmin
     public function hydrate(array $data): Admin
     {
         return (new Admin())
-            ->setId((int) $data['id'])
+            ->setFirstName($data['first_name'])
+            ->setId((int)$data['id'])
+            ->setLastName($data['last_name'])
             ->setRole(new AdminRole($data['role']))
             ->setUsername($data['username']);
     }

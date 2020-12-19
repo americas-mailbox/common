@@ -16,9 +16,9 @@ final class GatherAdminDataById
     {
         $this->connection = $connection;
     }
-    public function gather($adminId)
+    public function gather($adminId, array $fields = ['*'])
     {
-        $sql = $this->sql($adminId);
+        $sql = $this->sql($adminId, $fields);
         $statement = $this->connection->executeQuery($sql);
         $adminData = $statement->fetch();
         if (empty($adminData)) {
@@ -28,10 +28,14 @@ final class GatherAdminDataById
         return $adminData;
     }
 
-    private function sql($adminId): string
+    private function sql($adminId, array $fields): string
     {
+        $fieldList = implode(', ', $fields);
+
         return <<<SQL
-SELECT * FROM administrators
+SELECT 
+$fieldList
+FROM administrators
 WHERE id = $adminId;
 SQL;
     }
