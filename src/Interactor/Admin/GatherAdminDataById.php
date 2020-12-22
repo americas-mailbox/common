@@ -16,6 +16,7 @@ final class GatherAdminDataById
     {
         $this->connection = $connection;
     }
+
     public function gather($adminId, array $fields = ['*'])
     {
         $sql = $this->sql($adminId, $fields);
