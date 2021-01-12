@@ -8,7 +8,8 @@
   "require": {
     "php": ">=7.1 | ^8.0",
     "doctrine/dbal": "^2.9",
-    "myclabs/php-enum": "^1.7"
+    "myclabs/php-enum": "^1.7",
+    "ramsey/uuid": "^4.1"
   },
   "require-dev": {
     "amb/codeception-amb": "^1.6",
