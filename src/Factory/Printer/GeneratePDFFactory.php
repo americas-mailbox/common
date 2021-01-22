@@ -5,6 +5,7 @@ namespace AMB\Factory\Printer;
 
 use AMB\Interactor\Printer\GeneratePDF;
 use Psr\Container\ContainerInterface;
+use Twig\Environment;
 use Xaddax\Interactor\GatherConfigValues;
 
 final class GeneratePDFFactory
@@ -12,8 +13,8 @@ final class GeneratePDFFactory
     public function __invoke(ContainerInterface $container): GeneratePDF
     {
         $wkhtmltopdf = getenv('WKHTMLTOPDF');
-        $config = (new GatherConfigValues)($container, 'print');
+        $twig = $container->get(Environment::class);
 
-        return new GeneratePDF($config['templateDirectories'], $wkhtmltopdf);
+        return new GeneratePDF($twig, $wkhtmltopdf);
     }
 }

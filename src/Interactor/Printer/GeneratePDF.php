@@ -14,13 +14,9 @@ final class GeneratePDF
     /** @var string */
     private $wkhtmltopdf;
 
-    public function __construct($templateDirectories, $wkhtmltopdf)
+    public function __construct(Environment $twig, $wkhtmltopdf)
     {
-        $twigOptions = [
-            'autoescape' => false,
-        ];
-        $loader = new FilesystemLoader($templateDirectories);
-        $this->twig = new Environment($loader, $twigOptions);
+        $this->twig = $twig;
         $this->wkhtmltopdf = $wkhtmltopdf;
     }
 
