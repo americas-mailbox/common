@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Factory\Printer;
+namespace AMB\Factory;
 
 use Psr\Container\ContainerInterface;
 use Twig\Environment;

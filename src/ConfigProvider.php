@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace AMB;
 
 use AMB\Factory\Printer\GeneratePDFFactory;
+use AMB\Factory\TwigEnvironmentFactory;
 use AMB\Interactor\Printer\GeneratePDF;
+use Twig\Environment;
 
 final class ConfigProvider
 {
@@ -19,6 +21,7 @@ final class ConfigProvider
     {
         return [
             'factories' => [
+                Environment::class => TwigEnvironmentFactory::class,
                 GeneratePDF::class => GeneratePDFFactory::class,
             ],
         ];
