@@ -3,10 +3,8 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Shipping;
 
-use AMB\Interactor\FullName;
 use Carbon\Carbon;
 use Doctrine\DBAL\Connection;
-use IamPersistent\Money\Interactor\JsonToString;
 
 final class FetchShipmentListData
 {

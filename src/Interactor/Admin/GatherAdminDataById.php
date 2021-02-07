@@ -37,7 +37,7 @@ final class GatherAdminDataById
 SELECT 
 $fieldList
 FROM administrators
-WHERE id = $adminId;
+WHERE id = '$adminId';
 SQL;
     }
 }
