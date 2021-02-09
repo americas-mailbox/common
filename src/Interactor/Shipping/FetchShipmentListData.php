@@ -32,11 +32,12 @@ SELECT
     m.pmb, m.first_name, m.middle_name, m.last_name, m.suffix,
     m.active, m.suspended, m.shipinst as shippingInstructions,
     d.tracking_number, shippingMethodCarrier.name AS trackingCarrier,
-    s.fulfilled_date,
+    s.fulfilled_date, s.customer_signature_url as customerSignature,
     l.balance, 
     a.addressee,
     a.street_1, a.street_2, a.street_3, a.city, a.state, a.post_code, a.plus4, a.country,
     p.title as plan, m.phone, 
+    preferredMethod.id as delivery_method_id,
     CONCAT_WS(' ', preferredCarrier.name, preferredMethod.label) AS preferredShippingMethod,
     CONCAT_WS(' ', shippingMethodCarrier.name, shippingMethod.label) AS shippingMethod
 FROM shipments AS s
