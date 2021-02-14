@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Shipping;
 
+use AMB\Entity\Paginate;
+use AMB\Interactor\Db\PaginateToSQL;
 use Carbon\Carbon;
 use Doctrine\DBAL\Connection;
 
@@ -16,17 +18,17 @@ final class FetchShipmentListData
         $this->connection = $connection;
     }
 
-    public function fetch(Carbon $date): array
+    public function fetch(Carbon $date, Paginate $paginate = null): array
     {
-        $sql = $this->sql($date);
+        $sql = $this->sql($date, $paginate);
 
         return $this->connection->fetchAllAssociative($sql);
     }
 
-    private function sql(Carbon $date): string
+    private function sql(Carbon $date, Paginate $paginate = null): string
     {
         $date = $date->toDateString();
-        return <<<SQL
+        $sql = <<<SQL
 SELECT
     s.id,
     m.pmb, m.first_name, m.middle_name, m.last_name, m.suffix,
@@ -58,5 +60,8 @@ FROM shipments AS s
 WHERE s.date = '$date'
 ORDER BY m.pmb ASC
 SQL;
+        $sql .= (new PaginateToSQL)($paginate);
+
+        return $sql;
     }
 }
