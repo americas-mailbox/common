@@ -3,11 +3,10 @@ declare(strict_types=1);
 
 namespace AMB\Interactor;
 
-use AMB\Factory\DbalConnection;
 use Carbon\Carbon;
 use Doctrine\DBAL\Connection;
 
-final class DetermineWorkDay implements DbalConnection
+final class DetermineWorkDay
 {
     /** @var \Doctrine\DBAL\Connection */
     private $connection;
