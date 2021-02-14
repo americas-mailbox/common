@@ -60,6 +60,7 @@ SELECT
     e.next_weekly,
     e.weeks_between,
     a.id as addressId,
+    d.id as deliveryMethodId,
     d.label AS deliveryMethod,
     d.group AS deliveryGroup,
     a.addressee,    
@@ -95,17 +96,18 @@ SQL;
 
         $data = $this->normalizeData($data);
         $shipment = [
-            'date'           => new RapidCityTime('2200-01-01'),
-            'deliveryMethod' => null,
-            'deliveryGroup'  => null,
-            'addressee'      => null,
-            'street1'        => null,
-            'street2'        => null,
-            'street3'        => null,
-            'city'           => null,
-            'state'          => null,
-            'postCode'       => null,
-            'country'        => null,
+            'date'             => new RapidCityTime('2200-01-01'),
+            'deliveryMethod'   => null,
+            'deliveryMethodId' => null,
+            'deliveryGroup'    => null,
+            'addressee'        => null,
+            'street1'          => null,
+            'street2'          => null,
+            'street3'          => null,
+            'city'             => null,
+            'state'            => null,
+            'postCode'         => null,
+            'country'          => null,
         ];
         $shipment = null;
         $shippingDate = new RapidCityTime('2200-01-01');
@@ -127,17 +129,18 @@ SQL;
     private function createShipment(array $datum, Carbon $date): array
     {
         return [
-            'date'           => $this->getShipmentDate($date)->toDateString(),
-            'deliveryMethod' => $datum['deliveryMethod'],
-            'deliveryGroup'  => $datum['deliveryGroup'],
-            'addressee'      => $datum['addressee'],
-            'street1'        => $datum['street1'],
-            'street2'        => $datum['street2'],
-            'street3'        => $datum['street3'],
-            'city'           => $datum['city'],
-            'state'          => $datum['state'],
-            'postCode'       => $datum['postCode'],
-            'country'        => $datum['country'],
+            'date'             => $this->getShipmentDate($date)->toDateString(),
+            'deliveryMethod'   => $datum['deliveryMethod'],
+            'deliveryMethodId' => $datum['deliveryMethodId'],
+            'deliveryGroup'    => $datum['deliveryGroup'],
+            'addressee'        => $datum['addressee'],
+            'street1'          => $datum['street1'],
+            'street2'          => $datum['street2'],
+            'street3'          => $datum['street3'],
+            'city'             => $datum['city'],
+            'state'            => $datum['state'],
+            'postCode'         => $datum['postCode'],
+            'country'          => $datum['country'],
         ];
     }
 
@@ -235,6 +238,7 @@ SELECT
     start_date,     
     end_date,
     a.id as addressId,
+    d.id as deliveryMethodId,
     d.label AS deliveryMethod,
     d.group AS deliveryGroup,
     a.addressee,    
@@ -318,6 +322,7 @@ SQL;
                 'weeks_between'              => $intOrNull($datum['weeks_between']),
                 'addressId'                  => $intOrNull($datum['addressId']),
                 'deliveryMethod'             => $datum['deliveryMethod'],
+                'deliveryMethodId'           => $datum['deliveryMethodId'],
                 'deliveryGroup'              => $datum['deliveryGroup'],
                 'addressee'                  => $datum['addressee'],
                 'street1'                    => $datum['street1'],
