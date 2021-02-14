@@ -14,7 +14,7 @@ final class GenerateTrackingLink
         return $this->generate($carrier, $trackingNumber);
     }
 
-    public function generate(string $carrier, string $trackingNumber): string
+    public function generate(string $carrier = null, string $trackingNumber = null): string
     {
         if ('FedEx' === $carrier) {
             return "https://www.fedex.com/apps/fedextrack/?tracknumbers=$trackingNumber";
@@ -27,5 +27,7 @@ final class GenerateTrackingLink
         if ('UPS' === $carrier) {
             return "https://www.ups.com/track?loc=null&tracknum=$trackingNumber";
         }
+
+        return '';
     }
 }
