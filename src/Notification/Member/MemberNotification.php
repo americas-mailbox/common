@@ -48,7 +48,7 @@ abstract class MemberNotification extends AmbNotification
             ->set('fullName', $member->getFullName())
             ->set('pmb', $member->getPMB())
             ->set('target', $user);
-        $this->addRecipientChannel($this->getChannels->getRecipientChannels($member));
+        $this->setRecipientChannels([$this->getChannels->getRecipientChannels($member)]);
 
         return $this;
     }
