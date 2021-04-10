@@ -29,6 +29,6 @@ final class FindPlanById
     {
         $sql = "SELECT * FROM rates_and_plans WHERE id = $planId";
 
-        return $this->connection->fetchAssoc($sql);
+        return $this->connection->fetchAssociative($sql);
     }
 }
