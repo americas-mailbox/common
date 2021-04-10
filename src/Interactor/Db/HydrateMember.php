@@ -12,15 +12,10 @@ use AMB\Interactor\RapidCityTime;
 
 final class HydrateMember
 {
-    /** @var \AMB\Interactor\Plan\FindPlanById */
-    private $findPlanById;
-    /** @var \AMB\Interactor\DB\HydrateAccount*/
-    private $hydrateAccount;
-
-    public function __construct(FindPlanById $findPlanById, HydrateAccount $hydrateAccount)
-    {
-        $this->findPlanById = $findPlanById;
-        $this->hydrateAccount = $hydrateAccount;
+    public function __construct(
+        private FindPlanById $findPlanById,
+        private HydrateAccount $hydrateAccount,
+    ) {
     }
 
     public function hydrate(array $memberData): Member
