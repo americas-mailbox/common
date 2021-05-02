@@ -24,6 +24,11 @@ final class FullName
         return $name;
     }
 
+    public function transform(array $data): string
+    {
+        return $this->__invoke($data);
+    }
+
     private function gatherParts(array $data): array
     {
         // order matters here

@@ -94,7 +94,6 @@ SELECT
     p.entered_on as enteredOn,
     p.front_image_file as frontImage,
     p.id,
-    p.pmb,
     m.pmb, m.first_name, m.middle_name, m.last_name, m.suffix,
     p.thumbnail_file as thumbnail
 FROM parcels AS p
