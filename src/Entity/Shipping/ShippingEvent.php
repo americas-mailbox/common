@@ -5,7 +5,7 @@ namespace AMB\Entity\Shipping;
 
 use AMB\Entity\Address;
 use AMB\Entity\Member;
-use Carbon\Carbon;
+use AMB\Interactor\RapidCityTime;
 
 final class ShippingEvent
 {
@@ -21,7 +21,7 @@ final class ShippingEvent
     private $dayOfTheWeek;
     /** @var DeliveryMethod */
     private $deliveryMethod;
-    /** @var Carbon */
+    /** @var \AMB\Interactor\RapidCityTime */
     private $endDate;
     /** @var DayOfTheWeek|null */
     private $firstWeekdayOfTheMonth;
@@ -31,11 +31,11 @@ final class ShippingEvent
     private $lastWeekdayOfTheMonth;
     /** @var Member */
     private $member;
-    /** @var Carbon|null */
+    /** @var \AMB\Interactor\RapidCityTime|null */
     private $nextWeekly;
     /** @var \AMB\Entity\Shipping\RecurrenceType */
     private $recurrenceType;
-    /** @var Carbon */
+    /** @var \AMB\Interactor\RapidCityTime */
     private $startDate;
     /** @var int|null */
     private $weeksBetween;
@@ -112,12 +112,12 @@ final class ShippingEvent
         return $this;
     }
 
-    public function getEndDate(): Carbon
+    public function getEndDate(): RapidCityTime
     {
         return $this->endDate;
     }
 
-    public function setEndDate(Carbon $endDate): ShippingEvent
+    public function setEndDate(RapidCityTime $endDate): ShippingEvent
     {
         $this->endDate = $endDate;
 
@@ -172,12 +172,12 @@ final class ShippingEvent
         return $this;
     }
 
-    public function getNextWeekly(): ?Carbon
+    public function getNextWeekly(): ?RapidCityTime
     {
         return $this->nextWeekly;
     }
 
-    public function setNextWeekly(?Carbon $nextWeekly): ShippingEvent
+    public function setNextWeekly(?RapidCityTime $nextWeekly): ShippingEvent
     {
         $this->nextWeekly = $nextWeekly;
 
@@ -227,12 +227,12 @@ final class ShippingEvent
         return $this;
     }
 
-    public function getStartDate(): Carbon
+    public function getStartDate(): RapidCityTime
     {
         return $this->startDate;
     }
 
-    public function setStartDate(Carbon $startDate): ShippingEvent
+    public function setStartDate(RapidCityTime $startDate): ShippingEvent
     {
         $this->startDate = $startDate;
 
