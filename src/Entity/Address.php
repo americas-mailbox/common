@@ -5,181 +5,215 @@ namespace AMB\Entity;
 
 final class Address
 {
-  /** @var string */
-  private $addressee;
-  /** @var string */
-  private $city;
-  /** @var string */
-  private $country;
-  /** @var int */
-  private $id;
-  /** @var string */
-  private $plus4;
-  /** @var string */
-  private $postCode;
-  /** @var string */
-  private $state;
-  /** @var string */
-  private $street1;
-  /** @var string|null */
-  private $street2;
-  /** @var string|null */
-  private $street3;
-  /** @var User */
-  private $user;
-  /** @var int */
-  private $deleted;
+    /** @var string */
+    private $addressee;
+    /** @var string */
+    private $address;
+    /** @var string */
+    private $city;
+    /** @var string */
+    private $country;
+    /** @var int */
+    private $deleted;
+    /** @var int */
+    private $id;
+    /** @var string|null */
+    private $inCareOf;
+    /** @var string|null */
+    private $locationName;
+    /** @var \AMB\Entity\Membership */
+    private $membership;
+    /** @var string */
+    private $plus4;
+    /** @var string */
+    private $postcode;
+    /** @var string */
+    private $state;
+    /** @var string|null */
+    private $suite;
+    /** @var bool */
+    private $verified;
 
-  public function getDeleted(): int
-  {
-    return $this->deleted;
-  }
-
-  public function setDeleted(int $value): Address
-  {
-    $this->deleted = $value;
-    return $this;
-  }
-
-  public function getAddressee(): string
-  {
-    return $this->addressee;
-  }
-
-  public function setAddressee(string $addressee): Address
-  {
-    $this->addressee = $addressee;
-
-    return $this;
-  }
-
-  public function getCity(): string
-  {
-    return $this->city;
-  }
-
-  public function setCity(string $city): Address
-  {
-    $this->city = $city;
-
-    return $this;
-  }
-
-  public function getCountry(): string
-  {
-    return $this->country;
-  }
-
-  public function setCountry(string $country): Address
-  {
-    $this->country = $country;
-
-    return $this;
-  }
-
-  public function getDisplayedPostCode(): string
-  {
-    $postCode = $this->postCode;
-    if (!empty($this->plus4)) {
-      $postCode .= '-' . $this->plus4;
+    public function getAddress(): string
+    {
+        return $this->address;
     }
 
-    return $postCode;
-  }
+    public function setAddress(string $address): Address
+    {
+        $this->address = $address;
 
-  public function getId(): int
-  {
-    return $this->id;
-  }
+        return $this;
+    }
 
-  public function setId(int $id): Address
-  {
-    $this->id = $id;
+    public function getAddressee(): string
+    {
+        return $this->addressee;
+    }
 
-    return $this;
-  }
+    public function setAddressee(string $addressee): Address
+    {
+        $this->addressee = $addressee;
 
-  public function getPlus4(): ?string
-  {
-    return $this->plus4;
-  }
+        return $this;
+    }
 
-  public function setPlus4(?string $plus4): Address
-  {
-    $this->plus4 = $plus4;
+    public function getCity(): string
+    {
+        return $this->city;
+    }
 
-    return $this;
-  }
+    public function setCity(string $city): Address
+    {
+        $this->city = $city;
 
-  public function getPostCode(): string
-  {
-    return $this->postCode;
-  }
+        return $this;
+    }
 
-  public function setPostCode(string $postCode): Address
-  {
-    $this->postCode = $postCode;
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
 
-    return $this;
-  }
+    public function setCountry(string $country): Address
+    {
+        $this->country = $country;
 
-  public function getState(): string
-  {
-    return $this->state;
-  }
+        return $this;
+    }
 
-  public function setState(string $state): Address
-  {
-    $this->state = $state;
+    public function getDeleted(): int
+    {
+        return $this->deleted;
+    }
 
-    return $this;
-  }
+    public function isDeleted(): bool
+    {
+        return (bool) $this->deleted;
+    }
 
-  public function getStreet1(): string
-  {
-    return $this->street1;
-  }
+    public function setDeleted(int $value): Address
+    {
+        $this->deleted = $value;
 
-  public function setStreet1(string $street1): Address
-  {
-    $this->street1 = $street1;
+        return $this;
+    }
 
-    return $this;
-  }
+    public function getDisplayedPostCode(): string
+    {
+        $postcode = $this->postcode;
+        if (!empty($this->plus4)) {
+            $postcode .= '-'.$this->plus4;
+        }
 
-  public function getStreet2(): ?string
-  {
-    return $this->street2;
-  }
+        return $postcode;
+    }
 
-  public function setStreet2(?string $street2): Address
-  {
-    $this->street2 = $street2;
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
-    return $this;
-  }
+    public function setId(int $id): Address
+    {
+        $this->id = $id;
 
-  public function getStreet3(): ?string
-  {
-    return $this->street3;
-  }
+        return $this;
+    }
 
-  public function setStreet3(?string $street3): Address
-  {
-    $this->street3 = $street3;
+    public function getInCareOf(): ?string
+    {
+        return $this->inCareOf;
+    }
 
-    return $this;
-  }
+    public function setInCareOf(?string $inCareOf): Address
+    {
+        $this->inCareOf = $inCareOf;
 
-  public function getUser(): User
-  {
-    return $this->user;
-  }
+        return $this;
+    }
 
-  public function setUser(User $user): Address
-  {
-    $this->user = $user;
+    public function getLocationName(): ?string
+    {
+        return $this->locationName;
+    }
 
-    return $this;
-  }
+    public function setLocationName(?string $locationName): Address
+    {
+        $this->locationName = $locationName;
+
+        return $this;
+    }
+
+    public function getMembership(): Membership
+    {
+        return $this->membership;
+    }
+
+    public function setMembership(Membership $membership): Address
+    {
+        $this->membership = $membership;
+
+        return $this;
+    }
+
+    public function getPlus4(): ?string
+    {
+        return $this->plus4;
+    }
+
+    public function setPlus4(?string $plus4): Address
+    {
+        $this->plus4 = $plus4;
+
+        return $this;
+    }
+
+    public function getPostcode(): string
+    {
+        return $this->postcode;
+    }
+
+    public function setPostcode(string $postcode): Address
+    {
+        $this->postcode = $postcode;
+
+        return $this;
+    }
+
+    public function getState(): string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): Address
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function getSuite(): ?string
+    {
+        return $this->suite;
+    }
+
+    public function setSuite(?string $suite): Address
+    {
+        $this->suite = $suite;
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->verified;
+    }
+
+    public function setVerified(bool $verified): Address
+    {
+        $this->verified = $verified;
+
+        return $this;
+    }
 }

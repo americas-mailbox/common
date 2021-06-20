@@ -12,16 +12,10 @@ use IamPersistent\SimpleShop\Interactor\CamelCase;
 
 final class GetNextScheduledDelivery
 {
-    /** @var Connection */
-    protected $connection;
-    /** @var DetermineWorkDay */
-    private $determineWorkDay;
-
-    public function __construct(Connection $connection, DetermineWorkDay $determineWorkDay)
-    {
-        $this->connection = $connection;
-        $this->determineWorkDay = $determineWorkDay;
-    }
+    public function __construct(
+        protected Connection $connection,
+        private DetermineWorkDay $determineWorkDay
+    ){}
 
     public function get($memberId, Carbon $date = null): ?array
     {
@@ -64,12 +58,13 @@ SELECT
     d.label AS deliveryMethod,
     d.group AS deliveryGroup,
     a.addressee,    
-    a.street_1 AS street1,       
-    a.street_2 AS street2,       
-    a.street_3 AS street3,       
+    a.address AS address,       
+    a.suite AS suite,       
+    a.location_name AS locationName,       
+    a.in_care_of AS inCareOf,       
     a.city,          
     a.state,         
-    a.post_code AS postCode,      
+    a.post_code AS postcode,      
     a.country        
 FROM shipping_events AS e
 LEFT JOIN delivery_methods AS d ON e.delivery_id = d.id
@@ -80,7 +75,7 @@ WHERE e.member_id = $memberId
     AND e.is_active = 1
 ORDER BY start_date ASC
 SQL;
-        $data = $this->connection->fetchAll($sql);
+        $data = $this->connection->fetchAllAssociative($sql);
         if (empty($data)) {
             return null;
         }
@@ -101,12 +96,13 @@ SQL;
             'deliveryMethodId' => null,
             'deliveryGroup'    => null,
             'addressee'        => null,
-            'street1'          => null,
-            'street2'          => null,
-            'street3'          => null,
+            'address'          => null,
+            'suite'            => null,
+            'locationName'     => null,
+            'inCareOf'         => null,
             'city'             => null,
             'state'            => null,
-            'postCode'         => null,
+            'postcode'         => null,
             'country'          => null,
         ];
         $shipment = null;
@@ -134,12 +130,13 @@ SQL;
             'deliveryMethodId' => $datum['deliveryMethodId'],
             'deliveryGroup'    => $datum['deliveryGroup'],
             'addressee'        => $datum['addressee'],
-            'street1'          => $datum['street1'],
-            'street2'          => $datum['street2'],
-            'street3'          => $datum['street3'],
+            'address'          => $datum['address'],
+            'suite'            => $datum['suite'],
+            'locationName'     => $datum['locationName'],
+            'inCareOf'         => $datum['inCareOf'],
             'city'             => $datum['city'],
             'state'            => $datum['state'],
-            'postCode'         => $datum['postCode'],
+            'postcode'         => $datum['postcode'],
             'country'          => $datum['country'],
         ];
     }
@@ -242,12 +239,13 @@ SELECT
     d.label AS deliveryMethod,
     d.group AS deliveryGroup,
     a.addressee,    
-    a.street_1 AS street1,       
-    a.street_2 AS street2,       
-    a.street_3 AS street3,       
+    a.address AS address,       
+    a.suite AS suite,       
+    a.location_name AS locationName,       
+    a.in_care_of AS inCareOf,       
     a.city,          
     a.state,         
-    a.post_code AS postCode,      
+    a.post_code AS postcode,      
     a.country        
 FROM shipping_events AS e
 LEFT JOIN delivery_methods AS d ON e.delivery_id = d.id
@@ -325,12 +323,13 @@ SQL;
                 'deliveryMethodId'           => $datum['deliveryMethodId'],
                 'deliveryGroup'              => $datum['deliveryGroup'],
                 'addressee'                  => $datum['addressee'],
-                'street1'                    => $datum['street1'],
-                'street2'                    => $datum['street2'],
-                'street3'                    => $datum['street3'],
+                'address'                    => $datum['address'],
+                'suite'                      => $datum['suite'],
+                'locationName'               => $datum['locationName'],
+                'inCareOf'                   => $datum['inCareOf'],
                 'city'                       => $datum['city'],
                 'state'                      => $datum['state'],
-                'postCode'                   => $datum['postCode'],
+                'postcode'                   => $datum['postcode'],
                 'country'                    => $datum['country'],
             ];
         }
