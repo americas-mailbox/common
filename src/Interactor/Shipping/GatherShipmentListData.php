@@ -10,13 +10,9 @@ use IamPersistent\Money\Interactor\JsonToString;
 
 final class GatherShipmentListData
 {
-    /** @var Connection */
-    private $connection;
-
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
-    }
+    public function __construct(
+        private Connection $connection,
+    ) {}
 
     public function gather(Carbon $date): array
     {
@@ -48,9 +44,10 @@ final class GatherShipmentListData
             $fullName = (new FullName())($result);
             $addressParts = [
                 $result['addressee'],
-                $result['street_1'],
-                $result['street_2'],
-                $result['street_3'],
+                $result['location_name'],
+                $result['in_care_of'],
+                $result['address'],
+                $result['suite'],
                 $result['city'],
                 $result['state'],
                 $result['post_code'],
@@ -98,7 +95,7 @@ SELECT
        m.active, m.suspended, m.shipinst as shippingInstructions,
        l.balance, 
        a.addressee,
-       a.street_1, a.street_2, a.street_3, a.city, a.state, a.post_code, a.country,
+       a.address, a.suite, a.location_name, a.in_care_of, a.city, a.state, a.post_code, a.country,
        p.title, m.phone, d.id, d.label, dc.name AS carrier
 FROM shipments AS s
 LEFT JOIN delivery_methods AS d ON s.delivery_method_id = d.id
