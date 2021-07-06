@@ -22,8 +22,7 @@ final class FetchParcelData
     {
         $sql = (new ParcelSQL)();
         $sql .= <<<SQL
-WHERE p.id = '$id'
-ORDER BY p.created_at ASC
+WHERE parcels.id = '$id'
 SQL;
 
         return $sql;
