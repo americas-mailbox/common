@@ -18,6 +18,7 @@ SELECT
     members.suffix as member_suffix,
     parcels.back_image_file AS parcel_back_image_file,
     parcels.front_image_file AS parcel_front_image_file,
+    parcels.thumbnail_file AS parcel_thumbnail_file,
     rates_and_plans.group AS plan_group
 FROM parcels
     LEFT JOIN members ON parcels.member_id = members.member_id
