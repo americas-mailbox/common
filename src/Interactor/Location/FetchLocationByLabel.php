@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace AMB\Interactor\Location;
+
 use AMB\Interactor\Parcel\ParcelSQL;
 use Doctrine\DBAL\Connection;
 
@@ -12,7 +14,7 @@ final class FetchLocationByLabel
 
     public function fetch(string $label): array
     {
-        $sql = $this->sql($barcode);
+        $sql = $this->sql($label);
 
         return $this->connection->fetchAssociative($sql);
     }
@@ -24,6 +26,7 @@ final class FetchLocationByLabel
 SELECT 
   id AS location_id,
   label AS location_label
+FROM parcel_locations
 WHERE parcel_locations.label = '$label'
 SQL;
 
