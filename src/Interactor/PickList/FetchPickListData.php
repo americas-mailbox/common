@@ -46,6 +46,7 @@ final class FetchPickListData
 LEFT JOIN shipments ON shipments.member_id = parcels.member_id
 WHERE shipments.date = '$date'
 AND parcels.picked_on IS NULL
+ORDER BY parcel_locations.label ASC
 SQL;
         $sql .= (new PaginateToSQL)($filter->getPaginate());
 
