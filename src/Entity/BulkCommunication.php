@@ -7,6 +7,8 @@ use AMB\Interactor\RapidCityTime;
 
 final class BulkCommunication
 {
+    /** @var bool */
+    private $completed;
     /** @var string */
     private $emailBody;
     /** @var int */
@@ -21,6 +23,18 @@ final class BulkCommunication
     private $subject;
     /** @var string */
     private $title;
+
+    public function isCompleted(): bool
+    {
+        return $this->completed;
+    }
+
+    public function setCompleted(bool $completed): BulkCommunication
+    {
+        $this->completed = $completed;
+
+        return $this;
+    }
 
     public function getEmailBody(): string
     {
