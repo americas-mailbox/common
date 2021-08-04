@@ -7,12 +7,17 @@ use Doctrine\DBAL\Connection;
 
 final class UpdateManager
 {
-    /** @var \Doctrine\DBAL\Connection */
-    private $connection;
+    public function __construct(
+        private Connection $connection,
+    ) {
+    }
 
-    public function __construct(Connection $connection)
+    public function drop(string $key)
     {
-        $this->connection = $connection;
+        $sql = <<<SQL
+DELETE FROM update_store WHERE `key` = '$key';
+SQL;
+        $result = $this->connection->executeStatement($sql);
     }
 
     public function get(string $key): ?string
@@ -34,7 +39,6 @@ ON DUPLICATE KEY UPDATE
    `key` = '$key', 
    `value` = '$value';
 SQL;
-
         $result = $this->connection->executeStatement($sql);
 
         return false;

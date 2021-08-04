@@ -8,13 +8,9 @@ use Doctrine\DBAL\Connection;
 
 final class DetermineWorkDay
 {
-    /** @var \Doctrine\DBAL\Connection */
-    private $connection;
-
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
-    }
+    public function __construct(
+        private Connection $connection,
+    ) { }
 
     public function is(Carbon $date): bool
     {

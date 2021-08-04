@@ -10,13 +10,9 @@ use Doctrine\DBAL\Connection;
 
 final class FetchShipmentListData
 {
-    /** @var Connection */
-    private $connection;
-
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
-    }
+    public function __construct(
+        private Connection $connection,
+    ) { }
 
     public function fetch(Carbon $date, Paginate $paginate = null): array
     {
@@ -37,7 +33,7 @@ SELECT
     s.fulfilled_date, s.customer_signature_url as customerSignature,
     l.balance, 
     a.addressee,
-    a.street_1, a.street_2, a.street_3, a.city, a.state, a.post_code, a.plus4, a.country,
+    a.address, a.suite, a.location_name, a.in_care_of, a.city, a.state, a.post_code, a.plus4, a.country,
     p.title as plan, m.phone, 
     preferredMethod.id as delivery_method_id,
     CONCAT_WS(' ', preferredCarrier.name, preferredMethod.label) AS preferredShippingMethod,
