@@ -20,6 +20,7 @@ SELECT
     a.default_card_id, 
     a.minimum_allowed_balance,
     a.office_closed_delivery,
+    a.notifications, 
     a.top_up_amount, 
     l.id as ledger_id, 
     l.balance 

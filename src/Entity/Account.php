@@ -30,6 +30,8 @@ class Account
     private $ledger;
     /** @var Money */
     private $minimumAllowedBalance;
+    /** @var \AMB\Entity\Account\Notifications */
+    private $notifications;
     /** @var string */
     private $officeClosedDeliveryPreference;
     /** @var \Carbon\Carbon */
@@ -157,6 +159,18 @@ class Account
     public function setMinimumAllowedBalance(Money $minimumAllowedBalance): Account
     {
         $this->minimumAllowedBalance = $minimumAllowedBalance;
+
+        return $this;
+    }
+
+    public function getNotifications(): Account\Notifications
+    {
+        return $this->notifications;
+    }
+
+    public function setNotifications(Account\Notifications $notifications): Account
+    {
+        $this->notifications = $notifications;
 
         return $this;
     }
