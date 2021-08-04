@@ -9,7 +9,7 @@ use AMB\Interactor\Db\PaginateToSQL;
 use Carbon\Carbon;
 use Doctrine\DBAL\Connection;
 
-final class FetchParcelListData
+final class FetchUnstoredParcelsListData
 {
     public function __construct(
         private Connection $connection,
@@ -29,6 +29,7 @@ final class FetchParcelListData
         $sql = (new ParcelSQL)();
         $sql .= <<<SQL
 WHERE parcels.entered_on = '$date'
+AND location_id IS NULL
 ORDER BY parcels.created_at ASC
 SQL;
         $sql .= (new PaginateToSQL)($filter->getPaginate());

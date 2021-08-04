@@ -5,24 +5,24 @@ namespace AMB\Interactor\Parcel;
 
 use Doctrine\DBAL\Connection;
 
-final class FetchParcelData
+final class FetchParcelByBarcodeData
 {
     public function __construct(
         private Connection $connection
     ) { }
 
-    public function fetch(string $id): array
+    public function fetch(string $barcode): array
     {
-        $sql = $this->sql($id);
+        $sql = $this->sql($barcode);
 
         return $this->connection->fetchAssociative($sql);
     }
 
-    private function sql(string $id): string
+    private function sql(string $barcode): string
     {
         $sql = (new ParcelSQL)();
         $sql .= <<<SQL
-WHERE parcels.id = '$id'
+WHERE parcels.barcode = '$barcode'
 SQL;
 
         return $sql;

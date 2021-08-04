@@ -49,10 +49,13 @@ final class FullName
         return [
             'firstName',
             'first_name',
+            'member_first_name',
             'middleName',
             "middle_name",
+            "member_middle_name",
             'lastName',
             'last_name',
+            'member_last_name',
         ];
     }
 }

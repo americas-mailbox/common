@@ -169,6 +169,7 @@ final class Address
         return $this;
     }
 
+
     public function getPostcode(): string
     {
         return $this->postcode;
@@ -189,6 +190,7 @@ final class Address
     public function setState(string $state): Address
     {
         $this->state = $state;
+
 
         return $this;
     }
@@ -213,6 +215,18 @@ final class Address
     public function setVerified(bool $verified): Address
     {
         $this->verified = $verified;
+
+        return $this;
+    }
+      
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): Address
+    {
+        $this->user = $user;
 
         return $this;
     }
