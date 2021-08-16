@@ -4,21 +4,22 @@ declare(strict_types=1);
 namespace AMB\Interactor\Ledger\Accounting;
 
 use AMB\Entity\Member;
+use AMB\Interactor\Ledger\SkuHandlerInterface;
 use AMB\Interactor\Plan\HandlePlanSku;
+use App\Entity\Interfaces\PersonInterface;
 use IamPersistent\SimpleShop\Entity\Product;
 
-final class HandlePlan
+final class HandlePlan implements SkuHandlerInterface
 {
-    /** @var \AMB\Interactor\Plan\HandlePlanSku */
-    private $handlePlanSku;
-
-    public function __construct(HandlePlanSku $handlePlanSku)
-    {
-        $this->handlePlanSku = $handlePlanSku;
+    public function __construct(
+        private HandlePlanSku $handlePlanSku
+    ) {
     }
 
-    public function handle(Member $member, Product $sku)
+    public function handle(Member $member, Product $sku, ?PersonInterface $actor): bool
     {
         $this->handlePlanSku->handle($member, $sku);
+
+        return true;
     }
 }

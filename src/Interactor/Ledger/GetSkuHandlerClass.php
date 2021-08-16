@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Ledger;
 
+use AMB\Interactor\Ledger\Accounting\HandlePkg;
 use AMB\Interactor\Ledger\Accounting\HandlePlan;
 use AMB\Interactor\Ledger\Accounting\HandlePlanExtension;
 use IamPersistent\SimpleShop\Entity\Product;
@@ -30,9 +31,13 @@ final class GetSkuHandlerClass
             }
         }
 
+        if (str_contains($sku->getName(), 'PKG')) {
+            return $this->container->get(HandlePkg::class);
+        }
+
         $pascalCase = (new PascalCase());
 
-        $class = 'AMB\\Interactor\\Invoice\\Ledger\\Handle' . $pascalCase(strtolower($sku->getName()));
+        $class = 'AMB\\Interactor\\Ledger\\Accounting\\Handle' . $pascalCase(strtolower($sku->getName()));
 
         if (!class_exists($class)) {
             return null;
