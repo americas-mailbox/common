@@ -7,6 +7,7 @@ use AMB\Entity\Member;
 use AMB\Interactor\Ledger\SkuHandlerInterface;
 use AMB\Interactor\Plan\HandlePlanExtensionSku;
 use App\Entity\Interfaces\PersonInterface;
+use IamPersistent\Ledger\Entity\Entry;
 use IamPersistent\SimpleShop\Entity\Product;
 
 final class HandlePlanExtension implements SkuHandlerInterface
@@ -16,7 +17,7 @@ final class HandlePlanExtension implements SkuHandlerInterface
     ) {
     }
 
-    public function handle(Member $member, Product $sku, ?PersonInterface $actor): bool
+    public function handle(Member $member, Entry $entry, Product $sku, ?PersonInterface $actor): bool
     {
         $this->handlePlanExtensionSku->handle($member, $sku);
 

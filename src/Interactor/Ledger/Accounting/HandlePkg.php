@@ -7,6 +7,7 @@ use AMB\Entity\Member;
 use AMB\Interactor\Ledger\SkuHandlerInterface;
 use AMB\Interactor\Parcel\AddPkgSkuToTransactionTable;
 use App\Entity\Interfaces\PersonInterface;
+use IamPersistent\Ledger\Entity\Entry;
 use IamPersistent\SimpleShop\Entity\Product;
 
 final class HandlePkg implements SkuHandlerInterface
@@ -15,10 +16,8 @@ final class HandlePkg implements SkuHandlerInterface
         private AddPkgSkuToTransactionTable $addPkgToTable,
     ) {}
 
-    public function handle(Member $member, Product $sku, ?PersonInterface $actor): bool
+    public function handle(Member $member, Entry $entry, Product $sku, ?PersonInterface $actor): bool
     {
-        $this->addPkgToTable->add($member, $sku, $actor);
-
-        return true;
+        return $this->addPkgToTable->add($member, $entry, $sku, $actor);
     }
 }
