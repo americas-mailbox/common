@@ -21,7 +21,7 @@ final class AddPkgSkuToTransactionTable
     {
         $data = [
             'admin_id'   => $actor->getId(),
-            'date'       => (new RapidCityTime())->toDateTimeString(),
+            'date'       => (new RapidCityTime())->toDateString(),
             'entry_id'   => $entry->getId(),
             'member_id'  => $member->getId(),
             'product_id' => $sku->getId(),
