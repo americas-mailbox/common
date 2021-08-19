@@ -204,6 +204,11 @@ final class Member
         return $this;
     }
 
+    public function getMemberStatus(): MemberStatus
+    {
+        return $this->active;
+    }
+
     public function getMiddleName(): string
     {
         return (string) $this->middleName;
