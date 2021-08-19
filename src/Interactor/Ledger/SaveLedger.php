@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AMB\Interactor\Ledger;
 
 use AMB\Entity\Member;
+use AMB\Entity\MemberStatus;
 use AMB\Interactor\Member\SuspendMember;
 use AMB\Interactor\Member\UnsuspendMember;
 use IamPersistent\Ledger\Entity\Ledger;
@@ -28,14 +29,20 @@ final class SaveLedger
     {
         $this->saveLedger->save($ledger);
         $member->getAccount()->setLedger($ledger);
-        if ($member->isSuspended() &&
-            $ledger->getBalance()->greaterThan($member->getAccount()->getCriticalBalance())
-        ) {
-            $this->unsuspendMember->handle($member);
-
-            return true;
+        if ($member->isSuspended()) {
+            $this->handledSuspendedMember($member, $ledger);
         }
 
         return true;
+    }
+
+    private function handledSuspendedMember(Member $member, Ledger $ledger)
+    {
+        if ($member->getMemberStatus()->getValue() === MemberStatus::UNVERIFIED) {
+            return;
+        }
+        if ($ledger->getBalance()->greaterThan($member->getAccount()->getCriticalBalance())) {
+            $this->unsuspendMember->handle($member);
+        }
     }
 }
