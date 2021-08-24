@@ -7,6 +7,7 @@ use AMB\Entity\Member;
 use AMB\Entity\MemberStatus;
 use AMB\Interactor\Member\SuspendMember;
 use AMB\Interactor\Member\UnsuspendMember;
+use AMB\Interactor\RapidCityTime;
 use IamPersistent\Ledger\Entity\Ledger;
 use IamPersistent\Ledger\Interactor\DBal\SaveLedger as DbalSaveLedger;
 
@@ -39,6 +40,9 @@ final class SaveLedger
     private function handledSuspendedMember(Member $member, Ledger $ledger)
     {
         if ($member->getMemberStatus()->getValue() === MemberStatus::UNVERIFIED) {
+            return;
+        }
+        if ($member->getRenewDate()->lt(new RapidCityTime())) {
             return;
         }
         if ($ledger->getBalance()->greaterThan($member->getAccount()->getCriticalBalance())) {
