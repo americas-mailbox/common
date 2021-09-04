@@ -4,10 +4,12 @@ declare(strict_types=1);
 namespace AMB\Entity;
 
 use AMB\Interactor\Admin\RoleCheck;
-use App\Entity\Interfaces\PersonInterface;
+use Zestic\Contracts\Person\PersonInterface;
 
 final class Admin implements PersonInterface
 {
+    /** @var string */
+    private $email;
     /** @var string */
     private $firstName;
     /** @var int */
@@ -16,12 +18,26 @@ final class Admin implements PersonInterface
     private $lastName;
     /** @var \AMB\Entity\AdminRole */
     private $role;
+    /** @var int */
+    private $status;
     /** @var string */
     private $username;
 
     public function canDo(AdminRole $role): bool
     {
         return (new RoleCheck)($this->role, $role);
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): Admin
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
     public function getFirstName(): string
@@ -68,6 +84,18 @@ final class Admin implements PersonInterface
     public function setRole(AdminRole $role): Admin
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): Admin
+    {
+        $this->status = $status;
 
         return $this;
     }

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Admin;
 
-use App\Entity\Interfaces\PersonInterface;
 use AMB\Interactor\Db\HydrateAdmin;
-use App\Interactor\FindPersonByIdInterface;
+use Zestic\Contracts\Person\FindPersonByIdInterface;
+use Zestic\Contracts\Person\PersonInterface;
 
 final class FindAdminById implements FindPersonByIdInterface
 {
