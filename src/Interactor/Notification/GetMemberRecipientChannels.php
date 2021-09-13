@@ -16,7 +16,6 @@ final class GetMemberRecipientChannels
         }
 
         $email = "{$member->getFullName()} <{$member->getEmail()}>";
-        $email = "iampersistent@gmail.com";
         $recipient = (new Recipient())
             ->setEmail($email);
 

@@ -52,7 +52,7 @@ final class NotificationTemplateHandler
         $replace = function($matches) use ($context) {
             $key = trim($matches[1]);
 
-            return $context[$key];
+            return $context[$key] ?? '';
         };
 
         $subject = preg_replace_callback('#{{(.+?)}}#', $replace, $subject);
