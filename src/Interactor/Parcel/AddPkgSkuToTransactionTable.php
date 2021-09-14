@@ -5,10 +5,10 @@ namespace AMB\Interactor\Parcel;
 
 use AMB\Entity\Member;
 use AMB\Interactor\RapidCityTime;
-use App\Entity\Interfaces\PersonInterface;
 use Doctrine\DBAL\Connection;
 use IamPersistent\Ledger\Entity\Entry;
 use IamPersistent\SimpleShop\Entity\Product;
+use Zestic\Contracts\Person\PersonInterface;
 
 final class AddPkgSkuToTransactionTable
 {

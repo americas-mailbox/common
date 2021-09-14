@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace AMB\Interactor\Ledger;
 
 use AMB\Entity\Member;
-use App\Entity\Interfaces\PersonInterface;
 use IamPersistent\Ledger\Entity\Entry;
 use IamPersistent\SimpleShop\Entity\Product;
+use Zestic\Contracts\Person\PersonInterface;
 
 interface SkuHandlerInterface
 {

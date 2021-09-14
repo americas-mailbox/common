@@ -6,9 +6,9 @@ namespace AMB\Interactor\Ledger\Accounting;
 use AMB\Entity\Member;
 use AMB\Interactor\Ledger\SkuHandlerInterface;
 use AMB\Interactor\Parcel\AddPkgSkuToTransactionTable;
-use App\Entity\Interfaces\PersonInterface;
 use IamPersistent\Ledger\Entity\Entry;
 use IamPersistent\SimpleShop\Entity\Product;
+use Zestic\Contracts\Person\PersonInterface;
 
 final class HandlePkg implements SkuHandlerInterface
 {
