@@ -9,7 +9,8 @@
     "php": ">=7.1 | ^8.0",
     "doctrine/dbal": "^2.9",
     "myclabs/php-enum": "^1.7",
-    "ramsey/uuid": "^4.1"
+    "ramsey/uuid": "^4.1",
+    "zestic/contracts": "v0.2.0"
   },
   "require-dev": {
     "amb/codeception-amb": "^1.6",

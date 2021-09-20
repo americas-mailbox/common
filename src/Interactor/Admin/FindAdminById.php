@@ -4,10 +4,10 @@ declare(strict_types=1);
 namespace AMB\Interactor\Admin;
 
 use AMB\Interactor\Db\HydrateAdmin;
-use Zestic\Contracts\Person\FindPersonByIdInterface;
-use Zestic\Contracts\Person\PersonInterface;
+use Zestic\Contracts\User\FindUserByIdInterface;
+use Zestic\Contracts\User\UserInterface;
 
-final class FindAdminById implements FindPersonByIdInterface
+final class FindAdminById implements FinduserByIdInterface
 {
     /** @var \AMB\Interactor\Admin\GatherAdminDataById */
     private $gatherAdminData;
@@ -20,7 +20,7 @@ final class FindAdminById implements FindPersonByIdInterface
         $this->hydrateAdmin = new HydrateAdmin();
     }
 
-    public function find($id): ?PersonInterface
+    public function find($id): ?UserInterface
     {
         if (!$data = $this->gatherAdminData->gather($id)) {
             return null;
