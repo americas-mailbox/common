@@ -8,7 +8,7 @@ use AMB\Interactor\RapidCityTime;
 use Doctrine\DBAL\Connection;
 use IamPersistent\Ledger\Entity\Entry;
 use IamPersistent\SimpleShop\Entity\Product;
-use Zestic\Contracts\Person\PersonInterface;
+use Zestic\Contracts\User\UserInterface;
 
 final class AddPkgSkuToTransactionTable
 {
@@ -17,7 +17,7 @@ final class AddPkgSkuToTransactionTable
     ) {
     }
 
-    public function add(Member $member, Entry $entry, Product $sku, ?PersonInterface $actor)
+    public function add(Member $member, Entry $entry, Product $sku, ?UserInterface $actor)
     {
         $data = [
             'admin_id'   => $actor->getId(),

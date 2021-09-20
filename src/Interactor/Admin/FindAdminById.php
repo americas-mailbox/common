@@ -7,7 +7,7 @@ use AMB\Interactor\Db\HydrateAdmin;
 use Zestic\Contracts\User\FindUserByIdInterface;
 use Zestic\Contracts\User\UserInterface;
 
-final class FindAdminById implements FinduserByIdInterface
+final class FindAdminById implements FindUserByIdInterface
 {
     /** @var \AMB\Interactor\Admin\GatherAdminDataById */
     private $gatherAdminData;

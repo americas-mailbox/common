@@ -8,7 +8,7 @@ use AMB\Interactor\Ledger\SkuHandlerInterface;
 use AMB\Interactor\Plan\HandlePlanSku;
 use IamPersistent\Ledger\Entity\Entry;
 use IamPersistent\SimpleShop\Entity\Product;
-use Zestic\Contracts\Person\PersonInterface;
+use Zestic\Contracts\User\UserInterface;
 
 final class HandlePlan implements SkuHandlerInterface
 {
@@ -17,7 +17,7 @@ final class HandlePlan implements SkuHandlerInterface
     ) {
     }
 
-    public function handle(Member $member, Entry $entry, Product $sku, ?PersonInterface $actor): bool
+    public function handle(Member $member, Entry $entry, Product $sku, ?UserInterface $actor): bool
     {
         $this->handlePlanSku->handle($member, $sku);
 

@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace AMB\Entity;
 
 use AMB\Interactor\Admin\RoleCheck;
-use Zestic\Contracts\Person\PersonInterface;
+use Zestic\Contracts\User\UserInterface;
 
-final class Admin implements PersonInterface
+final class Admin implements UserInterface
 {
     /** @var string */
     private $email;
