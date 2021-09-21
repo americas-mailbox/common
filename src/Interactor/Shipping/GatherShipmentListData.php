@@ -19,28 +19,30 @@ final class GatherShipmentListData
         $sql = $this->sql($date);
         $results = $this->connection->fetchAllAssociative($sql);
         $data = [
-            'Best Method'                                    => [],
-            'Best Method - International'                    => [],
-            'Customer Pick Up'                               => [],
-            'FedEx - 2nd Day Air'                            => [],
-            'FedEx - 3rd Day Air'                            => [],
-            'FedEx - Ground'                                 => [],
-            'FedEx - International'                          => [],
-            'FedEx - Overnight'                              => [],
-            'US Postal Service - Express 2 Day Service'      => [],
-            'US Postal Service - First Class (if available)' => [],
-            'US Postal Service - International'              => [],
-            'US Postal Service - Priority'                   => [],
-            'UPS - Ground'                                   => [],
-            'UPS - Next Day Air'                             => [],
-            'UPS - Next Day Air Early'                       => [],
-            'UPS - Next Day Air Saver'                       => [],
-            'UPS - 2nd Day Air'                              => [],
-            'UPS - 2nd Day Air A.M.'                         => [],
-            'UPS - 3 Day Select'                             => [],
+            '5'       => [],
+            '15'      => [],
+            'BREAK-1' => [],
+            '7'       => [],
+            'BREAK-2' => [],
+            '8'       => [],
+            '9'       => [],
+            '10'      => [],
+            '12'      => [],
+            '18'      => [],
+            '11'      => [],
+            'BREAK-3' => [],
+            '14'      => [],
+            '17'      => [],
+            'BREAK-4' => [],
+            '20'      => [],
+            '21'      => [],
+            '22'      => [],
+            '23'      => [],
+            'BREAK-5' => [],
+            '6'       => [],
+            '16'      => [],
         ];
         foreach ($results as $result) {
-            $deliveryMethod = $this->getDeliveryMethod($result);
             $fullName = (new FullName())($result);
             $addressParts = [
                 $result['addressee'],
@@ -54,9 +56,10 @@ final class GatherShipmentListData
                 $result['country'],
             ];
             $address = implode(', ', $addressParts);
-            $data[$deliveryMethod][] = [
+            $deliveryMethodId = (string)$result['id'];
+            $data[$deliveryMethodId][] = [
                 'active' => $result['active'],
-                'balance' => (new JsonToString)($result['balance']),
+                'balance' => $this->getBalance($result),
                 'destination' => $address,
                 'plan' => $result['title'],
                 'shippingInstructions' => $result['shippingInstructions'],
@@ -65,25 +68,41 @@ final class GatherShipmentListData
             ];
         }
 
-        $returnData = [];
-        foreach ($data as $label => $datum) {
-            if (!empty($datum)) {
-                $returnData[$label] = $datum;
+        $lists = [];
+        foreach ($data as $methodId => $datum) {
+            if (!empty($datum) || !is_int($methodId)) {
+                $lists[$methodId] = $datum;
             }
         }
 
-        return $returnData;
+        return [
+            'labels'       => $this->getDeliveryMethodLabels(),
+            'lists'        => $lists,
+            'shippingDate' => $date,
+        ];
     }
 
-    private function getDeliveryMethod(array $data): string
+    private function getBalance(array $data): string
     {
-        $label = '';
-        if (!empty($data['carrier'])) {
-            $label = $data['carrier'] . ' - ';
-        }
-        $label .= $data['label'];
+        return (new JsonToString)($data['balance']);
+    }
 
-        return $label;
+    private function getDeliveryMethodLabels(): array
+    {
+        $sql = <<<SQL
+SELECT id, internal_label as label, internal_short_label as shortLabel
+FROM delivery_methods 
+WHERE active = 1;
+SQL;
+
+        $data = $this->connection->fetchAllAssociative($sql);
+
+        $results = [];
+        foreach ($data as $datum) {
+            $results[$datum['id']] = $datum;
+        }
+
+        return $results;
     }
 
     private function sql(Carbon $date): string
@@ -96,10 +115,9 @@ SELECT
        l.balance, 
        a.addressee,
        a.address, a.suite, a.location_name, a.in_care_of, a.city, a.state, a.post_code, a.country,
-       p.title, m.phone, d.id, d.label, dc.name AS carrier
+       p.title, m.phone, d.id, d.internal_label, d.internal_short_label
 FROM shipments AS s
 LEFT JOIN delivery_methods AS d ON s.delivery_method_id = d.id
-LEFT JOIN delivery_carriers AS dc ON d.company_id = dc.id
 LEFT JOIN members AS m ON m.member_id = s.member_id
 LEFT JOIN addresses AS a ON a.id = s.address_id
 LEFT JOIN accounts ON accounts.id = m.account_id
