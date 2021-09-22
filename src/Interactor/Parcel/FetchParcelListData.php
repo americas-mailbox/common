@@ -29,7 +29,7 @@ final class FetchParcelListData
         $sql = (new ParcelSQL)();
         $sql .= <<<SQL
 WHERE parcels.entered_on = '$date'
-ORDER BY parcels.created_at ASC
+ORDER BY parcels.created_at DESC
 SQL;
         $sql .= (new PaginateToSQL)($filter->getPaginate());
 
