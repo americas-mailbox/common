@@ -56,7 +56,7 @@ final class GatherShipmentListData
                 $result['country'],
             ];
             $address = implode(', ', $addressParts);
-            $deliveryMethodId = (string)$result['id'];
+            $deliveryMethodId = $this->getDeliveryMethodId($result);
             $data[$deliveryMethodId][] = [
                 'active' => $result['active'],
                 'balance' => $this->getBalance($result),
@@ -87,12 +87,23 @@ final class GatherShipmentListData
         return (new JsonToString)($data['balance']);
     }
 
+    private function getDeliveryMethodId(array $data): string
+    {
+        if (in_array($data['state'], ['AE', 'AP'])) {
+            return '24';
+        }
+        if (preg_match('/(514)\s+(Americas)\s+(Way)/i', $data['address']) > 0) {
+            return '7';
+        }
+
+        return (string)$data['id'];
+    }
+
     private function getDeliveryMethodLabels(): array
     {
         $sql = <<<SQL
 SELECT id, internal_label as label, internal_short_label as shortLabel
-FROM delivery_methods 
-WHERE active = 1;
+FROM delivery_methods; 
 SQL;
 
         $data = $this->connection->fetchAllAssociative($sql);
