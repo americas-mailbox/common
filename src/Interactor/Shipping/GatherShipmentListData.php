@@ -89,7 +89,7 @@ final class GatherShipmentListData
 
     private function getDeliveryMethodId(array $data): string
     {
-        if (in_array($data['state'], ['AE', 'AP'])) {
+        if (in_array($data['state'], ['AA', 'AE', 'AP'])) {
             return '24';
         }
         if (preg_match('/(514)\s+(Americas)\s+(Way)/i', $data['address']) > 0) {
