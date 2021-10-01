@@ -12,4 +12,11 @@ final class RapidCityTime extends Carbon
         $tz = 'America/Denver';
         parent::__construct($time, $tz);
     }
+
+    public static function firstOfTheMonth(): RapidCityTime
+    {
+        $today = self::today();
+
+        return $today->firstOfMonth();
+    }
 }
