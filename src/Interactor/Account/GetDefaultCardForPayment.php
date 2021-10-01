@@ -16,6 +16,16 @@ final class GetDefaultCardForPayment
         private UpdateAccount $updateAccount,
     ) {  }
 
+    public function disableAutoPayments(Member $member)
+    {
+        $account = $member->getAccount();
+        // send notification
+        $account
+            ->setAutoRenew(false)
+            ->setAutoTopUp(false);
+        $this->updateAccount->update($account);
+    }
+
     public function for(Member $member): ?CreditCard
     {
         $account = $member->getAccount();
@@ -25,6 +35,8 @@ final class GetDefaultCardForPayment
         }
         $cards = $this->getCreditCards($member);
         if (count($cards) !== 1) {
+            $this->disableAutoPayments($member);
+
             return null;
         }
 
