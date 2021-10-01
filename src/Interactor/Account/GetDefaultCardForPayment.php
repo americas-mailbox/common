@@ -35,8 +35,11 @@ final class GetDefaultCardForPayment
         return $defaultCard;
     }
 
-    private function cardIsValid(CreditCard $creditCard): bool
+    private function cardIsValid(?CreditCard $creditCard): bool
     {
+        if (!$creditCard) {
+            return false;
+        }
         if (!$creditCard->isActive()) {
             return false;
         }
