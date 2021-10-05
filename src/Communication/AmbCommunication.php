@@ -1,31 +1,24 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Notification;
+namespace AMB\Communication;
 
-use AMB\Interactor\Notification\NotificationTemplateHandler;
+use AMB\Interactor\Communication\CommunicationTemplateHandler;
 use AMB\Notification\Context\ActivityLogContext;
-use Notification\Context\NotificationContext;
-use Notification\Notification;
-use Notification\RecipientChannels;
-use Symfony\Component\Notifier\Notifier;
+use Communication\Context\CommunicationContext;
+use Communication\Communication;
+use Symfony\Component\Notifier\NotifierInterface;
 use Symfony\Component\Notifier\Recipient\NoRecipient;
 
-abstract class AmbNotification extends Notification
+abstract class AmbCommunication extends Communication
 {
-    /** @var \AMB\Interactor\Notification\NotificationTemplateHandler */
-    private $templateHandler;
-
     public function __construct(
-        Notifier $notifier,
-        NotificationContext $context,
-        NotificationTemplateHandler $templateHandler,
-        array $channels,
-        array $communicationFactories
+        protected CommunicationTemplateHandler $templateHandler,
+        CommunicationContext $context,
+        array $notificationFactories,
+        NotifierInterface $notifier,
     ) {
-        $this->templateHandler = $templateHandler;
-
-        parent::__construct($notifier, $context, $channels, $communicationFactories);
+        parent::__construct($context, $notificationFactories, $notifier);
     }
 
     public function send()

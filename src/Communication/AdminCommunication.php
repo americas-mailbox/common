@@ -1,25 +1,20 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Notification\Admin;
+namespace AMB\Communication;
 
-use AMB\Entity\Member;
-use AMB\Entity\User;
-use AMB\Entity\UserType;
-use AMB\Interactor\Notification\NotificationTemplateHandler;
-use AMB\Interactor\Notification\GetMemberRecipientChannels;
-use AMB\Notification\AmbNotification;
-use Notification\Context\NotificationContext;
-use Notification\Recipient;
-use Notification\RecipientChannels;
+use AMB\Interactor\Communication\CommunicationTemplateHandler;
+use Communication\Context\CommunicationContext;
+use Communication\Recipient;
+use Communication\RecipientChannels;
 use Symfony\Component\Notifier\Notifier;
 
-abstract class AdminNotification extends AmbNotification
+abstract class AdminCommunication extends AmbCommunication
 {
     public function __construct(
         Notifier $notifier,
-        NotificationContext $context,
-        NotificationTemplateHandler $emailTemplateHandler,
+        CommunicationContext $context,
+        CommunicationTemplateHandler $emailTemplateHandler,
         array $channels,
         array $communicationFactories
     ) {
@@ -31,5 +26,14 @@ abstract class AdminNotification extends AmbNotification
         $this->addRecipientChannel($recipientChannels);
 
         parent::__construct($notifier, $context, $emailTemplateHandler, $channels, $communicationFactories);
+    }
+
+    protected function getTemplates(): array
+    {
+        return [
+            'email' => [
+                'html' => 'generic'
+            ],
+        ];
     }
 }
