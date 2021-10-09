@@ -14,7 +14,7 @@ final class PostageErrorCommunication extends AdminCommunication
     {
         $subject = "IMPORTANT! There was a problem with a shipment charge for {$shipment->getMember()->getPMB()}";
         $this->context
-            ->setBody($this->generateEmailBody($shipment, $charge))
+            ->addEmailContext('body', $this->generateEmailBody($shipment, $charge))
             ->setSubject($subject);
 
         $this->send();

@@ -6,25 +6,10 @@ namespace AMB\Communication;
 use AMB\Entity\Member;
 use AMB\Entity\User;
 use AMB\Entity\UserType;
-use AMB\Interactor\Communication\CommunicationTemplateHandler;
-use AMB\Interactor\Communication\GetMemberRecipientChannels;
-use Communication\Context\CommunicationContext;
-use Symfony\Component\Notifier\NotifierInterface;
 
 abstract class MemberCommunication extends AmbCommunication
 {
     protected User $target;
-
-    public function __construct(
-        protected GetMemberRecipientChannels $channels,
-        CommunicationTemplateHandler $templateHandler,
-        CommunicationContext $context,
-        array $notificationFactories,
-        NotifierInterface $notifier,
-
-    ) {
-        parent::__construct($templateHandler, $context, $notificationFactories, $notifier);
-    }
 
     public function getMemberId(): int
     {

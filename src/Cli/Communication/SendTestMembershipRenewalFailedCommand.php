@@ -3,24 +3,24 @@ declare(strict_types=1);
 
 namespace AMB\Cli\Communication;
 
-use AMB\Communication\Admin\PostageErrorCommunication;
+use AMB\Notification\Member\MembershipRenewalFailedCommunication;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class SendTestPostageErrorCommand extends TestCommunicationCommand
+final class SendTestMembershipRenewalFailedCommand extends TestCommunicationCommand
 {
-    protected static $defaultName = 'communication:send-test-postage-error';
+    protected static $defaultName = 'communication:send-test-membership-renewal-failed';
 
     public function __construct(
-        private PostageErrorCommunication $communication,
+        private MembershipRenewalFailedCommunication $communication,
     )  {
         parent::__construct();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->communication->dispatch($this->getShipment(), $this->getMoney());
+        $this->communication->dispatch($this->getMember(), $this->getMoney(), $this->getCreditCard(), 'this is a test');
 
         return Command::SUCCESS;
     }
