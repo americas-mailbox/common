@@ -21,15 +21,10 @@ final class BulkCommunicationCommunication extends MemberCommunication
 
     private function setTemplateContext(Member $member, BulkCommunication $communication)
     {
-        $emailBodyContext = [
-            'body' => $communication->getEmailBody(),
-            'plan' => $member->getPlan()->getPlan()->getTitle(),
-            'subject' => $communication->getSubject(),
-        ];
         $this->context
-            ->set('body', $communication->getEmailBody())
-            ->set('plan', $member->getPlan()->getPlan()->getTitle())
-            ->set('subject', $communication->getSubject());
+            ->addEmailContext('body', $communication->getEmailBody())
+            ->addToContext('plan', $member->getMemberPlan()->getPlan()->getTitle())
+            ->addToContext('subject', $communication->getSubject());
     }
 
     protected function getTemplates(): array

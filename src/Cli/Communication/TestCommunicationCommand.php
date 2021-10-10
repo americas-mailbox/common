@@ -6,6 +6,7 @@ namespace AMB\Cli\Communication;
 use AMB\Entity\Member;
 use AMB\Entity\Member\Plan as MemberPlan;
 use AMB\Entity\Plan;
+use AMB\Entity\RenewalFrequency;
 use AMB\Entity\Shipping\Carrier;
 use AMB\Entity\Shipping\Delivery;
 use AMB\Entity\Shipping\DeliveryCharges;
@@ -57,13 +58,14 @@ abstract class TestCommunicationCommand extends Command
             ->setId(113755)
             ->setLastName('Shank')
             ->setPhone('(828) 275-8052')
-            ->setPlan($this->getMemberPlan())
+            ->setMemberPlan($this->getMemberPlan())
             ->setPMB("1024");
     }
 
     protected function getMemberPlan(string $plan = 'Gold'): MemberPlan
     {
         return (new MemberPlan())
+            ->setRenewalFrequency(RenewalFrequency::ANNUAL())
             ->setPlan($this->getPlan($plan));
     }
 
