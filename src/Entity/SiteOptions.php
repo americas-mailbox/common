@@ -9,7 +9,7 @@ use DateTime;
 use IamPersistent\SwiftMailer\Context\PartyContext;
 use JsonSerializable;
 use Money\Money;
-use Notification\Recipient;
+use Communication\Recipient;
 
 final class SiteOptions implements JsonSerializable
 {
@@ -19,7 +19,7 @@ final class SiteOptions implements JsonSerializable
     private $autoRenewalNotificationDays;
     /** @var PartyContext[] */
     private $bccEmailAddresses;
-    /** @var \Notification\Recipient[] */
+    /** @var \Communication\Recipient[] */
     private $bccRecipients;
     /** @var float */
     private $convenienceFee;
@@ -33,7 +33,7 @@ final class SiteOptions implements JsonSerializable
     private $cutOffTime;
     /** @var PartyContext */
     private $fromEmailAddress;
-    /** @var \Notification\Recipient */
+    /** @var \Communication\Recipient */
     private $fromRecipient;
     /** @var int[] */
     private $expirationWarningEmailDays = [];

@@ -1,38 +1,34 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Interactor\Notification;
+namespace AMB\Interactor\Communication;
 
-use AMB\Entity\Notificataion\Template;
+use AMB\Entity\Communication\Template;
 use AMB\Interactor\View\FormatDate;
+use Communication\Context\EmailContext;
 use Doctrine\DBAL\Connection;
-use IamPersistent\SwiftMailer\Context\EmailContext;
 
 final class EmailTemplateHandler
 {
-    /** @var \Doctrine\DBAL\Connection */
-    protected $connection;
-    /** @var \AMB\Entity\Notificataion\Template */
-    private $template;
+    private Template $template;
 
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
+    public function __construct(
+        private Connection $connection,
+    ) {
     }
 
     public function handle(EmailContext $context)
     {
-        $this->template = $this->loadTemplate($context->getTemplate());
+        $this->template = $this->loadTemplate($context->getHtmlTemplate());
         $this->setToday($context);
         $this->setSubject($context);
-        $context->setTemplate($context->getTemplate() . '.html.twig');
     }
 
     private function loadTemplate(string $name)
     {
         $statement = $this->connection->executeQuery("SELECT * FROM email_templates WHERE `name` = '$name'");
 
-        $data = $statement->fetch();
+        $data = $statement->fetchAssociative();
 
         return (new Template())
             ->setId($data['id'])

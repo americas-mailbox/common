@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace AMB\Entity;
 
-use AMB\Entity\Member\Plan;
+use AMB\Entity\Member\Plan as MemberPlan;
 use Carbon\Carbon;
+use Communication\Recipient;
 use IamPersistent\Ledger\Entity\Ledger;
 
 final class Member
@@ -19,10 +20,9 @@ final class Member
     private $alternateName;
     /** @var string|null */
     private $alternatePhone;
-    /** @var string|null */
-    private $comment;
-    /** @var string */
-    private $email;
+    private ?string $comment;
+    private ?Recipient $communicationRecipient = null;
+    private string $email;
     /** @var string */
     private $firstName;
     /** @var int */
@@ -33,8 +33,7 @@ final class Member
     private $lowBalanceDateNotified;
     /** @var string|null */
     private $middleName;
-    /** @var \AMB\Entity\Member\Plan */
-    private $plan;
+    private MemberPlan $memberPlan;
     /** @var string */
     private $phone;
     /** @var string|null */
@@ -126,6 +125,18 @@ final class Member
         return $this;
     }
 
+    public function getCommunicationRecipient(): Recipient
+    {
+        if (!$this->communicationRecipient) {
+            $this->communicationRecipient = (new Recipient())
+                ->setEmail((string) $this->email)
+                ->setName($this->getFullName())
+                ->setPhone((string) $this->phone);
+        }
+
+        return $this->communicationRecipient;
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -204,6 +215,18 @@ final class Member
         return $this;
     }
 
+    public function getMemberPlan(): ?MemberPlan
+    {
+        return $this->memberPlan;
+    }
+
+    public function setMemberPlan(?MemberPlan $plan): Member
+    {
+        $this->memberPlan = $plan;
+
+        return $this;
+    }
+
     public function getMemberStatus(): MemberStatus
     {
         return $this->active;
@@ -245,14 +268,14 @@ final class Member
         return $this;
     }
 
-    public function getPlan(): ?Plan
+    public function getPlan(): ?MemberPlan
     {
-        return $this->plan;
+        return $this->memberPlan;
     }
 
-    public function setPlan(?Plan $plan): Member
+    public function setPlan(?MemberPlan $memberPlan): Member
     {
-        $this->plan = $plan;
+        $this->memberPlan = $memberPlan;
 
         return $this;
     }

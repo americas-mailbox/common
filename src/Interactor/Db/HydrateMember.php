@@ -42,7 +42,7 @@ final class HydrateMember
             ->setLastName($memberData['last_name'] ?? '')
             ->setMiddleName($memberData['middle_name'] ?? '')
             ->setPIN($memberData['pin'])
-            ->setPlan($plan)
+            ->setMemberPlan($plan)
             ->setPhone($memberData['phone'])
             ->setPMB($memberData['pmb'])
             ->setShippingInstructions($memberData['shipinst'])

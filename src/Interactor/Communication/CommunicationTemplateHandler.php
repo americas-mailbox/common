@@ -1,26 +1,23 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Interactor\Notification;
+namespace AMB\Interactor\Communication;
 
-use AMB\Entity\Notificataion\Template;
+use AMB\Entity\Communication\Template;
 use AMB\Interactor\View\FormatDate;
 use Doctrine\DBAL\Connection;
-use Notification\Context\NotificationContext;
+use Communication\Context\CommunicationContext;
 
-final class NotificationTemplateHandler
+final class CommunicationTemplateHandler
 {
-    /** @var \Doctrine\DBAL\Connection */
-    protected $connection;
-    /** @var \AMB\Entity\Notificataion\Template */
-    private $template;
+    private Template $template;
 
-    public function __construct(Connection $connection)
-    {
-        $this->connection = $connection;
+    public function __construct(
+        private Connection $connection,
+    )  {
     }
 
-    public function handle(string $template, NotificationContext $context)
+    public function handle(string $template, CommunicationContext $context)
     {
         $this
             ->loadTemplate($template)
@@ -44,7 +41,7 @@ final class NotificationTemplateHandler
         return $this;
     }
 
-    private function setSubject(NotificationContext $notificationContext): self
+    private function setSubject(CommunicationContext $notificationContext): self
     {
         $subject = $this->template->getSubject();
         $context = $notificationContext->toArray();
@@ -61,7 +58,7 @@ final class NotificationTemplateHandler
         return $this;
     }
 
-    private function setToday(NotificationContext $notificationContext): self
+    private function setToday(CommunicationContext $notificationContext): self
     {
         $notificationContext->set('today', (new FormatDate)());
 
