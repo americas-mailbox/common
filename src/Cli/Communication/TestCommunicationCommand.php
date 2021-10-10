@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace AMB\Cli\Communication;
 
 use AMB\Entity\Member;
+use AMB\Entity\Member\Plan as MemberPlan;
+use AMB\Entity\Plan;
 use AMB\Entity\Shipping\Carrier;
 use AMB\Entity\Shipping\Delivery;
 use AMB\Entity\Shipping\DeliveryCharges;
@@ -50,8 +52,26 @@ abstract class TestCommunicationCommand extends Command
     protected function getMember(): Member
     {
         return (new Member())
+            ->setEmail('shank.amb.emails@gmail.com')
+            ->setFirstName('Rich')
             ->setId(113755)
+            ->setLastName('Shank')
+            ->setPhone('(828) 275-8052')
+            ->setPlan($this->getMemberPlan())
             ->setPMB("1024");
+    }
+
+    protected function getMemberPlan(string $plan = 'Gold'): MemberPlan
+    {
+        return (new MemberPlan())
+            ->setPlan($this->getPlan($plan));
+    }
+
+    protected function getPlan(string $plan = 'Gold'): Plan
+    {
+        return (new Plan())
+            ->setGroup(strtoupper($plan))
+            ->setTitle($plan);
     }
 
     protected function getShipment(): Shipment

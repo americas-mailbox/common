@@ -5,6 +5,7 @@ namespace AMB\Entity;
 
 use AMB\Entity\Member\Plan;
 use Carbon\Carbon;
+use Communication\Recipient;
 use IamPersistent\Ledger\Entity\Ledger;
 
 final class Member
@@ -19,10 +20,9 @@ final class Member
     private $alternateName;
     /** @var string|null */
     private $alternatePhone;
-    /** @var string|null */
-    private $comment;
-    /** @var string */
-    private $email;
+    private ?string $comment;
+    private ?Recipient $communicationRecipient = null;
+    private string $email;
     /** @var string */
     private $firstName;
     /** @var int */
@@ -124,6 +124,18 @@ final class Member
         $this->comment = $comment;
 
         return $this;
+    }
+
+    public function getCommunicationRecipient(): Recipient
+    {
+        if (!$this->communicationRecipient) {
+            $this->communicationRecipient = (new Recipient())
+                ->setEmail((string) $this->email)
+                ->setName($this->getFullName())
+                ->setPhone((string) $this->phone);
+        }
+
+        return $this->communicationRecipient;
     }
 
     public function getEmail(): ?string

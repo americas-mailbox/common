@@ -3,22 +3,37 @@ declare(strict_types=1);
 
 namespace AMB\Communication;
 
-use AMB\Notification\Context\ActivityLogContext;
 use Communication\Communication;
-use Symfony\Component\Notifier\Recipient\NoRecipient;
+use Communication\Recipient;
 
 abstract class AmbCommunication extends Communication
 {
-    public function logActivity(string $formatter): self
-    {
-        $recipientChannel = (new RecipientChannels())
-            ->addRecipientsToChannel('log', new NoRecipient());
-        $this->addRecipientChannel($recipientChannel);
+    protected ?string $activityLogFormatter = null;
 
-        $context = (new ActivityLogContext())
-            ->setFormatter($formatter);
-        $this->context->setMeta('log', $context);
+    public function send()
+    {
+        if ($this->activityLogFormatter) {
+            $this->logActivity();
+        }
+
+        parent::send();
+    }
+
+    private function logActivity(): self
+    {
+        $recipient = new Recipient(['log']);
+        $this->addRecipient($recipient);
+
+        $this->context->setActivityLogFormatter($this->activityLogFormatter);
 
         return $this;
+    }
+
+    protected function getAllowedChannels(): array
+    {
+        return [
+            'email',
+            'log',
+        ];
     }
 }

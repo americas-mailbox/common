@@ -24,18 +24,12 @@ abstract class MemberCommunication extends AmbCommunication
             ->setType(new UserType('member'));
         $this->target = $user;
         $this->context
-            ->set('fullName', $member->getFullName())
-            ->set('pmb', $member->getPMB())
-            ->set('target', $user);
-        $this->setRecipientChannels([$this->getChannels->getRecipientChannels($member)]);
+            ->addToContext('fullName', $member->getFullName())
+            ->addToContext('pmb', $member->getPMB())
+            ->addToContext('target', $user);
+
+        $this->addRecipient($member->getCommunicationRecipient());
 
         return $this;
-    }
-
-    protected function getAllowedChannels(): array
-    {
-        return [
-            'email',
-        ];
     }
 }

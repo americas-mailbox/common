@@ -1,23 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Notification\Channel;
+namespace AMB\Communication\Channel;
 
-use AMB\Notification\Communication\ActivityLogNotification;
-use AMB\Notification\Transport\ActivityLogTransport;
+use AMB\Communication\Notification\ActivityLogNotification;
+use AMB\Communication\Transport\ActivityLogTransport;
 use Symfony\Component\Notifier\Channel\ChannelInterface;
 use Symfony\Component\Notifier\Notification\Notification;
 use Symfony\Component\Notifier\Recipient\RecipientInterface;
 
 final class ActivityLogChannel implements ChannelInterface
 {
-    /** @var \AMB\Notification\Transport\ActivityLogTransport */
-    private $transport;
-
     public function __construct(
-        ActivityLogTransport $transport
+        private ActivityLogTransport $transport,
     ) {
-        $this->transport = $transport;
     }
 
     public function notify(
