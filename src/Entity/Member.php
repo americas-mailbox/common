@@ -33,7 +33,7 @@ final class Member
     private $lowBalanceDateNotified;
     /** @var string|null */
     private $middleName;
-    private MemberPlan $memberPlan;
+    private ?MemberPlan $memberPlan;
     /** @var string */
     private $phone;
     /** @var string|null */
