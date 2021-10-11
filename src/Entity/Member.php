@@ -22,7 +22,7 @@ final class Member
     private $alternatePhone;
     private ?string $comment;
     private ?Recipient $communicationRecipient = null;
-    private string $email;
+    private string $email = '';
     /** @var string */
     private $firstName;
     /** @var int */
