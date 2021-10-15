@@ -25,11 +25,9 @@ final class FetchUnstoredParcelsListData
 
     private function sql(Filter $filter): string
     {
-        $date = $filter->getDate()->toDateString();
         $sql = (new ParcelSQL)();
         $sql .= <<<SQL
-WHERE parcels.entered_on = '$date'
-AND location_id IS NULL
+WHERE location_id IS NULL
 ORDER BY parcels.created_at ASC
 SQL;
         $sql .= (new PaginateToSQL)($filter->getPaginate());
