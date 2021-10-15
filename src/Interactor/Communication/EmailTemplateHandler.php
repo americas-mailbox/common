@@ -45,11 +45,15 @@ final class EmailTemplateHandler
         $replace = function($matches) use ($context) {
             $key = trim($matches[1]);
 
-            return $context[$key];
+            return $context[$key] ?? null;
         };
 
         $subject = preg_replace_callback('#{{(.+?)}}#', $replace, $subject);
-        $emailContext->setSubject($subject);
+        if (!empty($subject)) {
+            $emailContext->setSubject($subject);
+        } else {
+            $subject = $emailContext->getSubject();
+        }
 
         $context['_subject'] = $subject;
         $emailContext->setBodyContext($context);
