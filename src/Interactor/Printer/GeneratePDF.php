@@ -9,7 +9,7 @@ use Twig\Loader\FilesystemLoader;
 
 final class GeneratePDF
 {
-    /** @var \Twig\Environment */
+    /** @var \Twig\Environment */ 
     private $twig;
     /** @var string */
     private $wkhtmltopdf;
