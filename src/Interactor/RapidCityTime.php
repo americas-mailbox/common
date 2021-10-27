@@ -19,4 +19,11 @@ final class RapidCityTime extends Carbon
 
         return $today->firstOfMonth();
     }
+
+    public static function endOfToday(): RapidCityTime
+    {
+        $today = self::today();
+
+        return $today->endOfDay();
+    }
 }
