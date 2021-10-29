@@ -102,7 +102,7 @@ FROM parcels AS p
     LEFT JOIN members AS m ON s.member_id = m.member_id
 WHERE s.date = '{$date->toDateString()}'
 AND s.delivery_method_id = 7
-ORDER BY p.pmb ASC
+ORDER BY m.pmb ASC
 SQL;
     }
 }
