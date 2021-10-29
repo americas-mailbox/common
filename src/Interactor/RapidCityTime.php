@@ -26,4 +26,11 @@ final class RapidCityTime extends Carbon
 
         return $today->endOfDay();
     }
+
+    public static function startOfToday(): RapidCityTime
+    {
+        $today = self::today();
+
+        return $today->startOfDay();
+    }
 }
