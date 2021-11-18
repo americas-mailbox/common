@@ -5,14 +5,14 @@ namespace AMB\Interactor\Auth;
 
 use App\Jwt\TokenData;
 use App\Jwt\TokenDataGeneratorInterface;
-use Zestic\Contracts\User\UserInterface;
+use Zestic\Contracts\Authentication\AuthLookupInterface;
 
 final class TokenDataGenerator implements TokenDataGeneratorInterface
 {
-    public function generate(UserInterface $user): TokenData
+    public function generate(AuthLookupInterface $authLookup): TokenData
     {
         $data = [
-            'personId' => $user->getPersonId(),
+            'userId' => $authLookup->getUserId(),
         ];
 
         return new TokenData($data);
