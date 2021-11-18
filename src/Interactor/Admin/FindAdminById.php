@@ -9,15 +9,9 @@ use Zestic\Contracts\User\UserInterface;
 
 final class FindAdminById implements FindUserByIdInterface
 {
-    /** @var \AMB\Interactor\Admin\GatherAdminDataById */
-    private $gatherAdminData;
-    /** @var \AMB\Interactor\Db\HydrateAdmin */
-    private $hydrateAdmin;
-
-    public function __construct(GatherAdminDataById $gatherAdminData)
-    {
-        $this->gatherAdminData = $gatherAdminData;
-        $this->hydrateAdmin = new HydrateAdmin();
+    public function __construct(
+        private GatherAdminDataById $gatherAdminData,
+    ) {
     }
 
     public function find($id): ?UserInterface
@@ -26,6 +20,6 @@ final class FindAdminById implements FindUserByIdInterface
             return null;
         }
 
-        return $this->hydrateAdmin->hydrate($data);
+        return (new HydrateAdmin())->hydrate($data);
     }
 }
