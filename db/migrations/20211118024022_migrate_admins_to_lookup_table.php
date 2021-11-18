@@ -30,7 +30,7 @@ final class MigrateAdminsToLookupTable extends AbstractMigration
                 'email'     => $admin['email'],
                 'id'        => $this->getNewId(),
                 'password'  => $admin['password'],
-                'person_id' => $admin['id'],
+                'user_id'   => $admin['id'],
                 'username'  => $admin['username'],
             ];
             $this->table('admin_auth_lookups')->insert($row)->save();
