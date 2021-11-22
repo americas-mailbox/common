@@ -17,7 +17,7 @@ final class ActivityLogTransport implements TransportInterface
 {
     public function __construct(
         private ActiveUser $activeUser,
-        private InsertActivity $insertActivity
+        private InsertActivity $insertActivity,
     ) {
     }
 
