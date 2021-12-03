@@ -87,16 +87,26 @@ final class GatherShipmentListData
         return (new JsonToString)($data['balance']);
     }
 
+    private function isMilitary(array $data): bool
+    {
+        return in_array($data['state'], ['AA', 'AE', 'AP']);
+    }
+
+    private function isUSPSOrBestMethod(array $data): bool
+    {
+        return (int)$data['delivery_method_id'] === 5 || (int) $data['delivery_carrier_id'] === 4;
+    }
+
     private function getDeliveryMethodId(array $data): string
     {
-        if (in_array($data['state'], ['AA', 'AE', 'AP'])) {
+        if ($this->isMilitary($data) && $this->isUSPSOrBestMethod($data)) {
             return '24';
         }
         if (preg_match('/(514)\s+(Americas)\s+(Way)/i', $data['address']) > 0) {
             return '7';
         }
 
-        return (string)$data['id'];
+        return (string)$data['delivery_method_id'];
     }
 
     private function getDeliveryMethodLabels(): array
@@ -126,7 +136,8 @@ SELECT
        l.balance, 
        a.addressee,
        a.address, a.suite, a.location_name, a.in_care_of, a.city, a.state, a.post_code, a.country,
-       p.title, m.phone, d.id, d.internal_label, d.internal_short_label
+       p.title, m.phone, 
+       d.id as delivery_method_id, d.internal_label, d.internal_short_label, d.company_id as delivery_carrier_id
 FROM shipments AS s
 LEFT JOIN delivery_methods AS d ON s.delivery_method_id = d.id
 LEFT JOIN members AS m ON m.member_id = s.member_id
