@@ -48,6 +48,7 @@ final class HydrateMember
             ->setShippingInstructions($memberData['shipinst'])
             ->setSuffix($memberData['suffix'])
             ->setSuspended($sqlToBool($memberData['suspended']))
+            ->setSuspendedMessage($memberData['suspendedmessage'])
             ->setTotalLowBalanceNotifications((int) $memberData['lowBalanceNumNotifications']);
         if (!empty($memberData['lowBalanceDateNotified'])) {
             $member->setLowBalanceDateNotified(new RapidCityTime($memberData['lowBalanceDateNotified']));
@@ -75,6 +76,5 @@ final class HydrateMember
             ->setPlan($ambPlan)
             ->setRenewalFrequency($renewalFrequency)
             ->setRenewsOn($renewsOn);
-
     }
 }

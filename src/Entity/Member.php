@@ -50,6 +50,8 @@ final class Member
     private $suffix;
     /** @var bool */
     private $suspended;
+    /** @var string|null */
+    private $suspendedMessage;
     /** @var int */
     private $totalLowBalanceNotifications;
 
@@ -348,6 +350,18 @@ final class Member
     public function setSuspended(bool $suspended): Member
     {
         $this->suspended = $suspended;
+
+        return $this;
+    }
+
+    public function getSuspendedMessage(): ?string
+    {
+        return $this->suspendedMessage;
+    }
+
+    public function setSuspendedMessage(?string $suspendedMessage): Member
+    {
+        $this->suspendedMessage = $suspendedMessage;
 
         return $this;
     }
