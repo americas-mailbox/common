@@ -9,7 +9,12 @@ final class SelectMemberSQL
     {
         return <<<COLUMNS
 SELECT 
-    m.*, 
+    m.member_id, account_id, active, alt_email, alt_phone, comment, email, level_id,
+    first_name, middle_name, last_name, suffix,
+    lowBalanceDateNotified, lowBalanceNumNotifications,
+    m.renewal_frequency, phone,
+    pmb, renewDate, shipinst, startDate, suspended, suspendedmessage,
+    alternate_name, pin,
     p.title as planTitle,
     a.auto_renew, 
     a.auto_top_up, 
