@@ -14,6 +14,7 @@ SELECT
     lowBalanceDateNotified, lowBalanceNumNotifications,
     m.renewal_frequency, phone,
     pmb, renewDate, shipinst, startDate, suspended, suspendedmessage,
+    return_to_sender_date,
     alternate_name, pin,
     p.title as planTitle,
     a.auto_renew, 

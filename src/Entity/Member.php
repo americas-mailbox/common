@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AMB\Entity;
 
 use AMB\Entity\Member\Plan as MemberPlan;
+use AMB\Interactor\RapidCityTime;
 use Carbon\Carbon;
 use Communication\Recipient;
 use IamPersistent\Ledger\Entity\Ledger;
@@ -42,6 +43,7 @@ final class Member
     private $pin;
     /** @var Carbon|null */
     private $renewDate;
+    private ?RapidCityTime $returnToSenderDate = null;
     /** @var string|null */
     private $shippingInstructions;
     /** @var Carbon|null */
@@ -302,6 +304,18 @@ final class Member
     public function setRenewDate(?Carbon $renewDate): Member
     {
         $this->renewDate = $renewDate;
+
+        return $this;
+    }
+
+    public function getReturnToSenderDate(): ?RapidCityTime
+    {
+        return $this->returnToSenderDate;
+    }
+
+    public function setReturnToSenderDate(?RapidCityTime $returnToSenderDate): Member
+    {
+        $this->returnToSenderDate = $returnToSenderDate;
 
         return $this;
     }

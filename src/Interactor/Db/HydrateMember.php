@@ -56,6 +56,9 @@ final class HydrateMember
         if (!empty($memberData['renewDate'])) {
             $member->setRenewDate(new RapidCityTime($memberData['renewDate']));
         }
+        if (!empty($memberData['return_to_sender_date'])) {
+            $member->setReturnToSenderDate(new RapidCityTime($memberData['return_to_sender_date']));
+        }
         if (!empty($memberData['startDate'])) {
             $member->setStartDate(new RapidCityTime($memberData['startDate']));
         }
