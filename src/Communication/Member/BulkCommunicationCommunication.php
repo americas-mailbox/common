@@ -23,7 +23,7 @@ final class BulkCommunicationCommunication extends MemberCommunication
     {
         $this->context
             ->addEmailContext('body', $communication->getEmailBody())
-            ->addToContext('plan', $member->getMemberPlan()->getPlan()->getTitle())
+            ->addToContext('plan', $member->getMemberPlan()?->getPlan()->getTitle())
             ->addToContext('subject', $communication->getSubject());
     }
 
