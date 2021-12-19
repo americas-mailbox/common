@@ -9,6 +9,7 @@ final class BulkCommunication
 {
     /** @var bool */
     private $completed;
+    private ?string $csvFilename = null;
     /** @var string */
     private $emailBody;
     /** @var int */
@@ -32,6 +33,18 @@ final class BulkCommunication
     public function setCompleted(bool $completed): BulkCommunication
     {
         $this->completed = $completed;
+
+        return $this;
+    }
+
+    public function getCsvFilename(): ?string
+    {
+        return $this->csvFilename;
+    }
+
+    public function setCsvFilename(?string $csvFilename): BulkCommunication
+    {
+        $this->csvFilename = $csvFilename;
 
         return $this;
     }
