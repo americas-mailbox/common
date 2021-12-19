@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class Scan extends AbstractMigration
+final class CreateScansTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -18,10 +18,9 @@ final class Scan extends AbstractMigration
      */
     public function change(): void
     {
-        $this->table('scan')
-            ->addColumn('pages', 'json', ['default' => [], 'null' => true])
-            ->addColumn('pdf_url', 'string', ['default' => null, 'null' => true])
-            ->addColumn('totalPages', 'integer', ['default' => null, 'null' => true])
+        $this->table('scans')
+            ->addColumn('images', 'json', ['null' => true])
+            ->addColumn('pdf_url', 'text', ['null' => true])
             ->addTimestamps()
             ->create();
     }

@@ -2,7 +2,6 @@
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
-use AMB\Entity\MemberParcelType;
 
 final class UpdateMemberParcel extends AbstractMigration
 {
@@ -21,8 +20,6 @@ final class UpdateMemberParcel extends AbstractMigration
     {
         $this->table('member_parcels')
             ->changeColumn('archived_on', 'date', ['default' => null, 'null' => true])
-            ->addColumn('scan_id', 'integer', ['null' => true])
-            ->addForeignKey('scan_id', 'scan', 'id', ['delete'=> 'SET_NULL', 'update'=> 'NO_ACTION'])
             ->changeColumn('deleted_on', 'date', ['default' => null, 'null' => true])
             ->changeColumn('first_action_taken_on', 'date', ['default' => null, 'null' => true])
             ->changeColumn('scanned_on', 'date', ['default' => null, 'null' => true])
@@ -38,6 +35,9 @@ final class UpdateMemberParcel extends AbstractMigration
                 'SCANNED',
                 'ARCHIVABLE',
             ],'default' => 'SCANNABLE'])
+            ->dropForeignKey('parcel_id')
+            ->addColumn('scan_id', 'integer', ['null' => true])
+            ->addForeignKey('scan_id', 'scans', 'id')
             ->save();
     }
 }
