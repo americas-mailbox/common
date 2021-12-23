@@ -45,6 +45,9 @@ final class SaveLedger
         if ($member->getRenewDate()->lt(new RapidCityTime())) {
             return;
         }
+        if ($member->getAccount()->getNotifications()->getSuspensionCodes() !== ['LOW_FUNDS']) {
+            return;
+        }
         if ($ledger->getBalance()->greaterThan($member->getAccount()->getCriticalBalance())) {
             $this->unsuspendMember->handle($member);
         }

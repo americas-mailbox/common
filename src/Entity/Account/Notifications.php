@@ -3,16 +3,30 @@ declare(strict_types=1);
 
 namespace AMB\Entity\Account;
 
+use AMB\Interactor\RapidCityTime;
+
 final class Notifications
 {
-    /** @var \AMB\Interactor\RapidCityTime[] */
-    private $lowBalanceNotificationDates;
-    /** @var int */
-    private $lowBalanceNotificationCount;
-    /** @var string */
-    private $reasonForSuspension;
-    /** @var int */
-    private $suspendedNotificationCount;
+    private int $lowBalanceNotificationCount;
+    /** @var RapidCityTime[] */
+    private array $lowBalanceNotificationDates;
+    private string $reasonForSuspension;
+    private int $suspendedNotificationCount;
+    /** @var RapidCityTime[] */
+    private array $suspendedNotificationDates;
+    private array $suspensionCodes;
+
+    public function getLowBalanceNotificationCount(): int
+    {
+        return $this->lowBalanceNotificationCount;
+    }
+
+    public function setLowBalanceNotificationCount(int $lowBalanceNotificationCount): Notifications
+    {
+        $this->lowBalanceNotificationCount = $lowBalanceNotificationCount;
+
+        return $this;
+    }
 
     public function getLowBalanceNotificationDates(): array
     {
@@ -45,14 +59,14 @@ final class Notifications
         return $this;
     }
 
-    public function getLowBalanceNotificationCount(): int
+    public function getSuspendedNotificationDates(): array
     {
-        return $this->lowBalanceNotificationCount;
+        return $this->suspendedNotificationDates;
     }
 
-    public function setLowBalanceNotificationCount(int $lowBalanceNotificationCount): Notifications
+    public function setSuspendedNotificationDates(array $suspendedNotificationDates): Notifications
     {
-        $this->lowBalanceNotificationCount = $lowBalanceNotificationCount;
+        $this->suspendedNotificationDates = $suspendedNotificationDates;
 
         return $this;
     }
@@ -65,6 +79,18 @@ final class Notifications
     public function setSuspendedNotificationCount(int $suspendedNotificationCount): Notifications
     {
         $this->suspendedNotificationCount = $suspendedNotificationCount;
+
+        return $this;
+    }
+
+    public function getSuspensionCodes(): array
+    {
+        return $this->suspensionCodes;
+    }
+
+    public function setSuspensionCodes(array $suspensionCodes): Notifications
+    {
+        $this->suspensionCodes = $suspensionCodes;
 
         return $this;
     }

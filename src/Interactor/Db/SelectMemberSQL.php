@@ -13,7 +13,7 @@ SELECT
     first_name, middle_name, last_name, suffix,
     lowBalanceDateNotified, lowBalanceNumNotifications,
     m.renewal_frequency, phone,
-    pmb, renewDate, shipinst, startDate, suspended, suspendedmessage,
+    pmb, renewDate, shipinst, startDate, suspended,
     return_to_sender_date,
     alternate_name, pin,
     p.title as planTitle,

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Entity;
 
+use AMB\Entity\Account\Notifications;
 use Carbon\Carbon;
 use IamPersistent\Ledger\Entity\Ledger;
 use IamPersistent\SimpleShop\Entity\CreditCard;
@@ -30,8 +31,7 @@ class Account
     private $ledger;
     /** @var Money */
     private $minimumAllowedBalance;
-    /** @var \AMB\Entity\Account\Notifications */
-    private $notifications;
+    private Notifications $notifications;
     /** @var string */
     private $officeClosedDeliveryPreference;
     /** @var \Carbon\Carbon */
