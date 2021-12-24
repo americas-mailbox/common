@@ -30,8 +30,6 @@ final class Member
     private $id;
     /** @var string */
     private $lastName;
-    /** @var Carbon|null */
-    private $lowBalanceDateNotified;
     /** @var string|null */
     private $middleName;
     private ?MemberPlan $memberPlan = null;
@@ -205,18 +203,6 @@ final class Member
     public function getLedger(): Ledger
     {
         return $this->getAccount()->getLedger();
-    }
-
-    public function getLowBalanceDateNotified(): ?Carbon
-    {
-        return $this->lowBalanceDateNotified;
-    }
-
-    public function setLowBalanceDateNotified(?Carbon $lowBalanceDateNotified): Member
-    {
-        $this->lowBalanceDateNotified = $lowBalanceDateNotified;
-
-        return $this;
     }
 
     public function getMemberPlan(): ?MemberPlan

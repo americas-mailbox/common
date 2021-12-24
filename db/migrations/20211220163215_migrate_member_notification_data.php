@@ -18,21 +18,17 @@ FROM members
 SQL;
         $statement = $this->query($sql);
         $members = $statement->fetchAll();
-
         foreach ($members as $memberData) {
             if ($memberData['lowBalanceDateNotified']) {
-                $date = new RapidCityTime($memberData['lowBalanceDateNotified']);
-                $notificationDates = [$date->toDateTimeString()];
-            } else {
-                $notificationDates = [];
+                $notificationDate = (new RapidCityTime($memberData['lowBalanceDateNotified']))->toDateTimeString();
             }
             $notifications = json_encode([
-                'lowBalanceNotificationCount' => (int)$memberData['lowBalanceNumNotifications'],
-                'lowBalanceNotificationDates' => $notificationDates,
-                'reasonForSuspension'         => $memberData['suspendedmessage'],
-                'suspendedNotificationCount'  => 0,
-                'suspendedNotificationDates'  => [],
-                'suspensionCodes'             => $this->getSuspensionCodes($memberData['suspendedmessage'] ?? ''),
+                'lastSuspendedNotificationDate'  => null,
+                'lastLowBalanceNotificationDate' => $notificationDate ?? null,
+                'lowBalanceNotificationCount'    => (int)$memberData['lowBalanceNumNotifications'],
+                'reasonForSuspension'            => $memberData['suspendedmessage'],
+                'suspendedNotificationCount'     => 0,
+                'suspensionCodes'                => $this->getSuspensionCodes($memberData['suspendedmessage'] ?? ''),
             ]);
             $this->getQueryBuilder()
                 ->update('accounts')

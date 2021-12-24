@@ -11,7 +11,6 @@ final class SelectMemberSQL
 SELECT 
     m.member_id, account_id, active, alt_email, alt_phone, comment, email, level_id,
     first_name, middle_name, last_name, suffix,
-    lowBalanceDateNotified, lowBalanceNumNotifications,
     m.renewal_frequency, phone,
     pmb, renewDate, shipinst, startDate, suspended,
     return_to_sender_date,

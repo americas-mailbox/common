@@ -7,14 +7,36 @@ use AMB\Interactor\RapidCityTime;
 
 final class Notifications
 {
+    private ?RapidCityTime $lastLowBalanceNotificationDate;
+    private ?RapidCityTime $lastSuspendedNotificationDate;
     private int $lowBalanceNotificationCount;
-    /** @var RapidCityTime[] */
-    private array $lowBalanceNotificationDates;
     private string $reasonForSuspension;
     private int $suspendedNotificationCount;
-    /** @var RapidCityTime[] */
-    private array $suspendedNotificationDates;
     private array $suspensionCodes;
+
+    public function getLastLowBalanceNotificationDate(): ?RapidCityTime
+    {
+        return $this->lastLowBalanceNotificationDate;
+    }
+
+    public function setLastLowBalanceNotificationDate(?RapidCityTime $lastLowBalanceNotificationDate): Notifications
+    {
+        $this->lastLowBalanceNotificationDate = $lastLowBalanceNotificationDate;
+
+        return $this;
+    }
+
+    public function getLastSuspendedNotificationDate(): ?RapidCityTime
+    {
+        return $this->lastSuspendedNotificationDate;
+    }
+
+    public function setLastSuspendedNotificationDate(?RapidCityTime $lastSuspendedNotificationDate): Notifications
+    {
+        $this->lastSuspendedNotificationDate = $lastSuspendedNotificationDate;
+
+        return $this;
+    }
 
     public function getLowBalanceNotificationCount(): int
     {
@@ -24,18 +46,6 @@ final class Notifications
     public function setLowBalanceNotificationCount(int $lowBalanceNotificationCount): Notifications
     {
         $this->lowBalanceNotificationCount = $lowBalanceNotificationCount;
-
-        return $this;
-    }
-
-    public function getLowBalanceNotificationDates(): array
-    {
-        return $this->lowBalanceNotificationDates;
-    }
-
-    public function setLowBalanceNotificationDates(array $lowBalanceNotificationDates): Notifications
-    {
-        $this->lowBalanceNotificationDates = $lowBalanceNotificationDates;
 
         return $this;
     }
@@ -55,18 +65,6 @@ final class Notifications
     public function setReasonForSuspension(string $reasonForSuspension): Notifications
     {
         $this->reasonForSuspension = $reasonForSuspension;
-
-        return $this;
-    }
-
-    public function getSuspendedNotificationDates(): array
-    {
-        return $this->suspendedNotificationDates;
-    }
-
-    public function setSuspendedNotificationDates(array $suspendedNotificationDates): Notifications
-    {
-        $this->suspendedNotificationDates = $suspendedNotificationDates;
 
         return $this;
     }
