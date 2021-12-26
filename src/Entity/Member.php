@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Entity;
 
+use AMB\Entity\Account\Notifications;
 use AMB\Entity\Member\Plan as MemberPlan;
 use AMB\Interactor\RapidCityTime;
 use Carbon\Carbon;
@@ -50,10 +51,6 @@ final class Member
     private $suffix;
     /** @var bool */
     private $suspended;
-    /** @var string|null */
-    private $suspendedMessage;
-    /** @var int */
-    private $totalLowBalanceNotifications;
 
     public function getAccount(): Account
     {
@@ -234,6 +231,11 @@ final class Member
         return $this;
     }
 
+    public function getNotifications(): Notifications
+    {
+        return $this->account->getNotifications();
+    }
+
     public function getPIN(): ?string
     {
         return $this->pin;
@@ -350,30 +352,6 @@ final class Member
     public function setSuspended(bool $suspended): Member
     {
         $this->suspended = $suspended;
-
-        return $this;
-    }
-
-    public function getSuspendedMessage(): ?string
-    {
-        return $this->suspendedMessage;
-    }
-
-    public function setSuspendedMessage(?string $suspendedMessage): Member
-    {
-        $this->suspendedMessage = $suspendedMessage;
-
-        return $this;
-    }
-
-    public function getTotalLowBalanceNotifications(): int
-    {
-        return $this->totalLowBalanceNotifications;
-    }
-
-    public function setTotalLowBalanceNotifications(int $totalLowBalanceNotifications): Member
-    {
-        $this->totalLowBalanceNotifications = $totalLowBalanceNotifications;
 
         return $this;
     }

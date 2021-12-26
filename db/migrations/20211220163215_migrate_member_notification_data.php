@@ -19,9 +19,7 @@ SQL;
         $statement = $this->query($sql);
         $members = $statement->fetchAll();
         foreach ($members as $memberData) {
-            if ($memberData['lowBalanceDateNotified']) {
-                $notificationDate = (new RapidCityTime($memberData['lowBalanceDateNotified']))->toDateTimeString();
-            }
+            $notificationDate = $memberData['lowBalanceDateNotified'] ? (new RapidCityTime($memberData['lowBalanceDateNotified']))->toDateString() : null;
             $notifications = json_encode([
                 'lastSuspendedNotificationDate'  => null,
                 'lastLowBalanceNotificationDate' => $notificationDate ?? null,

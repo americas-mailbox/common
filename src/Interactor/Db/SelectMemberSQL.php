@@ -33,6 +33,7 @@ FROM members m
 LEFT JOIN accounts a ON m.account_id = a.id 
 LEFT JOIN ledgers l ON a.ledger_id = l.id 
 LEFT JOIN rates_and_plans p ON m.level_id = p.id 
+
 COLUMNS;
     }
 }

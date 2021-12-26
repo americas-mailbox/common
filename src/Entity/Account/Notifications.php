@@ -81,6 +81,24 @@ final class Notifications
         return $this;
     }
 
+    public function addSuspensionCode(string $code): Notifications
+    {
+        if (!in_array($code, $this->suspensionCodes)) {
+            $this->suspensionCodes[] = $code;
+        }
+
+        return $this;
+    }
+
+    public function addSuspensionCodes(array $codes): Notifications
+    {
+        foreach ($codes as $code) {
+            $this->addSuspensionCode($code);
+        }
+
+        return $this;
+    }
+
     public function getSuspensionCodes(): array
     {
         return $this->suspensionCodes;
