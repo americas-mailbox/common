@@ -26,7 +26,7 @@ final class FindMemberByAttributes
         return $this->hydrateMember->hydrate($memberData);
     }
 
-    public function gather(array $attributes, string $operator)
+    private function gather(array $attributes, string $operator)
     {
         $sql = $this->sql($attributes, $operator);
         $statement = $this->connection->executeQuery($sql['statement'], $sql['params']);
