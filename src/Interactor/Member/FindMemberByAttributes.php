@@ -23,7 +23,7 @@ final class FindMemberByAttributes
             return null;
         }
 
-        return $this->hydrateMember->hydrate($memberData);
+        return $memberData;
     }
 
     private function gather(array $attributes, string $operator)
