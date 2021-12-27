@@ -51,7 +51,7 @@ final class FindMemberByAttributes
         );
         $columnValues = array_values($attributes);
         return [
-            'statement' => "SELECT * FROM member WHERE $whereCondition",
+            'statement' => "SELECT * FROM members WHERE $whereCondition",
             'params' => $columnValues
         ];
     }
