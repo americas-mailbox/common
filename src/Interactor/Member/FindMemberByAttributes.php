@@ -16,7 +16,7 @@ final class FindMemberByAttributes
     ) {
     }
 
-    public function find(array $attributes, string $operator = 'OR'): ?Member
+    public function find(array $attributes, string $operator = 'OR'): array | null
     {
         $memberData = $this->gather($attributes, $operator);
         if (empty($memberData)) {
