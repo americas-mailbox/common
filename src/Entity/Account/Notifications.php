@@ -10,7 +10,7 @@ final class Notifications
     private ?RapidCityTime $lastLowBalanceNotificationDate;
     private ?RapidCityTime $lastSuspendedNotificationDate;
     private int $lowBalanceNotificationCount;
-    private string $reasonForSuspension;
+    private ?string $reasonForSuspension;
     private int $suspendedNotificationCount;
     private array $suspensionCodes;
 
@@ -57,12 +57,12 @@ final class Notifications
         return $this;
     }
 
-    public function getReasonForSuspension(): string
+    public function getReasonForSuspension(): ?string
     {
         return $this->reasonForSuspension;
     }
 
-    public function setReasonForSuspension(string $reasonForSuspension): Notifications
+    public function setReasonForSuspension(?string $reasonForSuspension): Notifications
     {
         $this->reasonForSuspension = $reasonForSuspension;
 
