@@ -9,8 +9,9 @@ use AMB\Interactor\RapidCityTime;
 use Carbon\Carbon;
 use Communication\Recipient;
 use IamPersistent\Ledger\Entity\Ledger;
+use Zestic\Contracts\User\UserInterface;
 
-final class Member
+final class Member implements UserInterface
 {
     /** @var Account */
     private $account;
