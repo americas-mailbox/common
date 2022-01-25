@@ -6,19 +6,22 @@
   },
   "minimum-stability": "dev",
   "require": {
-    "php": ">=7.1 | ^8.0",
-    "doctrine/dbal": "^2.9",
+    "php": "^8.0",
+    "doctrine/dbal": "^2.13.7",
+    "league/flysystem": "2.x-dev",
+    "iampersistent/ledger": "^0.3.1",
+    "iampersistent/simple-shop": "^v0.4.1",
     "myclabs/php-enum": "^1.7",
     "ramsey/uuid": "^4.1",
-    "zestic/contracts": "v0.2.0"
+    "zestic/app-library": "^0.7.0",
+    "zestic/communication-component": "^1.1.1",
+    "zestic/contracts": "v0.2.0",
+    "zestic/flysystem2-component": "^0.1.1"
   },
   "require-dev": {
     "amb/codeception-amb": "^1.6",
     "codeception/codeception": "^4.0",
-    "codeception/module-asserts": "^1.3",
-    "iampersistent/app-library": "^0.2",
-    "iampersistent/ledger": "^0.3",
-    "iampersistent/simple-shop": "^0.3"
+    "codeception/module-asserts": "^1.3"
   },
   "repositories": {
     "amb/codeception-amb": {
