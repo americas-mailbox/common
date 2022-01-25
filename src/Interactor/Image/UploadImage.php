@@ -38,7 +38,7 @@ final class UploadImage
             ];
             $response = $this->connection->insert('images', $imageData);
             if (1 !== $response) {
-                throw new \Exception('There was a problem saving the parcel');
+                throw new \Exception('There was a problem saving the image');
             }
         } catch (\Exception $e) {
             $this->connection->rollBack();
