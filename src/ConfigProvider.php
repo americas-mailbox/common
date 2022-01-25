@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace AMB;
 
+use AMB\Factory\Interactor\UploadImageFactory;
 use AMB\Factory\Printer\GeneratePDFFactory;
 use AMB\Factory\TwigEnvironmentFactory;
+use AMB\Interactor\Image\UploadImage;
 use AMB\Interactor\Printer\GeneratePDF;
 use Twig\Environment;
 
@@ -23,6 +25,7 @@ final class ConfigProvider
             'factories' => [
                 Environment::class => TwigEnvironmentFactory::class,
                 GeneratePDF::class => GeneratePDFFactory::class,
+                UploadImage::class => UploadImageFactory::class,
             ],
         ];
     }
