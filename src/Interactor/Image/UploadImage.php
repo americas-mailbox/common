@@ -15,6 +15,7 @@ final class UploadImage
 {
     public function __construct(
         private Connection $connection,
+        private FindImageById $findImageById,
         private Files $files,
     ) { }
 
@@ -47,6 +48,6 @@ final class UploadImage
         }
         $this->connection->commit();
 
-        return $id;
+        return $this->findImageById->find($id);
     }
 }
