@@ -10,7 +10,7 @@ final class HydrateImage
     public function hydrate(array $data): Image
     {
         return (new Image())
-            ->setFilePath($locationData['filepath'])
-            ->setId($locationData['id']);
+            ->setFilePath($data['filepath'])
+            ->setId($data['id']);
     }
 }
