@@ -9,8 +9,13 @@ final class HydrateImage
 {
     public function hydrate(array $data): Image
     {
+        $toDate = new SQLToRapidCityTime();
+
         return (new Image())
+            ->setCreatedAt($toDate($data['created_at']))
             ->setFilePath($data['filepath'])
-            ->setId($data['id']);
+            ->setId($data['id'])
+            ->setUpdatedAt($toDate($data['updated_at']));
+
     }
 }
