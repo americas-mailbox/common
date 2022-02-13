@@ -3,13 +3,12 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Image;
 
-use AMB\Entity\Image;
-use App\Files\Files;
 use Doctrine\DBAL\Connection;
 use League\Flysystem\Config;
 use League\Flysystem\Visibility;
 use Psr\Http\Message\UploadedFileInterface;
 use Ramsey\Uuid\Uuid;
+use Zestic\Flysystem\Files;
 
 final class UploadImage
 {

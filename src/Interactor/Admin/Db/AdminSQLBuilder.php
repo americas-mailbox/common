@@ -28,8 +28,13 @@ final class AdminSQLBuilder extends SQLBuilder
     protected function allProperties(): array
     {
         return [
+            'email',
             'first_name',
+            'id',
             'last_name',
+            'role',
+            'status',
+            'username',
         ];
     }
 }
