@@ -16,7 +16,7 @@
     "zestic/app-library": "^0.7.0",
     "zestic/communication-component": "^1.1.1",
     "zestic/contracts": "v0.2.0",
-    "zestic/flysystem2-component": "^0.1.1"
+    "zestic/flysystem2-component": "^0.2.0"
   },
   "require-dev": {
     "amb/codeception-amb": "^1.6",
