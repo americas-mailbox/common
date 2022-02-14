@@ -7,6 +7,7 @@ final class ExtractGatheredData
 {
     public function __invoke(array &$data, string $prefix, array $keyChanges = []): array
     {
+        $prefix = rtrim($prefix, '!') . '!';
         $extractPropertyName = function (string $property) use ($keyChanges): string {
             $propertyName = explode('!', $property)[1];
 
