@@ -5,7 +5,7 @@ namespace AMB\Interactor;
 
 use Carbon\Carbon;
 
-final class RapidCityTime extends Carbon
+class RapidCityTime extends Carbon
 {
     public function __construct($time = null, $tz = null)
     {
