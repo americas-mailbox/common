@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\OfficeClosure;
 
-use AMB\Factory\DbalConnection;
-use AMB\Interactor\DbalConnectionTrait;
 use AMB\Interactor\RapidCityTime;
+use Doctrine\DBAL\Connection;
 
-final class GetOfficeClosureDates implements DbalConnection
+final class GetOfficeClosureDates
 {
-    use DbalConnectionTrait;
+    public function __construct(
+        private Connection $connection,
+    ) {}
 
     public function get(): array
     {
@@ -18,7 +19,7 @@ final class GetOfficeClosureDates implements DbalConnection
         $endRange = $startRange + 5;
 
         $startingYear = $thisYear->toDateString();
-        $data = $this->connection->fetchAll("SELECT * FROM office_closures WHERE `date` >= '$startingYear'");
+        $data = $this->connection->fetchAllAssociative("SELECT * FROM office_closures WHERE `date` >= '$startingYear'");
 
         $dates = [];
 
@@ -44,7 +45,7 @@ final class GetOfficeClosureDates implements DbalConnection
     {
         $thisYear = (new RapidCityTime())->firstOfYear();
         $startingYear = $thisYear->toDateString();
-        $data = $this->connection->fetchAll("SELECT `date` FROM office_closures WHERE `date` >= '$startingYear'");
+        $data = $this->connection->fetchAllAssociative("SELECT `date` FROM office_closures WHERE `date` >= '$startingYear'");
 
         $dates = [];
         foreach ($data as $datum) {
