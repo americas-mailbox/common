@@ -32,7 +32,7 @@ final class GetOfficeClosureDates
             return $a['date'] <=> $b['date'];
         };
 
-        for( $year = $startRange; $year < $endRange ; $year++) {
+        for ($year = $startRange; $year < $endRange ; $year++) {
             $yearDates = $dates[$year] ?? [];
             usort($yearDates, $dateSort);
             $dates[$year] = $yearDates;
@@ -41,17 +41,19 @@ final class GetOfficeClosureDates
         return $dates;
     }
 
-    public function getForCalendar(): string
+    public function getForCalendar(): array
     {
-        $thisYear = (new RapidCityTime())->firstOfYear();
-        $startingYear = $thisYear->toDateString();
-        $data = $this->connection->fetchAllAssociative("SELECT `date` FROM office_closures WHERE `date` >= '$startingYear'");
-
+        $closures = $this->get();
         $dates = [];
-        foreach ($data as $datum) {
-            $dates[] = '"' . (new RapidCityTime($datum['date']))->format('m/d/Y') . '"';
+        foreach ($closures as $year => $closureDates) {
+            foreach ($closureDates as $closureDate) {
+                $dates[] = [
+                    'date' => $closureDate['date'],
+                    'reason' => $closureDate['description'],
+                ];
+            }
         }
 
-        return implode(" ,\n", $dates);
+        return $dates;
     }
 }
