@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Interactor\Shipping;
+namespace AMB\Interactor\ShippingEvent;
 
 use AMB\Interactor\RapidCityTime;
 use AMB\View\ShippingEvent\GatherFutureEvents;
