@@ -20,7 +20,8 @@ final class NormalizeShippingEvent
                     'id'           => $address->getId(),
                     'inCareOf'     => $address->getInCareOf(),
                     'locationName' => $address->getLocationName(),
-                    'postcode'     => $address->getDisplayedPostCode(),
+                    'plus4'        => $address->getPlus4(),
+                    'postcode'     => $address->getPostcode(),
                     'state'        => $address->getState(),
                     'suite'        => $address->getSuite(),
                 ];
