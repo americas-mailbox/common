@@ -97,20 +97,9 @@ final class GatherPastShipments
         return $label;
     }
 
-    private function getPostCode(array $data): string
-    {
-        $postcode = $data['postcode'];
-        if (!empty($data['plus4'])) {
-            $postcode .= '-' . $data['plus4'];
-        }
-
-        return (string) $postcode;
-    }
-
     private function normalizePastShipmentData($data): array
     {
         $shippingMethodLabel = $this->getMethodLabel($data);
-        $postcode = $this->getPostCode($data);
 
         if ($data['tracking_number'] && $data['shipping_carrier_name']) {
             $carrier = (new Carrier())
@@ -127,13 +116,14 @@ final class GatherPastShipments
 
         return [
             'address'             => [
+                'address'      => $data['address'],
                 'addressee'    => $data['addressee'],
                 'city'         => $data['city'],
                 'country'      => $data['country'],
                 'id'           => (int)$data['addressId'],
-                'postcode'     => $postcode,
+                'postcode'     => $data['postcode'],
+                'plus4'        => $data['plus4'],
                 'state'        => $data['state'],
-                'address'      => $data['address'],
                 'suite'        => $data['suite'] ?? '',
                 'inCareOf'     => $data['inCareOf'] ?? '',
                 'locationName' => $data['locationName'] ?? '',
