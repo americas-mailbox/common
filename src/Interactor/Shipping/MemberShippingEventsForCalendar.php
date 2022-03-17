@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace AMB\Interactor\Shipping;
 
 use AMB\Interactor\RapidCityTime;
-use AMB\Interactor\View\ShippingEvent\GatherFutureEvents;
-use AMB\Interactor\View\ShippingEvent\GatherPastShipments;
+use AMB\View\ShippingEvent\GatherFutureEvents;
+use AMB\View\ShippingEvent\GatherPastShipments;
 
 final class MemberShippingEventsForCalendar
 {
