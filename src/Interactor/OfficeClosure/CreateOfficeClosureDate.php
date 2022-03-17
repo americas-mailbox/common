@@ -3,13 +3,14 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\OfficeClosure;
 
-use AMB\Factory\DbalConnection;
-use AMB\Interactor\DbalConnectionTrait;
 use AMB\Interactor\RapidCityTime;
+use Doctrine\DBAL\Connection;
 
-final class CreateOfficeClosureDate implements DbalConnection
+final class CreateOfficeClosureDate
 {
-    use DbalConnectionTrait;
+    public function __construct(
+        private Connection $connection,
+    ) {}
 
     public function create(array $data): int
     {

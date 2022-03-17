@@ -3,12 +3,13 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\OfficeClosure;
 
-use AMB\Factory\DbalConnection;
-use AMB\Interactor\DbalConnectionTrait;
+use Doctrine\DBAL\Connection;
 
-final class DeleteOfficeClosureDate implements DbalConnection
+final class DeleteOfficeClosureDate
 {
-    use DbalConnectionTrait;
+    public function __construct(
+        private Connection $connection,
+    ) {}
 
     public function delete($id)
     {
