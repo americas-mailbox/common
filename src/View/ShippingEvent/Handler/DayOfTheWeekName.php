@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Interactor\View\ShippingEvent\Handler;
+namespace AMB\View\ShippingEvent\Handler;
 
 use AMB\Entity\Shipping\DayOfTheWeek;
 

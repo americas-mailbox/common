@@ -1,18 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Interactor\View\ShippingEvent;
+namespace AMB\View\ShippingEvent;
 
 use AMB\Entity\Shipping\Carrier;
 use AMB\Entity\Shipping\Delivery;
 use AMB\Interactor\RapidCityTime;
 use AMB\Interactor\Shipping\GenerateTrackingLink;
-use AMB\Interactor\View\FormatDate;
+use AMB\View\FormatDate;
 use Doctrine\DBAL\Connection;
 
 final class GatherPastShipments
 {
-    /** @var \AMB\Interactor\View\FormatDate */
+    /** @var \AMB\View\FormatDate */
     private $formatDate;
 
     public function __construct(

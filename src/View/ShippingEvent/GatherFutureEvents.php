@@ -1,19 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Interactor\View\ShippingEvent;
+namespace AMB\View\ShippingEvent;
 
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\RapidCityTime;
 use AMB\Interactor\ShippingEvent\GetScheduledDates;
-use AMB\Interactor\View\ShippingEvent\Handler\HandleDaily;
-use AMB\Interactor\View\ShippingEvent\Handler\HandleDoesNotRepeat;
-use AMB\Interactor\View\ShippingEvent\Handler\HandleFirstWeekdayOfMonth;
-use AMB\Interactor\View\ShippingEvent\Handler\HandleIntermittent;
-use AMB\Interactor\View\ShippingEvent\Handler\HandleLastWeekdayOfMonth;
-use AMB\Interactor\View\ShippingEvent\Handler\HandleMonthly;
-use AMB\Interactor\View\ShippingEvent\Handler\HandleWeekly;
-use AMB\Interactor\View\ShippingEvent\Handler\SetDateInEventData;
+use AMB\View\ShippingEvent\Handler\HandleDaily;
+use AMB\View\ShippingEvent\Handler\HandleDoesNotRepeat;
+use AMB\View\ShippingEvent\Handler\HandleFirstWeekdayOfMonth;
+use AMB\View\ShippingEvent\Handler\HandleIntermittent;
+use AMB\View\ShippingEvent\Handler\HandleLastWeekdayOfMonth;
+use AMB\View\ShippingEvent\Handler\HandleMonthly;
+use AMB\View\ShippingEvent\Handler\HandleWeekly;
+use AMB\View\ShippingEvent\Handler\SetDateInEventData;
 use IamPersistent\SimpleShop\Interactor\CamelCase;
 
 final class GatherFutureEvents
