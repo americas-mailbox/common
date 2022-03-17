@@ -23,11 +23,12 @@ SELECT
     e.next_weekly,
     e.weeks_between,
     a.id as addressId,
-    d.id AS deliveryMethodId,
-    d.label AS deliveryMethod,
-    d.label AS deliveryMethodLabel,
-    d.group AS deliveryGroup,
-    d.group AS deliveryMethodGroup,
+    dm.id AS deliveryMethodId,
+    dm.internal_short_label AS deliveryMethodShortLabel,
+    dm.label AS deliveryMethod,
+    dm.label AS deliveryMethodLabel,
+    dm.group AS deliveryGroup,
+    dm.group AS deliveryMethodGroup,
     dc.active AS deliveryCarrierActive,
     dc.id AS deliveryCarrierId,
     dc.name AS deliveryCarrierName,
@@ -42,8 +43,8 @@ SELECT
     a.plus4,
     a.country        
 FROM shipping_events AS e
-LEFT JOIN delivery_methods AS d ON e.delivery_id = d.id
-LEFT JOIN delivery_carriers AS dc ON d.company_id = dc.id
+LEFT JOIN delivery_methods AS dm ON e.delivery_id = dm.id
+LEFT JOIN delivery_carriers AS dc ON dm.company_id = dc.id
 LEFT JOIN addresses AS a on e.address_id = a.id
 
 COLUMNS;

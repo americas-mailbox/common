@@ -15,7 +15,8 @@ final class HydrateDeliveryMethod
     {
         $deliveryMethod = (new DeliveryMethod())
             ->setGroup($data['group'])
-            ->setLabel($data['label']);
+            ->setLabel($data['label'])
+            ->setShortLabel($data['shortLabel']);
 
         if (!empty($data['id'])) {
             $deliveryMethod->setId((int) $data['id']);

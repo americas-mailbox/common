@@ -43,14 +43,15 @@ final class NormalizeShippingEvent
         return [
             'address'          => $addressData,
             'addressId'        => $addressId,
-            'id'               => null,
+            'id'               => $shippingEvent->getId(),
             'deliveryGroup'    => $deliveryMethod->getGroup(),
             'endDate'          => $endDate,
             'recurrence'       => null,
             'recurrenceEnding' => $recurrenceEnding,
             'deliveryMethod'   => [
-                'id'    => $deliveryMethod->getId(),
-                'label' => $deliveryMethod->getDisplayedLabel(),
+                'id'         => $deliveryMethod->getId(),
+                'label'      => $deliveryMethod->getDisplayedLabel(),
+                'shortLabel' => $deliveryMethod->getShortLabel(),
             ],
             'deliveryMethodId' => $deliveryMethod->getId(),
             'memberId'         => $shippingEvent->getMember()->getId(),

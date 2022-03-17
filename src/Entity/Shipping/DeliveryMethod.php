@@ -13,6 +13,7 @@ final class DeliveryMethod
     private $id;
     /** @var string */
     private $label;
+    private ?string $shortLabel = null;
 
     public function getCarrier(): ?Carrier
     {
@@ -67,6 +68,18 @@ final class DeliveryMethod
     public function setLabel(string $label): DeliveryMethod
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getShortLabel(): ?string
+    {
+        return $this->shortLabel;
+    }
+
+    public function setShortLabel(?string $shortLabel): DeliveryMethod
+    {
+        $this->shortLabel = $shortLabel;
 
         return $this;
     }

@@ -27,15 +27,16 @@ final class HydrateShippingEvent
         if (isset($data['deliveryCarrierName'])) {
             $deliveryCarrier = [
                 'active' => $data['deliveryCarrierActive'],
-                'id' => $data['deliveryCarrierId'],
-                'name' => $data['deliveryCarrierName'],
+                'id'     => $data['deliveryCarrierId'],
+                'name'   => $data['deliveryCarrierName'],
             ];
         }
         $deliveryMethodData = [
             'delivery_carrier' => $deliveryCarrier,
-            'group' => $data['deliveryMethodGroup'],
-            'id' => $data['deliveryMethodId'],
-            'label' => $data['deliveryMethodLabel'],
+            'group'            => $data['deliveryMethodGroup'],
+            'id'               => $data['deliveryMethodId'],
+            'label'            => $data['deliveryMethodLabel'],
+            'shortLabel'       => $data['deliveryMethodShortLabel'],
         ];
 
         $deliveryMethod= $this->hydrateDeliveryMethod->hydrate($deliveryMethodData);
