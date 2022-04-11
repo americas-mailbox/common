@@ -5,11 +5,12 @@ namespace AMB\Interactor\Db;
 
 final class ExtractGatheredData
 {
-    public function __invoke(array &$data, string $prefix, array $keyChanges = []): array
+    public function __invoke(array &$data, ?string $prefix, array $keyChanges = []): array
     {
-        $prefix = rtrim($prefix, '!') . '!';
+        $prefix = $prefix ? rtrim($prefix, '!') . '!' : '';
         $extractPropertyName = function (string $property) use ($keyChanges): string {
-            $propertyName = explode('!', $property)[1];
+            $parts = explode('!', $property);
+            $propertyName = array_pop($parts);
 
             return $keyChanges[$propertyName] ?? $propertyName;
         };
