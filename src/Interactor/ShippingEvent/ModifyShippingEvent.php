@@ -7,6 +7,7 @@ use AMB\Entity\Shipping\RecurrenceType;
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\Shipping\Events\UpdateOneTimeEvent;
 use AMB\Interactor\Shipping\Events\UpdateRecurringEvent;
+use AMB\Interactor\Shipping\FindRecurringShippingEvent;
 use Doctrine\DBAL\Connection;
 
 final class ModifyShippingEvent
