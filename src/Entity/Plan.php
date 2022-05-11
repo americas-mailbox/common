@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Entity;
 
+use IamPersistent\SimpleShop\Entity\Product;
 use Money\Money;
 
 final class Plan
@@ -15,12 +16,14 @@ final class Plan
     private $id;
     /** @var \Money\Money */
     private $minimumBalance;
+    private Money $minimumStartingBalance;
     /** @var \Money\Money */
     private $price;
     /** @var RenewalFrequency */
     private $renewalFrequency;
     /** @var \Money\Money */
     private $setUpFee;
+    private Product $startingSku;
     /** @var string */
     private $title;
 
@@ -72,6 +75,18 @@ final class Plan
         return $this;
     }
 
+    public function getMinimumStartingBalance(): Money
+    {
+        return $this->minimumStartingBalance;
+    }
+
+    public function setMinimumStartingBalance(Money $minimumStartingBalance): Plan
+    {
+        $this->minimumStartingBalance = $minimumStartingBalance;
+
+        return $this;
+    }
+
     public function getPrice(): Money
     {
         return $this->price;
@@ -104,6 +119,18 @@ final class Plan
     public function setSetUpFee(Money $setUpFee): Plan
     {
         $this->setUpFee = $setUpFee;
+
+        return $this;
+    }
+
+    public function getStartingSku(): Product
+    {
+        return $this->startingSku;
+    }
+
+    public function setStartingSku(Product $startingSku): Plan
+    {
+        $this->startingSku = $startingSku;
 
         return $this;
     }
