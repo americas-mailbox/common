@@ -36,6 +36,7 @@ final class Plan
     public function setPlan(AMBPlan $plan): Plan
     {
         $this->plan = $plan;
+        $this->renewalFrequency = $plan->getRenewalFrequency();
 
         return $this;
     }
