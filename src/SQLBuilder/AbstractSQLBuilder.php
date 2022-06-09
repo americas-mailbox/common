@@ -1,10 +1,19 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Interactor\Db;
+namespace AMB\SQLBuilder;
 
-abstract class SQLBuilder implements SQLBuilderInterface
+abstract class AbstractSQLBuilder implements SQLBuilderInterface
 {
+    protected array $selectedProperties = [];
+
+    public function setSelectedProperties(array $selectedProperties = []): self
+    {
+        $this->selectedProperties = $selectedProperties;
+
+        return $this;
+    }
+
     protected function gatherSelects(string $prefix, array $selectedProperties): array
     {
         $transformerProperties = $this->transformerProperties();
