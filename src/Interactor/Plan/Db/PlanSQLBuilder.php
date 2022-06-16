@@ -33,4 +33,11 @@ SQL;
             'group',
         ];
     }
+
+    protected function transformerProperties(): array
+    {
+        return [
+            'group' => 'group',
+        ];
+    }
 }
