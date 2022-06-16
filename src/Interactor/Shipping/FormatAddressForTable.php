@@ -7,7 +7,7 @@ final class FormatAddressForTable
 {
     public function __invoke(array $data): string
     {
-        if ('pickup' === $data['delivery_group']) {
+        if ('pickup' === $data['deliveryGroup']) {
             return 'Americas Mailbox, 514 Americas Way, Box Elder, SD';
         }
 
