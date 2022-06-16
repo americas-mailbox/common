@@ -37,4 +37,17 @@ final class AdminSQLBuilder extends SQLBuilder
             'username',
         ];
     }
+
+    protected function transformerProperties(): array
+    {
+        return [
+            'email'      => 'email',
+            'first_name' => 'first_name',
+            'id'         => 'id',
+            'last_name'  => 'last_name',
+            'role'       => 'role',
+            'status'     => 'status',
+            'username'   => 'username',
+        ];
+    }
 }
