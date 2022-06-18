@@ -42,11 +42,6 @@ FROM credit_cards AS creditCard
 SQL;
     }
 
-    protected function allProperties(): array
-    {
-        return [];
-    }
-
     protected function transformerProperties(): array
     {
         return [

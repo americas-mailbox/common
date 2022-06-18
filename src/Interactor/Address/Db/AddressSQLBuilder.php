@@ -35,10 +35,6 @@ FROM addresses AS address
 SQL;
     }
 
-    protected function allProperties(): array
-    {
-    }
-
     protected function transformerProperties(): array
     {
         return [

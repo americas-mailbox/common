@@ -35,7 +35,5 @@ abstract class AbstractSQLBuilder implements SQLBuilderInterface
         return implode(', ', $this->selects($prefix, $selectedProperties));
     }
 
-    abstract protected function allProperties(): array;
-
     abstract protected function transformerProperties(): array;
 }

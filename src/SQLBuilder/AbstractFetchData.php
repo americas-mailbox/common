@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace AMB\SQLBuilder;
 
 use App\Entity\Paginate;
+use App\Response\PaginationTransformer;
 use Doctrine\DBAL\Connection;
+use Zestic\GraphQL\GraphQLMessage;
 
 abstract class AbstractFetchData
 {
@@ -14,7 +16,7 @@ abstract class AbstractFetchData
     protected string $tableName;
 
     public function __construct(
-        private Connection $connection,
+        protected Connection $connection,
         protected SQLBuilderInterface $sqlBuilder,
         private TransformerInterface $transformer,
     ) {
@@ -61,6 +63,19 @@ abstract class AbstractFetchData
         return $this;
     }
 
+    public function setListResponse(GraphQLMessage $message, string $propertyName)
+    {
+        $paginate = $message->getPaginate();
+
+        $list = $this->fetchList($paginate);
+        $total = $this->getTotal();
+        $response = [
+            '_pagination' => (new PaginationTransformer)($paginate, $total),
+            $propertyName   => $list,
+        ];
+        $message->setResponse($response);
+    }
+
     public function setTableName(string $name): static
     {
         $this->tableName = $name;
@@ -72,13 +87,19 @@ abstract class AbstractFetchData
     {
         $sql = $this->sqlBuilder->sql();
         $sql .= $this->where();
+        $sql .= $this->orderBy();
         $sql .= (new PaginateToSQL)($paginate);
 
         return $sql;
     }
 
+    protected function orderBy(): string
+    {
+        return '';
+    }
+
     protected function where(): string
     {
-        return 'WHERE ' . implode(' AND ', $this->conditions);
+        return 'WHERE ' . implode(' AND ', $this->conditions) . "\n";
     }
 }

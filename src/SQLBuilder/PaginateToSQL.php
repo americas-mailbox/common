@@ -13,6 +13,6 @@ final class PaginateToSQL
             return '';
         }
 
-        return "\nLIMIT {$paginate->getStartIndex()}, {$paginate->getBatchSize()}";
+        return "LIMIT {$paginate->getStartIndex()}, {$paginate->getBatchSize()}\n";
     }
 }
