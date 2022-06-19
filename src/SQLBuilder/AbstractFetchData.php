@@ -44,7 +44,10 @@ abstract class AbstractFetchData
 
     public function getTotal(): int
     {
-        $sql = "SELECT COUNT(*) FROM {$this->tableName} as {$this->prefix} {$this->where()}";
+        $sql = "SELECT COUNT(*)\n";
+        $sql .= $this->sqlBuilder->from();
+        $sql .= $this->sqlBuilder->joins();
+        $sql .= $this->where();
 
         return (int) $this->connection->fetchOne($sql);
     }
