@@ -47,12 +47,13 @@ SQL;
     protected function transformerProperties(): array
     {
         return [
-            'balance'     => 'running_balance',
-            'credit'      => 'credit',
-            'date'        => 'date',
-            'debit'       => 'debit',
-            'description' => 'description',
-            'id'          => 'id',
+            'credit'          => 'credit',
+            'date'            => 'date',
+            'debit'           => 'debit',
+            'description'     => 'description',
+            'id'              => 'id',
+            'referenceNumber' => 'reference_number',
+            'runningBalance'  => 'running_balance',
         ];
     }
 }

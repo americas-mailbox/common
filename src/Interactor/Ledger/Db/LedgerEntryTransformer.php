@@ -12,9 +12,9 @@ final class LedgerEntryTransformer extends AbstractTransformer
     protected function transformations(): array
     {
         return [
-            'balance' => new JsonToArrayTransformation(),
-            'credit'  => new JsonToNullableArrayTransformation(),
-            'debit'   => new JsonToNullableArrayTransformation(),
+            'credit'         => new JsonToNullableArrayTransformation(),
+            'debit'          => new JsonToNullableArrayTransformation(),
+            'runningBalance' => new JsonToArrayTransformation(),
         ];
     }
 }
