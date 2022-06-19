@@ -15,6 +15,11 @@ class AddressSQLBuilder extends AbstractSQLBuilder
         return $this->sql();
     }
 
+    public function from(): string
+    {
+        return "FROM addresses AS address\n";
+    }
+
     public function joins(): string
     {
         return '';
@@ -30,7 +35,7 @@ class AddressSQLBuilder extends AbstractSQLBuilder
         return <<<SQL
 SELECT
 {$this->selectString('address', $this->selectedProperties)}
-FROM addresses AS address
+{$this->from()}
 {$this->joins()}
 SQL;
     }

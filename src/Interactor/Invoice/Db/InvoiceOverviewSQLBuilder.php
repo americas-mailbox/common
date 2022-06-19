@@ -14,6 +14,11 @@ class InvoiceOverviewSQLBuilder extends AbstractSQLBuilder
         return $this->sql();
     }
 
+    public function from(): string
+    {
+        return "FROM invoices AS invoiceOverview\n";
+    }
+
     public function joins(): string
     {
         return '';
@@ -29,7 +34,7 @@ class InvoiceOverviewSQLBuilder extends AbstractSQLBuilder
         return <<<SQL
 SELECT
 {$this->selectString('invoiceOverview', $this->selectedProperties)}
-FROM invoices AS invoiceOverview
+{$this->from()}
 {$this->joins()}
 SQL;
     }

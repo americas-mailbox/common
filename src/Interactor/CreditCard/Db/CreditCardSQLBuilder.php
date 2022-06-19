@@ -14,6 +14,11 @@ class CreditCardSQLBuilder extends AbstractSQLBuilder
         return $this->sql();
     }
 
+    public function from(): string
+    {
+        return "FROM credit_cards AS creditCard\n";
+    }
+
     public function joins(): string
     {
         return <<<JOINS
@@ -37,7 +42,7 @@ JOINS;
         return <<<SQL
 SELECT
 {$this->selectString('creditCard', $this->selectedProperties)}
-FROM credit_cards AS creditCard
+{$this->from()}
 {$this->joins()}
 SQL;
     }
