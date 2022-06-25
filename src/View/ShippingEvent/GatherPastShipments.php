@@ -12,8 +12,7 @@ use Doctrine\DBAL\Connection;
 
 final class GatherPastShipments
 {
-    /** @var \AMB\View\FormatDate */
-    private $formatDate;
+    private FormatDate $formatDate;
 
     public function __construct(
         private Connection $connection,
@@ -131,11 +130,6 @@ final class GatherPastShipments
             'addressId'           => (int)$data['addressId'],
             'date'                => $this->formatDate->__invoke($data['date']),
             'deliveryGroup'       => $data['shipping_method_group'],
-            'endDate'             => $this->formatDate->__invoke($data['date']),
-            'id'                  => (int)$data['id'],
-            'inThePast'           => true,
-            'recurrence'          => null,
-            'recurrenceEnding'    => null,
             'deliveryMethod'      => [
                 'id'         => (int)$data['delivery_method_id'],
                 'label'      => $shippingMethodLabel,
@@ -143,6 +137,11 @@ final class GatherPastShipments
                 'shortLabel' => $data['shipping_internal_short_label'],
             ],
             'deliveryMethodId'    => (int)$data['delivery_method_id'],
+            'endDate'             => $this->formatDate->__invoke($data['date']),
+            'id'                  => (int)$data['id'],
+            'inThePast'           => true,
+            'recurrence'          => null,
+            'recurrenceEnding'    => null,
             'startDate'           => $this->formatDate->__invoke($data['date']),
             'trackingNumber'      => $data['tracking_number'],
             'trackingUrl'         => $trackingUrl,
