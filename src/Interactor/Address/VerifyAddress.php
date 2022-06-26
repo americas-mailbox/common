@@ -102,10 +102,10 @@ final class VerifyAddress
         ];
     }
 
-    private function getErrorMessageFromResponse(array $data): string
+    private function getErrorMessageFromResponse(array $data): string|null
     {
-        if (!isset($data['AddressValidateResponse']['Address'])) {
-            return '';
+        if (!isset($data['AddressValidateResponse']['Address']['Error'])) {
+            return null;
         }
 
         $message = $data['AddressValidateResponse']['Address']['Error']['Description'];
@@ -113,7 +113,7 @@ final class VerifyAddress
             return "We couldn't find the address.";
         }
 
-        return '';
+        return $message;
     }
 
     private function verifyAddress(UspsAddress $address, $addressId): AddressVerification
@@ -131,6 +131,6 @@ final class VerifyAddress
             ->setErrorMessage($this->getErrorMessageFromResponse($response))
             ->setMatch($this->determineMatch($response))
             ->setRawData($response)
-            ->setWarningMessage($responseAddress['ReturnText'] ?? '');
+            ->setWarningMessage($responseAddress['ReturnText'] ?? null);
     }
 }
