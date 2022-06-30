@@ -32,14 +32,28 @@ abstract class AbstractFetchData
 
     public function fetchList(Paginate $paginate = null, bool $transform = true): array
     {
-        $sql = $this->sql($paginate);
+        $sql = $this->listSql($paginate);
         $rawData = $this->connection->fetchAllAssociative($sql);
+        if (!$transform) {
+            return $rawData;
+        }
         $data = [];
         foreach ($rawData as $datum) {
             $data[] = $this->transformer->transform($datum, $this->prefix);
         }
 
         return $data;
+    }
+
+    public function fetchOne(bool $transform = true): array|null
+    {
+        $sql = $this->sql();
+        $rawData = $this->connection->fetchAssociative($sql);
+        if (!$transform) {
+            return $rawData;
+        }
+
+        return $this->transformer->transform($rawData, $this->prefix);
     }
 
     public function getTotal(): int
@@ -86,12 +100,20 @@ abstract class AbstractFetchData
         return $this;
     }
 
-    protected function sql(Paginate $paginate = null): string
+    protected function listSql(Paginate $paginate = null): string
     {
         $sql = $this->sqlBuilder->sql();
         $sql .= $this->where();
         $sql .= $this->orderBy();
         $sql .= (new PaginateToSQL)($paginate);
+
+        return $sql;
+    }
+
+    protected function sql(): string
+    {
+        $sql = $this->sqlBuilder->sql();
+        $sql .= $this->where();
 
         return $sql;
     }

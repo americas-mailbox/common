@@ -7,18 +7,14 @@ final class AddressVerification
 {
     /** @var array */
     private $addressData;
-    /** @var string|int */
-    private $addressId;
-    /** @var bool */
-    private $error;
-    /** @var string */
-    private $errorMessage;
+    private string|int|null $addressId;
+    private bool $error = true;
+    private string|null $errorMessage;
     /** @var bool */
     private $match;
     /** @var array */
     private $rawData;
-    /** @var string */
-    private $warningMessage;
+    private string|null $warningMessage;
 
     public function getAddressData(): array
     {
@@ -56,12 +52,12 @@ final class AddressVerification
         return $this;
     }
 
-    public function getErrorMessage(): string
+    public function getErrorMessage(): string|null
     {
         return $this->errorMessage;
     }
 
-    public function setErrorMessage(string $errorMessage): AddressVerification
+    public function setErrorMessage(string|null $errorMessage): AddressVerification
     {
         $this->errorMessage = $errorMessage;
 
@@ -92,12 +88,12 @@ final class AddressVerification
         return $this;
     }
 
-    public function getWarningMessage(): string
+    public function getWarningMessage(): string|null
     {
         return $this->warningMessage;
     }
 
-    public function setWarningMessage(string $warningMessage): AddressVerification
+    public function setWarningMessage(string|null $warningMessage): AddressVerification
     {
         $this->warningMessage = $warningMessage;
 
