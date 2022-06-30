@@ -11,9 +11,9 @@ use Doctrine\DBAL\Connection;
 final class CreateNewAddress
 {
     public function __construct(
-        private InsertAddress $insertAddress,
+        private Connection $connection,
         private FindMemberById $findMemberById,
-        private Connection $connection
+        private InsertAddress $insertAddress,
     ) { }
 
     public function createFromApi(array $data): array
