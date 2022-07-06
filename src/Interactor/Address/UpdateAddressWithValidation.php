@@ -17,13 +17,13 @@ final class UpdateAddressWithValidation
     {
         $resultData = $verification->getAddressData();
         $updateData = [
-            'address' => $resultData['address'],
-            'suite' => $resultData['suite'],
-            'city' => $resultData['city'],
-            'state' => $resultData['state'],
+            'address'   => $resultData['address'],
+            'suite'     => $resultData['suite'],
+            'city'      => $resultData['city'],
+            'state'     => $resultData['state'],
             'post_code' => $resultData['postcode'],
-            'plus4' => $resultData['plus4'],
-            'verified' => 1,
+            'plus4'     => $resultData['plus4'],
+            'verified'  => 1,
         ];
         if ($resultData['locationName']) {
             $updateData['location_name'] = $resultData['locationName'];

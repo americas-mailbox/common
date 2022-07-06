@@ -5,15 +5,12 @@ namespace AMB\Interactor\Address;
 
 use AMB\Entity\Address;
 use AMB\Entity\Membership;
-use AMB\Interactor\Member\FindMemberById;
-use Doctrine\DBAL\Connection;
 
 final class CreateNewAddress
 {
     public function __construct(
-        private Connection $connection,
-        private FindMemberById $findMemberById,
         private InsertAddress $insertAddress,
+        private SetAddressAsDefault $setAddressAsDefault,
     ) { }
 
     public function createFromApi(array $data): array
@@ -35,16 +32,7 @@ final class CreateNewAddress
         $this->insertAddress->insert($address);
 
         if (isset($data['setAsDefaultAddress']) && true === $data['setAsDefaultAddress']) {
-            $member = $this->findMemberById->find($data['memberId']);
-            $this->connection->update(
-                'accounts',
-                [
-                    'default_address_id' => $address->getId(),
-                ],
-                [
-                    'id' => $member->getAccount()->getId(),
-                ]
-            );
+            $this->setAddressAsDefault->setAddress($address->getId(), $data['memberId']);
         }
 
         return ['id' => $address->getId()];
