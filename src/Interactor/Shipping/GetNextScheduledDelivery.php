@@ -54,11 +54,13 @@ SELECT
     e.next_weekly,
     e.weeks_between,
     a.id as addressId,
-    d.id as deliveryMethodId,
-    d.label AS deliveryMethod,
-    d.group AS deliveryGroup,
+    dm.id as deliveryMethodId,
+    dm.label AS deliveryMethod,
+    dm.group AS deliveryGroup,
+    dm.internal_short_label AS deliveryShortLabel,
     a.addressee,    
     a.address AS address,       
+    a.id AS addressId,       
     a.suite AS suite,       
     a.location_name AS locationName,       
     a.in_care_of AS inCareOf,       
@@ -67,7 +69,7 @@ SELECT
     a.post_code AS postcode,      
     a.country        
 FROM shipping_events AS e
-LEFT JOIN delivery_methods AS d ON e.delivery_id = d.id
+LEFT JOIN delivery_methods AS dm ON e.delivery_id = dm.id
 LEFT JOIN addresses AS a on e.address_id = a.id
 WHERE e.member_id = $memberId
     AND recurrence_type != '$recurrenceType'
@@ -91,19 +93,21 @@ SQL;
 
         $data = $this->normalizeData($data);
         $shipment = [
-            'date'             => new RapidCityTime('2200-01-01'),
-            'deliveryMethod'   => null,
-            'deliveryMethodId' => null,
-            'deliveryGroup'    => null,
-            'addressee'        => null,
-            'address'          => null,
-            'suite'            => null,
-            'locationName'     => null,
-            'inCareOf'         => null,
-            'city'             => null,
-            'state'            => null,
-            'postcode'         => null,
-            'country'          => null,
+            'date'               => new RapidCityTime('2200-01-01'),
+            'deliveryMethod'     => null,
+            'deliveryMethodId'   => null,
+            'deliveryShortLabel' => null,
+            'deliveryGroup'      => null,
+            'addressee'          => null,
+            'address'            => null,
+            'addressId'          => null,
+            'suite'              => null,
+            'locationName'       => null,
+            'inCareOf'           => null,
+            'city'               => null,
+            'state'              => null,
+            'postcode'           => null,
+            'country'            => null,
         ];
         $shipment = null;
         $shippingDate = new RapidCityTime('2200-01-01');
@@ -125,19 +129,21 @@ SQL;
     private function createShipment(array $datum, Carbon $date): array
     {
         return [
-            'date'             => $this->getShipmentDate($date)->toDateString(),
-            'deliveryMethod'   => $datum['deliveryMethod'],
-            'deliveryMethodId' => $datum['deliveryMethodId'],
-            'deliveryGroup'    => $datum['deliveryGroup'],
-            'addressee'        => $datum['addressee'],
-            'address'          => $datum['address'],
-            'suite'            => $datum['suite'],
-            'locationName'     => $datum['locationName'],
-            'inCareOf'         => $datum['inCareOf'],
-            'city'             => $datum['city'],
-            'state'            => $datum['state'],
-            'postcode'         => $datum['postcode'],
-            'country'          => $datum['country'],
+            'date'               => $this->getShipmentDate($date)->toDateString(),
+            'deliveryMethod'     => $datum['deliveryMethod'],
+            'deliveryMethodId'   => $datum['deliveryMethodId'],
+            'deliveryShortLabel' => $datum['deliveryShortLabel'],
+            'deliveryGroup'      => $datum['deliveryGroup'],
+            'addressee'          => $datum['addressee'],
+            'address'            => $datum['address'],
+            'addressId'          => $datum['addressId'],
+            'suite'              => $datum['suite'],
+            'locationName'       => $datum['locationName'],
+            'inCareOf'           => $datum['inCareOf'],
+            'city'               => $datum['city'],
+            'state'              => $datum['state'],
+            'postcode'           => $datum['postcode'],
+            'country'            => $datum['country'],
         ];
     }
 
@@ -237,6 +243,7 @@ SELECT
     a.id as addressId,
     d.id as deliveryMethodId,
     d.label AS deliveryMethod,
+    d.internal_short_label AS deliveryShortLabel,
     d.group AS deliveryGroup,
     a.addressee,    
     a.address AS address,       
@@ -322,6 +329,7 @@ SQL;
                 'deliveryMethod'             => $datum['deliveryMethod'],
                 'deliveryMethodId'           => $datum['deliveryMethodId'],
                 'deliveryGroup'              => $datum['deliveryGroup'],
+                'deliveryShortLabel'         => $datum['deliveryShortLabel'],
                 'addressee'                  => $datum['addressee'],
                 'address'                    => $datum['address'],
                 'suite'                      => $datum['suite'],
