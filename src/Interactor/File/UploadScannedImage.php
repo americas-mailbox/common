@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Interactor\Image;
+namespace AMB\Interactor\File;
 
 use Doctrine\DBAL\Connection;
 use League\Flysystem\Config;
@@ -10,14 +10,14 @@ use Psr\Http\Message\UploadedFileInterface;
 use Ramsey\Uuid\Uuid;
 use Zestic\Flysystem\Files;
 
-final class UploadImage
+final class UploadScannedImage
 {
     public function __construct(
         private Connection $connection,
         private Files $files,
-    ) { }
+    ) {}
 
-    public function upload(UploadedFileInterface $file)
+    public function upload(UploadedFileInterface $file, $adminId)
     {
         $this->connection->beginTransaction();
 
@@ -31,10 +31,12 @@ final class UploadImage
                 [Config::OPTION_VISIBILITY => Visibility::PUBLIC]
             );
             $imageData = [
-                'filepath' => $filePath,
-                'id'       => $id,
+                'filepath'        => $filePath,
+                'id'              => $id,
+                'scanned_by_id'   => $adminId,
+                'scanned_by_role' => 'admin',
             ];
-            $response = $this->connection->insert('images', $imageData);
+            $response = $this->connection->insert('scanned_images', $imageData);
             if (1 !== $response) {
                 throw new \Exception('There was a problem saving the image');
             }
