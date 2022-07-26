@@ -13,9 +13,8 @@ final class UploadImageFactory
     public function __invoke(ContainerInterface $container): UploadImage
     {
         $connection = $container->get(Connection::class);
-        $findImageById = $container->get(FindImageById::class);
         $files = $container->get('imageFiles');
 
-        return new UploadImage($connection, $findImageById, $files);
+        return new UploadImage($connection, $files);
     }
 }
