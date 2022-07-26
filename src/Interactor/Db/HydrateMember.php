@@ -44,7 +44,7 @@ final class HydrateMember
             ->setPIN($memberData['pin'])
             ->setMemberPlan($plan)
             ->setPhone($memberData['phone'])
-            ->setPMB($memberData['pmb'])
+            ->setPMB($memberData['pmb'] ? (string)$memberData['pmb'] : null)
             ->setShippingInstructions($memberData['shipinst'])
             ->setSuffix($memberData['suffix'])
             ->setSuspended($sqlToBool($memberData['suspended']));
