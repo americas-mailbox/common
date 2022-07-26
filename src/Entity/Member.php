@@ -37,8 +37,7 @@ final class Member implements UserInterface
     private ?MemberPlan $memberPlan = null;
     /** @var string */
     private $phone;
-    /** @var string|null */
-    private $pmb;
+    private string|null $pmb = null;
     /** @var string|null */
     private $pin;
     /** @var Carbon|null */
@@ -273,12 +272,12 @@ final class Member implements UserInterface
         return $this;
     }
 
-    public function getPMB(): ?string
+    public function getPMB(): string|null
     {
         return $this->pmb;
     }
 
-    public function setPMB(?string $pmb): Member
+    public function setPMB(string|null $pmb): Member
     {
         $this->pmb = $pmb;
 
