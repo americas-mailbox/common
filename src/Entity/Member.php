@@ -13,8 +13,7 @@ use Zestic\Contracts\User\UserInterface;
 
 final class Member implements UserInterface
 {
-    /** @var Account */
-    private $account;
+    private Account $account;
     /** @var MemberStatus */
     private $active;
     /** @var string|null */
@@ -330,6 +329,15 @@ final class Member implements UserInterface
         $this->startDate = $startDate;
 
         return $this;
+    }
+
+    public function getStatus(): string
+    {
+        if ($this->suspended) {
+            return 'Suspended';
+        }
+
+        return ucfirst(strtolower($this->active->getKey()));
     }
 
     public function getSuffix(): string
