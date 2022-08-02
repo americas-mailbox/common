@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace AMB\Factory\Interactor;
 
-use AMB\Interactor\Image\FindImageById;
 use AMB\Interactor\Image\UploadImage;
 use Doctrine\DBAL\Connection;
 use Psr\Container\ContainerInterface;
