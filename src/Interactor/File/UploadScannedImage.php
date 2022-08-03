@@ -17,14 +17,14 @@ final class UploadScannedImage
         private Files $files,
     ) {}
 
-    public function upload(UploadedFileInterface $file, $adminId)
+    public function upload(UploadedFileInterface $file, $adminId, string $machineId)
     {
         $this->connection->beginTransaction();
 
         try {
             $content = $file->getStream()->getContents();
             $id = Uuid::uuid4();
-            $filePath = "$id.png";
+            $filePath = "$id.jpg";
             $filename = $this->files->write(
                 $filePath,
                 $content,
@@ -33,6 +33,7 @@ final class UploadScannedImage
             $imageData = [
                 'filepath'        => $filePath,
                 'id'              => $id,
+                'machine_id'      => $machineId,
                 'scanned_by_id'   => $adminId,
                 'scanned_by_role' => 'admin',
             ];
