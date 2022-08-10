@@ -12,9 +12,9 @@ class FetchCreditCardsForMember extends AbstractFetchData
     public function __construct(
         CreditCardSQLBuilder $sqlBuilder,
         Connection $connection,
-        CreditCardTransformer $addressTransformer,
+        CreditCardTransformer $creditCardTransformer,
     ) {
-        parent::__construct($connection, $sqlBuilder, $addressTransformer);
+        parent::__construct($connection, $sqlBuilder, $creditCardTransformer);
         $this->prefix = 'creditCard';
         $this->tableName = 'credit_cards';
     }
