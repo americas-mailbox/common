@@ -31,8 +31,8 @@ final class UploadScannedImage
                 [Config::OPTION_VISIBILITY => Visibility::PUBLIC]
             );
             $imageData = [
+                'file_id'         => $id,
                 'filepath'        => $filePath,
-                'id'              => $id,
                 'machine_id'      => $machineId,
                 'scanned_by_id'   => $adminId,
                 'scanned_by_role' => 'admin',

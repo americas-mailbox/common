@@ -7,7 +7,7 @@ use AMB\Interactor\RapidCityTime;
 
 final class SQLToRapidCityTime
 {
-    public function __invoke($value): ?RapidCityTime
+    public function __invoke($value = null): ?RapidCityTime
     {
         return $value ? new RapidCityTime($value) : null;
     }

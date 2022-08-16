@@ -7,17 +7,17 @@ use AMB\Interactor\RapidCityTime;
 
 final class Image
 {
-    private RapidCityTime $createdAt;
+    private RapidCityTime | null $createdAt;
     private string $filePath;
     private mixed $id;
-    private ?RapidCityTime $updatedAt;
+    private RapidCityTime | null $updatedAt;
 
-    public function getCreatedAt(): RapidCityTime
+    public function getCreatedAt(): RapidCityTime | null
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(RapidCityTime $createdAt): Image
+    public function setCreatedAt(RapidCityTime | null $createdAt): Image
     {
         $this->createdAt = $createdAt;
 
