@@ -10,21 +10,11 @@ use Money\Money;
 
 final class CreateTopUpAccountInvoice
 {
-    /** @var \AMB\Interactor\Invoice\AddConvenienceFeeItem */
-    private $addConvenienceFeeItem;
-    /** @var \AMB\Interactor\Invoice\CreateNewInvoice */
-    private $createNewInvoice;
-    /** @var \IamPersistent\SimpleShop\Interactor\DBal\FindProductByName */
-    private $findProductByName;
-
     public function __construct(
-        AddConvenienceFeeItem $addConvenienceFeeItem,
-        CreateNewInvoice $createNewInvoice,
-        FindProductByName $findProductByName
+        private AddConvenienceFeeItem $addConvenienceFeeItem,
+        private CreateNewInvoice $createNewInvoice,
+        private FindProductByName $findProductByName
     ) {
-        $this->addConvenienceFeeItem = $addConvenienceFeeItem;
-        $this->createNewInvoice = $createNewInvoice;
-        $this->findProductByName = $findProductByName;
     }
 
     public function handle(Member $member, Money $amount): Invoice

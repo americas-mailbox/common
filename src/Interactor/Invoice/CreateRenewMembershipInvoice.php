@@ -9,21 +9,11 @@ use IamPersistent\SimpleShop\Entity\Invoice;
 
 final class CreateRenewMembershipInvoice
 {
-    /** @var \AMB\Interactor\Invoice\AddConvenienceFeeItem */
-    private $addConvenienceFeeItem;
-    /** @var \AMB\Interactor\Invoice\CreateNewInvoice */
-    private $createNewInvoice;
-    /** @var \AMB\Interactor\Invoice\SkuPlanLookup */
-    private $skuLookup;
-
     public function __construct(
-        AddConvenienceFeeItem $addConvenienceFeeItem,
-        CreateNewInvoice $createNewInvoice,
-        SkuPlanLookup $skuLookup
+        private AddConvenienceFeeItem $addConvenienceFeeItem,
+        private CreateNewInvoice $createNewInvoice,
+        private SkuPlanLookup $skuLookup
     ) {
-        $this->addConvenienceFeeItem = $addConvenienceFeeItem;
-        $this->createNewInvoice = $createNewInvoice;
-        $this->skuLookup = $skuLookup;
     }
 
     public function handle(Member $member, Plan $plan, $entrantId = 1): Invoice
