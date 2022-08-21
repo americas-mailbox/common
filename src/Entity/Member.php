@@ -38,7 +38,7 @@ final class Member implements UserInterface
     private $phone;
     private string|null $pmb = null;
     /** @var string|null */
-    private $pin;
+    private $pin = null;
     /** @var Carbon|null */
     private $renewDate;
     private ?RapidCityTime $returnToSenderDate = null;
@@ -319,7 +319,7 @@ final class Member implements UserInterface
         return $this;
     }
 
-    public function getStartDate(): ?Carbon
+    public function getStartDate(): Carbon
     {
         return $this->startDate;
     }
