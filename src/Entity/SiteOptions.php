@@ -21,8 +21,7 @@ final class SiteOptions implements JsonSerializable
     private $bccEmailAddresses;
     /** @var \Communication\Recipient[] */
     private $bccRecipients;
-    /** @var float */
-    private $convenienceFee;
+    private string $convenienceFee;
     /** @var Money */
     private $convenienceBaseFee;
     /** @var Money */
@@ -57,8 +56,7 @@ final class SiteOptions implements JsonSerializable
     private $staffNotificationRecipients = [];
     /** @var PartyContext[] */
     private $systemFailureNotificationRecipients = [];
-    /** @var float */
-    private $taxRate = .065;
+    private string $taxRate = '.065';
     /** @var CarbonInterval */
     private $timeToRenew;
     /** @var Money */
@@ -117,14 +115,14 @@ final class SiteOptions implements JsonSerializable
         return $this;
     }
 
-    public function getConvenienceFee(): float
+    public function getConvenienceFee(): string
     {
         return $this->convenienceFee;
     }
 
-    public function setConvenienceFee(float $convenienceFee): SiteOptions
+    public function setConvenienceFee(string|float $convenienceFee): SiteOptions
     {
-        $this->convenienceFee = $convenienceFee;
+        $this->convenienceFee = (string) $convenienceFee;
 
         return $this;
     }
@@ -329,14 +327,14 @@ final class SiteOptions implements JsonSerializable
         return $this;
     }
 
-    public function getTaxRate(): float
+    public function getTaxRate(): string
     {
         return $this->taxRate;
     }
 
-    public function setTaxRate(float $taxRate): SiteOptions
+    public function setTaxRate(float|string $taxRate): SiteOptions
     {
-        $this->taxRate = $taxRate;
+        $this->taxRate = (string) $taxRate;
 
         return $this;
     }
