@@ -15,6 +15,11 @@ final class TransformInvoice
         $moneyToArray = (new MoneyToArray());
 
         return [
+            'currency'      => [
+                'code' => 'USD',
+            ],
+            'date'          => $invoice->getInvoiceDate()->format('Y-m-d'),
+            'description'   => $invoice->getHeader(),
             'entrant'       => $this->getEntrant($admin),
             'entrantId'     => $invoice->getEntrantId(),
             'items'         => $this->getFormattedItems($invoice),
@@ -42,6 +47,11 @@ final class TransformInvoice
         $moneyToArray = (new MoneyToArray());
 
         return [
+            'currency'      => [
+                'code' => 'USD',
+            ],
+            'date'          => $invoice->getInvoiceDate()->format('Y-m-d'),
+            'description'   => $invoice->getHeader(),
             'entrant'       => '',
             'entrantId'     => $invoice->getEntrantId(),
             'items'         => $this->getFormattedItemsForSignupInvoice($invoice),
