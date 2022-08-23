@@ -11,7 +11,7 @@ final class HydrateInvoiceItemFromSku
     public function __invoke(InvoiceItem $item, Product $sku, $quantity = 1)
     {
         $amount = $sku->getPrice();
-        $total = $amount->multiply($quantity);
+        $total = $amount->multiply((string)$quantity);
 
         $item
             ->setAmount($amount)
