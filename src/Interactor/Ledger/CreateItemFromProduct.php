@@ -11,13 +11,9 @@ use Money\Money;
 
 final class CreateItemFromProduct
 {
-    /** @var \AMB\Entity\SiteOptions */
-    private $siteOptions;
-
-    public function __construct(SiteOptions $siteOptions)
-    {
-        $this->siteOptions = $siteOptions;
-    }
+    public function __construct(
+        private SiteOptions $siteOptions,
+    ) { }
 
     public function create(Product $product): Item
     {

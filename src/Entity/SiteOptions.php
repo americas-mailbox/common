@@ -28,16 +28,17 @@ final class SiteOptions implements JsonSerializable
     private $criticalBalanceAmount;
     /** @var string */
     private $criticalBalanceReason;
-    /** @var Carbon */
-    private $cutOffTime;
+    private Carbon $cutOffTime;
+    private int $freeInteriorScanPages;
     /** @var PartyContext */
     private $fromEmailAddress;
     /** @var \Communication\Recipient */
     private $fromRecipient;
     /** @var int[] */
     private $expirationWarningEmailDays = [];
-    /** @var int */
-    private $lowBalanceEmailFrequency;
+    private string $interiorScanSKU;
+    private string $interiorScanPageSKU;
+    private int $lowBalanceEmailFrequency;
     /** @var int */
     private $maximumLowBalanceNotifications;
     /** @var Money */
@@ -217,6 +218,42 @@ final class SiteOptions implements JsonSerializable
     public function formatDate(DateTime $date): string
     {
         return Carbon::instance($date)->toDateString();
+    }
+
+    public function getFreeInteriorScanPages(): int
+    {
+        return $this->freeInteriorScanPages;
+    }
+
+    public function setFreeInteriorScanPages(int $freeInteriorScanPages): SiteOptions
+    {
+        $this->freeInteriorScanPages = $freeInteriorScanPages;
+
+        return $this;
+    }
+
+    public function getInteriorScanPageSKU(): string
+    {
+        return $this->interiorScanPageSKU;
+    }
+
+    public function setInteriorScanPageSKU(string $interiorScanPageSKU): SiteOptions
+    {
+        $this->interiorScanPageSKU = $interiorScanPageSKU;
+
+        return $this;
+    }
+
+    public function getInteriorScanSKU(): string
+    {
+        return $this->interiorScanSKU;
+    }
+
+    public function setInteriorScanSKU(string $interiorScanSKU): SiteOptions
+    {
+        $this->interiorScanSKU = $interiorScanSKU;
+
+        return $this;
     }
 
     public function getLowBalanceEmailFrequency(): int
