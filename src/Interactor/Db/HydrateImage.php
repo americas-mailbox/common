@@ -15,6 +15,7 @@ final class HydrateImage
             ->setCreatedAt($toDate($data['created_at']))
             ->setFilePath($data['filepath'])
             ->setId($data['id'])
+            ->setRatio($data['ratio'])
             ->setUpdatedAt($toDate($data['updated_at']));
 
     }

@@ -13,6 +13,7 @@ final class DehydrateImage
             'created_at' => $image->getCreatedAt()?->toDateTimeString(),
             'filepath'   => $image->getFilePath(),
             'id'         => $image->getId(),
+            'ratio'      => $image->getRatio(),
             'updated_at' => $image->getUpdatedAt()?->toDateTimeString(),
         ];
     }

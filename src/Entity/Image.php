@@ -10,6 +10,7 @@ final class Image
     private RapidCityTime | null $createdAt;
     private string $filePath;
     private mixed $id;
+    private mixed $ratio;
     private RapidCityTime | null $updatedAt;
 
     public function getCreatedAt(): RapidCityTime | null
@@ -44,6 +45,18 @@ final class Image
     public function setId(mixed $id): Image
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getRatio(): mixed
+    {
+        return $this->ratio;
+    }
+
+    public function setRatio(mixed $ratio): Image
+    {
+        $this->ratio = $ratio;
 
         return $this;
     }
