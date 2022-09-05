@@ -23,6 +23,7 @@ final class UploadScannedImage
 
         try {
             $content = $file->getStream()->getContents();
+            $imageSize = getimagesizefromstring($content);
             $id = Uuid::uuid4();
             $filePath = "$id.jpg";
             $filename = $this->files->write(
@@ -34,6 +35,7 @@ final class UploadScannedImage
                 'file_id'         => $id,
                 'filepath'        => $filePath,
                 'machine_id'      => $machineId,
+                'ratio'           => $imageSize[0] / $imageSize[1],
                 'scanned_by_id'   => $adminId,
                 'scanned_by_role' => 'admin',
             ];
