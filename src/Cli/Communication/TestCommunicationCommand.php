@@ -50,8 +50,18 @@ abstract class TestCommunicationCommand extends Command
             ->setTrackingNumber('449044304137821');
     }
 
-    protected function getMember(): Member
+    protected function getMember($pmb = '1024'): Member
     {
+        if ($pmb === '8703') {
+            return (new Member())
+                ->setEmail('josephmanqueros@gmail.com')
+                ->setFirstName('Joseph')
+                ->setId(107592)
+                ->setLastName('Manqueros')
+                ->setPhone('')
+                ->setMemberPlan($this->getMemberPlan())
+                ->setPMB("8703");
+        }
         return (new Member())
             ->setEmail('shank.amb.emails@gmail.com')
             ->setFirstName('Rich')
@@ -73,6 +83,7 @@ abstract class TestCommunicationCommand extends Command
     {
         return (new Plan())
             ->setGroup(strtoupper($plan))
+            ->setRenewalFrequency(RenewalFrequency::ANNUAL())
             ->setTitle($plan);
     }
 
