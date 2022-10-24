@@ -3,11 +3,9 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\ShippingEvent;
 
-use AMB\Entity\ActionType;
 use AMB\Entity\Shipping\RecurrenceType;
 use AMB\Entity\Shipping\ShippingEvent;
-use AMB\Interfaces\ShippingEvent\SaveShippingEventInterface;
-use App\Factory\Event\LogShipmentEventFactory;
+use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use Doctrine\DBAL\Connection;
 use Exception;
 use IamPersistent\SimpleShop\Interactor\DBal\BoolToSQL;
@@ -17,37 +15,14 @@ final class SaveShippingEvent implements SaveShippingEventInterface
 {
     public function __construct(
         private Connection $connection,
-        private FindShippingEventById $findShippingEventById,
-        private LogShipmentEventFactory $logShippingEventFactory,
     ) { }
 
     public function save(ShippingEvent $shippingEvent)
     {
         if ((new ObjectHasId)($shippingEvent)) {
-            if ($this->updateData($shippingEvent)) {
-                // object after update
-                $updatedShipmentEventHydratedObject = $this->findShippingEventById->find($shippingEvent->getId());
-                if (!$updatedShipmentEventHydratedObject->isActive()) {
-                    // Dispatch ChangeInShipmentEvent for delete
-                    $this->logShippingEventFactory->dispatch($updatedShipmentEventHydratedObject, new ActionType(ActionType::DELETED));
-                } else {
-                    // Dispatch ChangeInShipmentEvent for update
-                    $this->logShippingEventFactory->dispatch($updatedShipmentEventHydratedObject, new ActionType(ActionType::UPDATED));
-                }
-            }
+            $this->updateData($shippingEvent);
         } else {
-            if ($this->insertData($shippingEvent)) { // successfully saved
-                //load complete new shipment object.
-                $shipmentEventHydratedObject = $this->findShippingEventById->find($shippingEvent->getId());
-                // @todo: Not sure why but it is being executed when we delete in between shipment from series of shipments.
-                if(!$shipmentEventHydratedObject->isActive()) {
-                    // Dispatch ChangeInShipmentEvent for delete
-                    $this->logShippingEventFactory->dispatch($shipmentEventHydratedObject, new ActionType(ActionType::DELETED));
-                } else {
-                    // Dispatch NewShippingEvent.
-                    $this->logShippingEventFactory->dispatch($shipmentEventHydratedObject, new ActionType(ActionType::CREATED));
-                }
-            }
+            $this->insertData($shippingEvent);
         }
     }
 

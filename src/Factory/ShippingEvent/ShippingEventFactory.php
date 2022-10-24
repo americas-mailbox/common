@@ -9,7 +9,7 @@ use AMB\Entity\Shipping\DeliveryMethod;
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\RapidCityTime;
 use AMB\Interactor\Shipping\CreateShipment;
-use AMB\Interfaces\ShippingEvent\SaveShippingEventInterface;
+use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use Doctrine\DBAL\Connection;
 
 final class ShippingEventFactory
@@ -20,7 +20,7 @@ final class ShippingEventFactory
         private SaveShippingEventInterface $insertShippingEvent,
     ) { }
 
-    public function createFromApi(array $data, $adminId, $memberId): array
+    public function createFromApi(array $data, $adminId = null, $memberId = null): array
     {
         if ('doesNotRepeat' === $data['recurrence']) {
             $factory = OneTimeShippingEventFactory::class;

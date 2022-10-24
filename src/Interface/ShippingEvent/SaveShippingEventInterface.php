@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace AMB\Interfaces\ShippingEvent;
+namespace AMB\Interface\ShippingEvent;
 
 use AMB\Entity\Shipping\ShippingEvent;
 
