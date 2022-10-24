@@ -9,7 +9,7 @@ use AMB\Entity\Shipping\DeliveryMethod;
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\RapidCityTime;
 use AMB\Interactor\Shipping\CreateShipment;
-use AMB\Interactor\ShippingEvent\SaveShippingEvent;
+use AMB\Interfaces\ShippingEvent\SaveShippingEventInterface;
 use Doctrine\DBAL\Connection;
 
 final class ShippingEventFactory
@@ -17,7 +17,7 @@ final class ShippingEventFactory
     public function __construct(
         private Connection $connection,
         private CreateShipment $createShipment,
-        private SaveShippingEvent $insertShippingEvent,
+        private SaveShippingEventInterface $insertShippingEvent,
     ) { }
 
     public function createFromApi(array $data, $adminId, $memberId): array

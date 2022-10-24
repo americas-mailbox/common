@@ -6,7 +6,6 @@ namespace AMB\Interactor\ShippingEvent;
 use AMB\Entity\ActionType;
 use AMB\Entity\Shipping\RecurrenceType;
 use AMB\Entity\Shipping\ShippingEvent;
-use AMB\Interactor\Shipping\FindShippingEventById;
 use AMB\Interfaces\ShippingEvent\SaveShippingEventInterface;
 use App\Factory\Event\LogShipmentEventFactory;
 use Doctrine\DBAL\Connection;
