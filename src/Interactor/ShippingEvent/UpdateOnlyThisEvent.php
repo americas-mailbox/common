@@ -8,7 +8,6 @@ use AMB\Factory\ShippingEvent\OneTimeShippingEventFactory;
 use AMB\Interactor\RapidCityTime;
 use AMB\Interactor\Shipping\GetNextDate;
 use AMB\Interactor\Shipping\GetPreviousDate;
-use AMB\Interactor\Shipping\SaveShippingEvent;
 
 final class UpdateOnlyThisEvent
 {

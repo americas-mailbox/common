@@ -5,7 +5,6 @@ namespace AMB\Interactor\ShippingEvent;
 
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\Shipping\GetPreviousDate;
-use AMB\Interactor\Shipping\SaveShippingEvent;
 use Carbon\Carbon;
 
 final class DeleteThisAndFollowingEvent

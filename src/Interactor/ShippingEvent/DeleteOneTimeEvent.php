@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace AMB\Interactor\ShippingEvent;
 
 use AMB\Entity\Shipping\ShippingEvent;
-use AMB\Interactor\Shipping\SaveShippingEvent;
 
 final class DeleteOneTimeEvent
 {

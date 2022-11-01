@@ -6,7 +6,6 @@ namespace AMB\Interactor\ShippingEvent;
 use AMB\Entity\Address;
 use AMB\Entity\Shipping\DeliveryMethod;
 use AMB\Entity\Shipping\ShippingEvent;
-use AMB\Interactor\Shipping\SaveShippingEvent;
 
 final class UpdateEvent
 {

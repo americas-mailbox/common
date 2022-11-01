@@ -39,6 +39,7 @@ SELECT
     e.weeks_between,
     a.id as addressId,
     d.id AS deliveryMethodId,
+    d.internal_short_label AS deliveryMethodShortLabel,
     d.label AS deliveryMethod,
     d.label AS deliveryMethodLabel,
     d.group AS deliveryGroup,
