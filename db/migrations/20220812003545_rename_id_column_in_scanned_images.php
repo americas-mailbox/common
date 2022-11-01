@@ -13,6 +13,9 @@ final class RenameIdColumnInScannedImages extends AbstractMigration
             ->changePrimaryKey(null)
             ->update();
         $sql = <<<SQL
+alter table scanned_images 
+    drop primary key;
+
 alter table scanned_images
     add id int;
 
