@@ -16,13 +16,13 @@ final class ModifyShippingEvent
         private UpdateOneTimeEvent $updateOneTimeEvent,
     ) {}
 
-    public function updateFromApi(array $data, $adminId = null, $memberId): array
+    public function updateFromApi(array $data, $adminId = null, $memberId = null): array
     {
         if (!$shippingEvent = $this->findShippingEvent->find($data)) {
             return [];
         }
 
-        if ($shippingEvent->getMember()->getId() != $memberId) {
+        if (!$adminId && $shippingEvent->getMember()->getId() != $memberId) {
             return [];
         }
         $eventId = ['id' => $shippingEvent->getId()];
