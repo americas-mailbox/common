@@ -9,7 +9,7 @@ final class InteriorScanSKUS extends AbstractMigration
     {
         $sku = [
             [
-                'id'          => 142,
+                'id'          => 151,
                 'description' => 'Additional page',
                 'name'        => 'CONTENT_ADDITIONAL_PAGE',
                 'price'       => '{"amount":100,"currency":"USD"}',
@@ -22,7 +22,7 @@ final class InteriorScanSKUS extends AbstractMigration
         $productCategories = [
             [
                 'category_id' => 2,
-                'product_id'  => 142,
+                'product_id'  => 151,
             ],
         ];
         $this->table('product_categories')->insert($productCategories)->save();
