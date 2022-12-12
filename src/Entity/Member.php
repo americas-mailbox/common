@@ -50,6 +50,7 @@ final class Member implements UserInterface
     private $suffix;
     /** @var bool */
     private $suspended;
+    private bool $useNewDashboard = false;
 
     public function getAccount(): Account
     {
@@ -360,6 +361,18 @@ final class Member implements UserInterface
     public function setSuspended(bool $suspended): Member
     {
         $this->suspended = $suspended;
+
+        return $this;
+    }
+
+    public function useNewDashboard(): bool
+    {
+        return $this->useNewDashboard;
+    }
+
+    public function setUseNewDashboard(bool $useNewDashboard): Member
+    {
+        $this->useNewDashboard = $useNewDashboard;
 
         return $this;
     }

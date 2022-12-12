@@ -47,7 +47,8 @@ final class HydrateMember
             ->setPMB($memberData['pmb'] ? (string)$memberData['pmb'] : null)
             ->setShippingInstructions($memberData['shipinst'])
             ->setSuffix($memberData['suffix'])
-            ->setSuspended($sqlToBool($memberData['suspended']));
+            ->setSuspended($sqlToBool($memberData['suspended']))
+            ->setUseNewDashboard($sqlToBool($memberData['use_new_dashboard']));
         if (!empty($memberData['renewDate'])) {
             $member->setRenewDate(new RapidCityTime($memberData['renewDate']));
         }

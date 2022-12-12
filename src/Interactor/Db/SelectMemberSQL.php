@@ -15,6 +15,7 @@ SELECT
     pmb, renewDate, shipinst, startDate, suspended,
     return_to_sender_date,
     alternate_name, pin,
+    m.use_new_dashboard,
     p.title as planTitle,
     a.auto_renew, 
     a.auto_top_up, 
