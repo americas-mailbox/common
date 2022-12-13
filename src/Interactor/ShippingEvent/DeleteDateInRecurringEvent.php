@@ -13,13 +13,11 @@ final class DeleteDateInRecurringEvent
 {
     use DeletionHelper;
 
-    /** @var \AMB\Interactor\Shipping\Interfaces\SaveShippingEventInterface */
-    private $saveShippingEvent;
-
-    public function __construct(SaveShippingEventInterface $saveShippingEvent)
-    {
-        $this->saveShippingEvent = $saveShippingEvent;
-    }
+    public function __construct(
+        private GetNextDate $getNextDate,
+        private GetPreviousDate $getPreviousDate,
+        private SaveShippingEventInterface $saveShippingEvent,
+    ) { }
 
     public function delete(ShippingEvent $shippingEvent, Carbon $date)
     {
@@ -54,7 +52,7 @@ final class DeleteDateInRecurringEvent
     private function createNewEventAfterDate(ShippingEvent $shippingEvent, Carbon $date)
     {
         $clone = $this->clone($shippingEvent);
-        $nextDate = (new GetNextDate)($shippingEvent, $date);
+        $nextDate = $this->getNextDate->get($shippingEvent, $date);
         $clone
             ->setStartDate($nextDate);
         $this->setNextWeekly($clone, $nextDate);
@@ -63,7 +61,7 @@ final class DeleteDateInRecurringEvent
 
     private function deleteEndDate(ShippingEvent $shippingEvent, Carbon $date)
     {
-        $previousDate = (new GetPreviousDate)($shippingEvent, $date);
+        $previousDate = $this->getPreviousDate->get($shippingEvent, $date);
         $shippingEvent->setEndDate($previousDate);
 
         if ( $this->isIntermittent($shippingEvent) ) {
@@ -80,7 +78,7 @@ final class DeleteDateInRecurringEvent
 
     private function deleteStartDate(ShippingEvent $shippingEvent, Carbon $date)
     {
-        $nextDate = (new GetNextDate())($shippingEvent, $date);
+        $nextDate = $this->getNextDate->get($shippingEvent, $date);
         $shippingEvent->setStartDate($nextDate);
 
         if ( $this->isIntermittent($shippingEvent) ) {
@@ -93,7 +91,7 @@ final class DeleteDateInRecurringEvent
 
     private function setEndOnPreviousDate(ShippingEvent $shippingEvent, Carbon $date)
     {
-        $previousDate = (new GetPreviousDate)($shippingEvent, $date);
+        $previousDate = $this->getPreviousDate->get($shippingEvent, $date);
         $shippingEvent->setEndDate($previousDate);
         if ($previousDate->lt($shippingEvent->getNextWeekly())) {
             $shippingEvent

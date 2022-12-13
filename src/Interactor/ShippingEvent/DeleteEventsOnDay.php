@@ -16,6 +16,7 @@ final class DeleteEventsOnDay
         private DeleteOneTimeEvent $deleteOneTimeEvent,
         private FindRecurringShippingEvent $findShippingEvent,
         private GatherShippingEventsInRange $gatherShippingEventsInRange,
+        private GetNextDate $getNextDate,
     ) {
     }
 
@@ -91,12 +92,11 @@ final class DeleteEventsOnDay
             return $event->getStartDate()->eq($date);
         }
         $nextDate = $event->getStartDate()->clone();
-        $getNextDate = (new GetNextDate());
         while ($nextDate->lt($date)) {
             if ($nextDate->eq($date)) {
                 return true;
             }
-            $nextDate = $getNextDate($event, $nextDate);
+            $nextDate = $this->getNextDate->get($event, $nextDate);
         }
 
         return false;

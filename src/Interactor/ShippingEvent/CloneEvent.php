@@ -11,6 +11,10 @@ use DeepCopy\DeepCopy;
 
 final class CloneEvent
 {
+    public function __construct(
+        private GetPreviousDate $getPreviousDate,
+    ) {}
+
     public function clone(ShippingEvent $shippingEvent): ShippingEvent
     {
         /** @var \AMB\Entity\Shipping\ShippingEvent $clone */
@@ -23,7 +27,7 @@ final class CloneEvent
     public function split(ShippingEvent $shippingEvent, RapidCityTime $date): ShippingEvent
     {
         $clone = $this->clone($shippingEvent);
-        $previousDate = (new GetPreviousDate)($shippingEvent, $date);
+        $previousDate = $this->getPreviousDate->get($shippingEvent, $date);
         $clone->setStartDate($date->clone());
         $shippingEvent->setEndDate($previousDate);
 

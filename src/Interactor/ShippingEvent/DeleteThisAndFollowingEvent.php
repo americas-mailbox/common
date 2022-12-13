@@ -12,6 +12,7 @@ final class DeleteThisAndFollowingEvent
     use DeletionHelper;
 
     public function __construct(
+        private GetPreviousDate $getPreviousDate,
         private SaveShippingEvent $saveShippingEvent,
     ) {
     }
@@ -33,7 +34,7 @@ final class DeleteThisAndFollowingEvent
             ->setStartDate($date);
         $this->saveShippingEvent->save($deletedEvent);
 
-        $newEndDate = (new GetPreviousDate)($shippingEvent, $date);
+        $newEndDate = $this->getPreviousDate->get($shippingEvent, $date);
         $shippingEvent
             ->setEndDate($newEndDate);
         $this->setNextWeekly($shippingEvent, $date);
