@@ -50,6 +50,9 @@ final class HydrateSiteOptions
         $bccRecipients = [];
         if (isset($data['bccEmailAddresses'])) {
             foreach ($data['bccEmailAddresses'] as $emailAddress) {
+                if (empty($emailAddress)) {
+                    continue;
+                }
                 $bccRecipients[] = (new Recipient())->setEmail($emailAddress);
                 $bccEmailAddresses[] = new PartyContext($emailAddress);
             }
