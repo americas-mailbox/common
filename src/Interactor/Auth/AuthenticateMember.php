@@ -78,7 +78,7 @@ SQL;
         }
         $this->updateMemberAuthentication($username, $password, $member);
 
-        $this->authenticateMember($username, $password);
+        return $this->authenticateMember($username, $password);
     }
 
     private function authenticateMember($username, $password): array
@@ -173,6 +173,5 @@ SQL;
         //        $this->resetPasswordInNewSystem($message);
         //        $this->removeOldPasswordFromMember($message);
         $this->setNeedingResetToFalse($username);
-        $this->authenticateMember($username, $password);
     }
 }
