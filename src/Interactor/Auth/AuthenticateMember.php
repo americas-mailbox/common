@@ -76,18 +76,19 @@ SQL;
                 'success' => false,
             ];
         }
-        $this->updateMemberAuthentication($message, $member);
+        $this->updateMemberAuthentication($username, $password, $member);
 
-        $this->authenticateMember($message);
+        $this->authenticateMember($username, $password);
     }
 
     private function authenticateMember($username, $password): array
     {
-        $authenticated = $this->authenticateMember->authenticate($username, $password);
-        $this->checkAuthorization($message, $authenticated);
-        $response = $authResponse['success'] ? $this->formatSuccessResponse($authResponse) :
+        $authResponse = $this->authenticateMember->authenticate($username, $password);
+        $this->checkAuthorization($username, $authResponse);
+
+        return  $authResponse['success'] ?
+            $this->formatSuccessResponse($authResponse) :
             $this->formatFailureResponse($authResponse);
-        $message->setResponse($response);
     }
 
     private function checkAuthorization($username, array &$authResponse)
@@ -118,10 +119,10 @@ SQL;
     private function formatSuccessResponse(array $data): array
     {
         $pmb = (string)$data['user']->getPmb();
-        //        $this->log->log("Successfully logged in PMB#{$pmb}");
 
+        //        $this->log->log("Successfully logged in PMB#{$pmb}");
         return [
-            'user'      => [
+            'user'            => [
                 'firstName'   => $data['user']->getFirstName(),
                 'id'          => (string)$data['user']->getId(),
                 'isSuspended' => $data['user']->isSuspended(),
@@ -131,11 +132,14 @@ SQL;
                     'title' => $data['user']->getMemberPlan()->getPlan()->getTitle(),
                 ],
                 'pmb'         => $pmb,
+                'role'        => $data['user']->getMemberPlan()->getPlan()->getGroup(),
+                'status'      => $data['user']->getMemberStatus()->getValue(),
                 'username'    => $pmb,
             ],
-            'expiresAt' => $data['expiresAt'],
-            'jwt'       => $data['jwt'],
-            'success'   => $data['success'],
+            'expiresAt'       => $data['expiresAt'],
+            'jwt'             => $data['jwt'],
+            'success'         => $data['success'],
+            'useNewDashboard' => $data['user']->useNewDashboard(),
         ];
     }
 
@@ -151,15 +155,15 @@ SQL;
         return sha1($password) === $memberPassword;
     }
 
-    private function removeOldPasswordFromMember(AuthenticateMemberMessage $message)
+    private function removeOldPasswordFromMember($pmb)
     {
-        $sql = "UPDATE members SET password = '' WHERE pmb = {$message->getUsername()};";
+        $sql = "UPDATE members SET password = '' WHERE pmb = {$pmb};";
         $this->connection->executeQuery($sql);
     }
 
-    private function setNeedingResetToFalse($username)
+    private function setNeedingResetToFalse($pmb)
     {
-        $sql = "UPDATE members SET is_needing_password_reset = 0 WHERE pmb = $username;";
+        $sql = "UPDATE members SET is_needing_password_reset = 0 WHERE pmb = $pmb;";
         $this->connection->executeQuery($sql);
     }
 
@@ -169,6 +173,6 @@ SQL;
         //        $this->resetPasswordInNewSystem($message);
         //        $this->removeOldPasswordFromMember($message);
         $this->setNeedingResetToFalse($username);
-        $this->authenticateMember($message);
+        $this->authenticateMember($username, $password);
     }
 }
