@@ -122,24 +122,24 @@ SQL;
 
         //        $this->log->log("Successfully logged in PMB#{$pmb}");
         return [
-            'user'            => [
-                'firstName'   => $data['user']->getFirstName(),
-                'id'          => (string)$data['user']->getId(),
-                'isSuspended' => $data['user']->isSuspended(),
-                'lastName'    => $data['user']->getLastName(),
-                'plan'        => [
+            'user' => [
+                'firstName'       => $data['user']->getFirstName(),
+                'id'              => (string)$data['user']->getId(),
+                'isSuspended'     => $data['user']->isSuspended(),
+                'lastName'        => $data['user']->getLastName(),
+                'plan'            => [
                     'group' => $data['user']->getMemberPlan()->getPlan()->getGroup(),
                     'title' => $data['user']->getMemberPlan()->getPlan()->getTitle(),
                 ],
-                'pmb'         => $pmb,
-                'role'        => $data['user']->getMemberPlan()->getPlan()->getGroup(),
-                'status'      => $data['user']->getMemberStatus()->getValue(),
-                'username'    => $pmb,
+                'pmb'             => $pmb,
+                'role'            => $data['user']->getMemberPlan()->getPlan()->getGroup(),
+                'status'          => $data['user']->getMemberStatus()->getValue(),
+                'useNewDashboard' => $data['user']->useNewDashboard(),
+                'username'        => $pmb,
             ],
             'expiresAt'       => $data['expiresAt'],
             'jwt'             => $data['jwt'],
             'success'         => $data['success'],
-            'useNewDashboard' => $data['user']->useNewDashboard(),
         ];
     }
 
