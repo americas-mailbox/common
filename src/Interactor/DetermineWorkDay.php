@@ -21,4 +21,17 @@ final class DetermineWorkDay
         return !(bool) $this->connection->fetchOne("SELECT `date` FROM office_closures WHERE `date`='"
             .$date->toDateString()."'");
     }
+    public function isAfterEmergencyClosure(Carbon $startDate, Carbon $endDate): bool
+    {
+        $sql = <<<SQL
+SELECT `date` 
+FROM office_closures
+WHERE `date`>='{$startDate->toDateString()}'
+AND `date`<='{$endDate->toDateString()}'
+AND `emergency_closure`=1
+SQL;
+
+
+        return (bool) $this->connection->fetchOne($sql);
+    }
 }
