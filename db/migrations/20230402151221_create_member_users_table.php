@@ -12,8 +12,6 @@ final class CreateMemberUsersTable extends AbstractMigration
             ->addColumn('membership_id', 'integer', ['signed' => false])
             ->addColumn('name', 'char', ['null' => true, 'limit' => '255'])
             ->addColumn('phone', 'char', ['limit' => '255'])
-            ->addColumn('last_login_ip', 'varbinary', ['limit' => 16, 'null' => true])
-            ->addColumn('last_login_date', 'datetime', ['null' => true])
             ->addTimestamps()
             ->create();
     }
