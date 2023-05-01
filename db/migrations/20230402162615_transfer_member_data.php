@@ -11,13 +11,12 @@ final class TransferMemberData extends AbstractMigration
 
     public function up(): void
     {
-        $stmt = $this->query('SELECT * FROM members WHERE active = 1');
+        $stmt = $this->query('SELECT * FROM members');
         $memberships = $stmt->fetchAll();
         $this->memberTable = $this->table('member_users');
         foreach ($memberships as $membership) {
             $this->addPrimaryMember($membership);
             $this->addAlternateMembers($membership);
-//            $this->setMemberChangeoverSuccess($membership['member_id']);
         }
     }
 
@@ -47,9 +46,10 @@ final class TransferMemberData extends AbstractMigration
             $membership['suffix']);
         $member = [
             'email'         => $membership['email'],
+            'is_primary'    => 1,
+            'membership_id' => $membership['member_id'],
             'name'          => $name,
             'phone'         => $this->formatPhoneNumber($membership['phone']),
-            'membership_id' => $membership['member_id'],
         ];
         $this->memberTable->insert($member)->saveData();
     }
@@ -66,14 +66,5 @@ final class TransferMemberData extends AbstractMigration
     private function formatPhoneNumber($number): string
     {
         return (new FormatPhoneForPersistence)($number);
-    }
-
-    private function setMemberChangeoverSuccess($id): void
-    {
-        $this->getQueryBuilder()
-            ->update('members')
-            ->set('member_changeover_success', 1)
-            ->where(['member_id' => $id])
-            ->execute();
     }
 }
