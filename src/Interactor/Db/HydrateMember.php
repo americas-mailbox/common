@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Db;
 
-use AMB\Entity\Member;
+use AMB\Entity\LegacyMember;
+use AMB\Entity\LegacyMemberStatus;
 use AMB\Entity\Member\Plan;
-use AMB\Entity\MemberStatus;
 use AMB\Entity\RenewalFrequency;
 use AMB\Interactor\Plan\FindPlanById;
 use AMB\Interactor\RapidCityTime;
@@ -18,7 +18,7 @@ final class HydrateMember
     ) {
     }
 
-    public function hydrate(array $memberData): Member
+    public function hydrate(array $memberData): LegacyMember
     {
         $accountData = $memberData;
         $accountData['id'] = $memberData['account_id'];
@@ -29,8 +29,8 @@ final class HydrateMember
         $plan = $this->hydratePlan($memberData);
         $sqlToBool = new SQLToBool();
 
-        $member = (new Member())
-            ->setActive(new MemberStatus((int) $memberData['active']))
+        $member = (new LegacyMember())
+            ->setActive(new LegacyMemberStatus((int) $memberData['active']))
             ->setAccount($account)
             ->setAlternateEmail($memberData['alt_email'])
             ->setAlternateName($memberData['alternate_name'])

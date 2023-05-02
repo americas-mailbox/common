@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Member;
 
-use AMB\Entity\Member;
+use AMB\Entity\LegacyMember;
 use AMB\Interactor\Db\HydrateMember;
 use AMB\Interactor\Db\SelectMemberSQL;
 use Doctrine\DBAL\Connection;
@@ -17,7 +17,7 @@ final class FindMemberById implements FindUserByIdInterface
     ) {
     }
 
-    public function find($id): ?Member
+    public function find($id): ?LegacyMember
     {
         $memberData = $this->gather($id);
         if (empty($memberData)) {
