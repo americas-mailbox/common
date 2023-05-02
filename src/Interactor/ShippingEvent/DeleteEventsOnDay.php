@@ -6,7 +6,6 @@ namespace AMB\Interactor\ShippingEvent;
 use AMB\Entity\Shipping\RecurrenceType;
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\RapidCityTime;
-use AMB\Interactor\Shipping\FindRecurringShippingEvent;
 use AMB\Interactor\Shipping\GetNextDate;
 
 final class DeleteEventsOnDay

@@ -6,7 +6,6 @@ namespace AMB\Interactor\ShippingEvent;
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\Shipping\GetNextDate;
 use AMB\Interactor\Shipping\GetPreviousDate;
-use AMB\Interactor\Shipping\Interfaces\SaveShippingEventInterface;
 use Carbon\Carbon;
 
 final class DeleteDateInRecurringEvent
@@ -16,7 +15,7 @@ final class DeleteDateInRecurringEvent
     public function __construct(
         private GetNextDate $getNextDate,
         private GetPreviousDate $getPreviousDate,
-        private SaveShippingEventInterface $saveShippingEvent,
+        private SaveShippingEvent $saveShippingEvent,
     ) { }
 
     public function delete(ShippingEvent $shippingEvent, Carbon $date)
