@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace AMB\Entity\Shipping;
 
 use AMB\Entity\Address;
-use AMB\Entity\Member;
+use AMB\Entity\LegacyMember;
 use AMB\Interactor\RapidCityTime;
 
 final class ShippingEvent
@@ -29,7 +29,7 @@ final class ShippingEvent
     private $id;
     /** @var DayOfTheWeek|null */
     private $lastWeekdayOfTheMonth;
-    /** @var Member */
+    /** @var \AMB\Entity\LegacyMember */
     private $member;
     /** @var \AMB\Interactor\RapidCityTime|null */
     private $nextWeekly;
@@ -160,12 +160,12 @@ final class ShippingEvent
         return $this;
     }
 
-    public function getMember(): Member
+    public function getMember(): LegacyMember
     {
         return $this->member;
     }
 
-    public function setMember(Member $member): ShippingEvent
+    public function setMember(LegacyMember $member): ShippingEvent
     {
         $this->member = $member;
 

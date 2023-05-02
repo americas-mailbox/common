@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Db;
 
+use AMB\Entity\LegacyMember;
 use AMB\Entity\Member;
 use AMB\Entity\Shipping\DayOfTheWeek;
 use AMB\Entity\Shipping\RecurrenceType;
@@ -43,7 +44,7 @@ final class HydrateShippingEvent
 
         $nextWeekly = !empty($data['next_weekly']) ? new RapidCityTime($data['next_weekly']) : null;
         $weeksBetween = !empty($data['weeks_between']) ? (int) $data['weeks_between'] : null;
-        $member = (new Member())
+        $member = (new LegacyMember())
             ->setId((int) $data['member_id']);
 
         $shippingEvent = (new ShippingEvent())
