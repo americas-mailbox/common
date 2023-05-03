@@ -11,7 +11,7 @@ use Communication\Recipient;
 use IamPersistent\Ledger\Entity\Ledger;
 use Zestic\Contracts\User\UserInterface;
 
-final class LegacyMember implements UserInterface
+final class LegacyMember extends Member implements UserInterface
 {
     private Account $account;
     /** @var LegacyMemberStatus */
@@ -27,8 +27,6 @@ final class LegacyMember implements UserInterface
     private string $email = '';
     /** @var string */
     private $firstName;
-    /** @var int */
-    private $id;
     /** @var string */
     private $lastName;
     /** @var string|null */
@@ -171,18 +169,6 @@ final class LegacyMember implements UserInterface
         }
 
         return implode(' ', $parts);
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function setId(int $id): LegacyMember
-    {
-        $this->id = $id;
-
-        return $this;
     }
 
     public function getLastName(): string

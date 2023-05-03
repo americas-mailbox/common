@@ -5,10 +5,10 @@ namespace AMB\Entity;
 
 use Zestic\Contracts\User\UserInterface;
 
-final class Member implements UserInterface
+class Member implements UserInterface
 {
     private string $email = '';
-    private string $id;
+    private $id;
     private string $name = '';
     private string $phone = '';
 
@@ -24,12 +24,12 @@ final class Member implements UserInterface
         return $this;
     }
 
-    public function getId(): string
+    public function getId()
     {
         return $this->id;
     }
 
-    public function setId(string $id): Member
+    public function setId($id): Member
     {
         $this->id = $id;
 

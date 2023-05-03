@@ -6,11 +6,13 @@ namespace AMB\Interactor\ShippingEvent;
 use AMB\Entity\Address;
 use AMB\Entity\Shipping\DeliveryMethod;
 use AMB\Entity\Shipping\ShippingEvent;
+use Hashids\Hashids;
 
 final class UpdateEvent
 {
     public function __construct(
         private DeleteAllEvents $deleteAllEvents,
+        private Hashids $hashids,
         private SaveShippingEvent $saveShippingEvent,
     ) {}
 
@@ -20,7 +22,8 @@ final class UpdateEvent
             $address = (new Address())->setId(1); // pick up address
             $deliveryMethod = (new DeliveryMethod())->setId(7); // pick up method
         } else {
-            $address = (new Address())->setId($data['addressId']);
+            $addressId = $this->hashids->decode($data['addressId'])[0];
+            $address = (new Address())->setId($addressId);
             $deliveryMethod = (new DeliveryMethod())->setId($data['deliveryMethodId']);
         }
 

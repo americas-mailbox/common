@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AMB\Factory\ShippingEvent;
 
 use AMB\Entity\Address;
+use AMB\Entity\LegacyMember;
 use AMB\Entity\Member;
 use AMB\Entity\Shipping\DeliveryMethod;
 use AMB\Entity\Shipping\ShippingEvent;
@@ -11,12 +12,14 @@ use AMB\Interactor\RapidCityTime;
 use AMB\Interactor\Shipping\CreateShipment;
 use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use Doctrine\DBAL\Connection;
+use Hashids\Hashids;
 
 final class ShippingEventFactory
 {
     public function __construct(
         private Connection $connection,
         private CreateShipment $createShipment,
+        private Hashids $hashids,
         private SaveShippingEventInterface $insertShippingEvent,
     ) { }
 
@@ -62,9 +65,8 @@ final class ShippingEventFactory
     {
         if ('pickup' === $data['deliveryGroup']) {
             $data['addressId'] = 1;
-        }
-        if (empty($data['addressId'])) {
-            return;
+        } else {
+            $data['addressId'] = $this->hashids->decode($data['addressId'])[0];
         }
         $address = (new Address())
             ->setId((int) $data['addressId']);
@@ -85,7 +87,7 @@ final class ShippingEventFactory
 
     private function setMember(ShippingEvent $shippingEvent, array $data)
     {
-        $member = (new Member())
+        $member = (new LegacyMember())
             ->setId((int) $data['memberId']);
 
         $shippingEvent->setMember($member);
