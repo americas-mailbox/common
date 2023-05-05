@@ -9,12 +9,13 @@ use AMB\Interactor\RapidCityTime;
 final class HandleDoesNotRepeat implements RecurrenceHandlerInterface
 {
     public function __construct(
+        private NormalizeShippingEvent $normalizeShippingEvent,
         private SetDateInEventData $setDateInEvent,
     ) { }
 
     public function handle(ShippingEvent $shippingEvent, RapidCityTime $startDate, RapidCityTime $endDate): array
     {
-        $singleEvent = (new NormalizeShippingEvent)->normalize($shippingEvent);
+        $singleEvent = $this->normalizeShippingEvent->normalize($shippingEvent);
         $singleEvent['recurrence'] = 'doesNotRepeat';
 
         if ($startDate->gt($shippingEvent->getStartDate()) || $endDate->lt($shippingEvent->getEndDate())) {

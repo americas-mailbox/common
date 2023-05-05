@@ -10,6 +10,7 @@ use AMB\Interactor\RapidCityTime;
 final class HandleWeekly implements RecurrenceHandlerInterface
 {
     public function __construct(
+        private NormalizeShippingEvent $normalizeShippingEvent,
         private SetDateInEventData $setDateInEvent,
     ) { }
 
@@ -17,7 +18,7 @@ final class HandleWeekly implements RecurrenceHandlerInterface
     {
         $eventEndDate = $shippingEvent->getEndDate();
 
-        $weeklyEvent = (new NormalizeShippingEvent)->normalize($shippingEvent);
+        $weeklyEvent = $this->normalizeShippingEvent->normalize($shippingEvent);
         $weeklyEvent['recurrence'] = 'weekly';
 
         $eventDate = $this->determineStartingWeeklyEventDate($shippingEvent, $startDate);

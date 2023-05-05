@@ -5,19 +5,26 @@ namespace AMB\View\ShippingEvent\Handler;
 
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\RapidCityTime;
+use Hashids\Hashids;
 
 final class NormalizeShippingEvent
 {
+    public function __construct(
+        private Hashids $hashids,
+    ) {
+    }
+
     public function normalize(ShippingEvent $shippingEvent): array
     {
         if ($address = $shippingEvent->getAddress()) {
+            $addressId = $this->hashids->encode($address->getId());
             $addressData =
                 [
                     'address'      => $address->getAddress(),
                     'addressee'    => $address->getAddressee(),
                     'city'         => $address->getCity(),
                     'country'      => $address->getCountry(),
-                    'id'           => $address->getId(),
+                    'id'           => $addressId,
                     'inCareOf'     => $address->getInCareOf(),
                     'locationName' => $address->getLocationName(),
                     'plus4'        => $address->getPlus4(),
@@ -25,7 +32,6 @@ final class NormalizeShippingEvent
                     'state'        => $address->getState(),
                     'suite'        => $address->getSuite(),
                 ];
-            $addressId = $address->getId();
         } else {
             $addressData = [];
             $addressId = null;

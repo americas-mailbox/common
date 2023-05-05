@@ -9,6 +9,7 @@ use AMB\Interactor\RapidCityTime;
 use AMB\Interactor\Shipping\GenerateTrackingLink;
 use AMB\View\FormatDate;
 use Doctrine\DBAL\Connection;
+use Hashids\Hashids;
 
 final class GatherPastShipments
 {
@@ -16,6 +17,7 @@ final class GatherPastShipments
 
     public function __construct(
         private Connection $connection,
+        private Hashids $hashids,
     ) {
         $this->formatDate = new FormatDate();
     }
@@ -119,7 +121,7 @@ final class GatherPastShipments
                 'addressee'    => $data['addressee'],
                 'city'         => $data['city'],
                 'country'      => $data['country'],
-                'id'           => (int)$data['addressId'],
+                'id'           => $this->hashids->encode($data['addressId']),
                 'postcode'     => $data['postcode'],
                 'plus4'        => $data['plus4'],
                 'state'        => $data['state'],
@@ -127,7 +129,7 @@ final class GatherPastShipments
                 'inCareOf'     => $data['inCareOf'] ?? '',
                 'locationName' => $data['locationName'] ?? '',
             ],
-            'addressId'           => (int)$data['addressId'],
+            'addressId'           => $this->hashids->encode($data['addressId']),
             'date'                => $this->formatDate->__invoke($data['date']),
             'deliveryGroup'       => $data['shipping_method_group'],
             'deliveryMethod'      => [

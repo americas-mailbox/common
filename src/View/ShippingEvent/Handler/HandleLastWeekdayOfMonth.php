@@ -9,6 +9,7 @@ use AMB\Interactor\RapidCityTime;
 final class HandleLastWeekdayOfMonth implements RecurrenceHandlerInterface
 {
     public function __construct(
+        private NormalizeShippingEvent $normalizeShippingEvent,
         private SetDateInEventData $setDateInEvent,
     ) { }
 
@@ -17,7 +18,7 @@ final class HandleLastWeekdayOfMonth implements RecurrenceHandlerInterface
         $eventEndDate = $shippingEvent->getEndDate();
         $weekDayOfTheMonth = $shippingEvent->getLastWeekdayOfTheMonth()->getValue();
 
-        $monthEvent = (new NormalizeShippingEvent)->normalize($shippingEvent);
+        $monthEvent = $this->normalizeShippingEvent->normalize($shippingEvent);
         $monthEvent['recurrence'] = 'lastOfMonth';
         $monthEvent['lastWeekdayOfTheMonth'] = $weekDayOfTheMonth;
 

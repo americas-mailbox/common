@@ -9,6 +9,7 @@ use AMB\Interactor\RapidCityTime;
 final class HandleFirstWeekdayOfMonth implements RecurrenceHandlerInterface
 {
     public function __construct(
+        private NormalizeShippingEvent $normalizeShippingEvent,
         private SetDateInEventData $setDateInEvent,
     ) { }
 
@@ -17,7 +18,7 @@ final class HandleFirstWeekdayOfMonth implements RecurrenceHandlerInterface
         $eventEndDate = $shippingEvent->getEndDate();
         $weekDayOfTheMonth = $shippingEvent->getFirstWeekdayOfTheMonth()->getValue();
 
-        $monthEvent = (new NormalizeShippingEvent)->normalize($shippingEvent);
+        $monthEvent = $this->normalizeShippingEvent->normalize($shippingEvent);
         $monthEvent['recurrence'] = 'firstOfMonth';
         $monthEvent['firstWeekdayOfTheMonth'] = $weekDayOfTheMonth;
 

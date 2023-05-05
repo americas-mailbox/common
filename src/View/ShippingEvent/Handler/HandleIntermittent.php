@@ -9,6 +9,7 @@ use AMB\Interactor\RapidCityTime;
 final class HandleIntermittent implements RecurrenceHandlerInterface
 {
     public function __construct(
+        private NormalizeShippingEvent $normalizeShippingEvent,
         private SetDateInEventData $setDateInEvent,
     ) { }
 
@@ -18,7 +19,7 @@ final class HandleIntermittent implements RecurrenceHandlerInterface
         $weeksBetween = $shippingEvent->getWeeksBetween();
         $eventDate = $shippingEvent->getNextWeekly();
 
-        $weeklyEvent = (new NormalizeShippingEvent)->normalize($shippingEvent);
+        $weeklyEvent = $this->normalizeShippingEvent->normalize($shippingEvent);
         $weeklyEvent['recurrence'] = 'intermittent';
         $weeklyEvent['weeksBetween'] = $weeksBetween;
 

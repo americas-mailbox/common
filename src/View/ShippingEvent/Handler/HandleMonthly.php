@@ -9,6 +9,7 @@ use AMB\Interactor\RapidCityTime;
 final class HandleMonthly implements RecurrenceHandlerInterface
 {
     public function __construct(
+        private NormalizeShippingEvent $normalizeShippingEvent,
         private SetDateInEventData $setDateInEvent,
     ) { }
 
@@ -17,7 +18,7 @@ final class HandleMonthly implements RecurrenceHandlerInterface
         $eventEndDate = $shippingEvent->getEndDate();
         $dayOfTheMonth = $shippingEvent->getDayOfTheMonth();
 
-        $monthEvent = (new NormalizeShippingEvent)->normalize($shippingEvent);
+        $monthEvent = $this->normalizeShippingEvent->normalize($shippingEvent);
         $monthEvent['recurrence'] = 'monthly';
         $monthEvent['dayOfTheMonth'] = $dayOfTheMonth;
 

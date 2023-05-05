@@ -10,6 +10,7 @@ use AMB\Interactor\RapidCityTime;
 final class HandleDaily implements RecurrenceHandlerInterface
 {
     public function __construct(
+        private NormalizeShippingEvent $normalizeShippingEvent,
         private SetDateInEventData $setDateInEvent,
         private IsOfficeClosed $isOfficeClosed,
     ) { }
@@ -18,7 +19,7 @@ final class HandleDaily implements RecurrenceHandlerInterface
     {
         $eventEndDate = $shippingEvent->getEndDate();
 
-        $weeklyEvent = (new NormalizeShippingEvent)->normalize($shippingEvent);
+        $weeklyEvent = $this->normalizeShippingEvent->normalize($shippingEvent);
         $weeklyEvent['recurrence'] = 'daily';
         if ($shippingEvent->getStartDate()->lte($startDate)) {
             $eventDate = $startDate->clone();
