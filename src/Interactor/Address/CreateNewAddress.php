@@ -31,6 +31,9 @@ final class CreateNewAddress
 
         $this->insertAddress->insert($address);
 
+        if (isset($data['isDefault'])) {
+            $data['setAsDefaultAddress'] = $data['isDefault'];
+        }
         if (isset($data['setAsDefaultAddress']) && true === $data['setAsDefaultAddress']) {
             $this->setAddressAsDefault->setAddress($address->getId(), $data['memberId']);
         }

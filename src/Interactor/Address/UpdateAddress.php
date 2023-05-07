@@ -29,6 +29,10 @@ final class UpdateAddress
             $data['post_code'] = $data['postcode'];
             unset($data['postcode']);
         }
+        if (isset($data['isDefault'])) {
+            $data['setAsDefaultAddress'] = (new BoolToSQL)($data['isDefault']);
+            unset($data['isDefault']);
+        }
         if (isset($data['isVerified'])) {
             $data['verified'] = (new BoolToSQL)($data['isVerified']);
             unset($data['isVerified']);
@@ -58,9 +62,10 @@ final class UpdateAddress
     {
         if (isset($data['setAsDefaultAddress']) && true === $data['setAsDefaultAddress']) {
             $this->setAddressAsDefault->setAddress($id, $data['memberId']);
-            unset($data['setAsDefaultAddress']);
         }
+        unset($data['id']);
         unset($data['memberId']);
+        unset($data['setAsDefaultAddress']);
         $response = $this->connection->update('addresses', $data, ['id' => $id]);
         if (1 !== $response) {
             return false;
