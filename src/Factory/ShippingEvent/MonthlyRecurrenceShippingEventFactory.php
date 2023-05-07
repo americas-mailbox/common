@@ -10,8 +10,12 @@ final class MonthlyRecurrenceShippingEventFactory extends BaseRecurringShippingE
 {
     public function __invoke(array $data): ShippingEvent
     {
+        if (!isset($data['dayOfTheMonth'])) {
+            $data['dayOfTheMonth'] = explode('-', $data['date'])[2];
+        }
+
         return $this->createRecurringEvent($data)
-            ->setDayOfTheMonth($data['dayOfTheMonth'])
+            ->setDayOfTheMonth((int)$data['dayOfTheMonth'])
             ->setRecurrenceType(RecurrenceType::MONTHLY());
     }
 }
