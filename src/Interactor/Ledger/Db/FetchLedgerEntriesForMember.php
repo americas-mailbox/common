@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace AMB\Interactor\Ledger\Db;
 
 use AMB\SQLBuilder\AbstractFetchData;
+use AMB\SQLBuilder\Builder\LedgerEntrySQLBuilder;
+use AMB\SQLBuilder\Transformer\LedgerEntryTransformer;
 use Doctrine\DBAL\Connection;
 
 class FetchLedgerEntriesForMember extends AbstractFetchData
