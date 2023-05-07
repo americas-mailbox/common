@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\CreditCard;
 
-use AMB\Interactor\CreditCard\Db\CreditCardSQLBuilder;
 use AMB\SQLBuilder\AbstractFetchData;
+use AMB\SQLBuilder\Builder\CreditCardSQLBuilder;
+use AMB\SQLBuilder\Transformer\CreditCardTransformer;
 use Doctrine\DBAL\Connection;
 
 class FetchCreditCardsForMember extends AbstractFetchData
