@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace AMB\Interactor\Invoice\Db;
 
 use AMB\SQLBuilder\AbstractFetchData;
+use AMB\SQLBuilder\Builder\InvoiceOverviewSQLBuilder;
+use AMB\SQLBuilder\Transformer\InvoiceOverviewTransformer;
 use Doctrine\DBAL\Connection;
 
 class FetchInvoiceOverviewsForMember extends AbstractFetchData
