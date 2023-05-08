@@ -26,7 +26,7 @@ final class ActivateMembership
             ->setActive(new MemberStatus(MemberStatus::ACTIVE))
             ->setSuspended(false);
         $this->updateMember->update($membership);
-        $this->setUseNewDashboard($membership);
+//        $this->setUseNewDashboard($membership);
     }
 
     private function setPMB(Member $membership)
