@@ -5,7 +5,7 @@ namespace AMB\Interactor\Ledger\Db;
 
 use AMB\SQLBuilder\AbstractFetchData;
 use AMB\SQLBuilder\Builder\LedgerEntrySQLBuilder;
-use AMB\SQLBuilder\Transformer\LedgerEntryTransformer;
+use AMB\SQLBuilder\Transformer\LedgerEntryEntityTransformer;
 use Doctrine\DBAL\Connection;
 
 class FetchLedgerEntriesForMember extends AbstractFetchData
@@ -13,7 +13,7 @@ class FetchLedgerEntriesForMember extends AbstractFetchData
     public function __construct(
         LedgerEntrySQLBuilder $sqlBuilder,
         Connection $connection,
-        LedgerEntryTransformer $transformer,
+        LedgerEntryEntityTransformer $transformer,
     ) {
         parent::__construct($connection, $sqlBuilder, $transformer);
         $this->prefix = 'ledgerEntry';
