@@ -5,7 +5,7 @@ namespace AMB\Interactor\Invoice\Db;
 
 use AMB\SQLBuilder\AbstractFetchData;
 use AMB\SQLBuilder\Builder\InvoiceOverviewSQLBuilder;
-use AMB\SQLBuilder\Transformer\InvoiceOverviewTransformer;
+use AMB\SQLBuilder\Transformer\InvoiceOverviewEntityTransformer;
 use Doctrine\DBAL\Connection;
 
 class FetchInvoiceOverviewsForMember extends AbstractFetchData
@@ -13,7 +13,7 @@ class FetchInvoiceOverviewsForMember extends AbstractFetchData
     public function __construct(
         InvoiceOverviewSQLBuilder $sqlBuilder,
         Connection $connection,
-        InvoiceOverviewTransformer $invoiceOverviewTransformer,
+        InvoiceOverviewEntityTransformer $invoiceOverviewTransformer,
     ) {
         parent::__construct($connection, $sqlBuilder, $invoiceOverviewTransformer);
         $this->prefix = 'invoiceOverview';
