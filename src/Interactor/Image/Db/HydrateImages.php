@@ -11,9 +11,11 @@ final class HydrateImages
         private HydrateImage $hydrateImage,
     ) {}
 
-    public function hydrate(string $data): array
+    public function hydrate($data): array
     {
-        $data = json_decode($data, true);
+        if (is_string($data)) {
+            $data = json_decode($data, true);
+        }
         $images = [];
         foreach ($data as $datum) {
             $images[] = $this->hydrateImage->hydrate($datum);

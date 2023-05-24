@@ -7,11 +7,11 @@ use AMB\Interactor\RapidCityTime;
 
 final class Image
 {
-    private RapidCityTime | null $createdAt;
+    private RapidCityTime | null $createdAt = null;
     private string $filePath;
     private mixed $id;
     private mixed $ratio;
-    private RapidCityTime | null $updatedAt;
+    private RapidCityTime | null $updatedAt = null;
 
     public function getCreatedAt(): RapidCityTime | null
     {
