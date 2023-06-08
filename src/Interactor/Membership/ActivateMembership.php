@@ -16,6 +16,7 @@ final class ActivateMembership
         private Connection $connection,
         private FindMemberById $findMemberById,
         private UpdateMember $updateMember,
+        private UpdateMemberPassword $updateMemberPassword,
     ) { }
 
     public function activate($membershipId)
@@ -26,6 +27,7 @@ final class ActivateMembership
             ->setActive(new MemberStatus(MemberStatus::ACTIVE))
             ->setSuspended(false);
         $this->updateMember->update($membership);
+        $this->setMemberPassword($membership);
         $this->setUseNewDashboard($membership);
     }
 
@@ -63,6 +65,12 @@ SQL;
         }
 
         return $pmb + 1;
+    }
+
+    private function setMemberPassword(Member $membership)
+    {
+        $password = $membership->getLastName() . $membership->getPMB();
+        $updatePassword->update($membership->getId(), $password);
     }
 
     private function setUseNewDashboard($membership)
