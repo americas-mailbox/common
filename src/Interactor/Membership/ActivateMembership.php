@@ -69,7 +69,7 @@ SQL;
 
     private function setMemberPassword(Member $membership)
     {
-        $password = $membership->getLastName() . $membership->getPMB();
+        $password = $membership->getPMB() . ucfirst(strtolower($membership->getLastName()));
         $updatePassword->update($membership->getId(), $password);
     }
 
