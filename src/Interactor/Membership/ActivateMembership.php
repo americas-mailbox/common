@@ -7,6 +7,7 @@ use AMB\Entity\Member;
 use AMB\Entity\MemberStatus;
 use AMB\Interactor\Member\FindMemberById;
 use AMB\Interactor\Member\UpdateMember;
+use AMB\Interactor\Member\UpdateMemberPassword;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
@@ -70,7 +71,7 @@ SQL;
     private function setMemberPassword(Member $membership)
     {
         $password = $membership->getPMB() . ucfirst(strtolower($membership->getLastName()));
-        $updatePassword->update($membership->getId(), $password);
+        $this->updateMemberPassword->update($membership->getId(), $password);
     }
 
     private function setUseNewDashboard($membership)
