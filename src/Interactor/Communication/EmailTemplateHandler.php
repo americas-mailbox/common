@@ -26,6 +26,9 @@ final class EmailTemplateHandler
 
     private function loadTemplate(string $name)
     {
+        if ($name === 'blank') {
+            $name = 'generic';
+        }
         $statement = $this->connection->executeQuery("SELECT * FROM email_templates WHERE `name` = '$name'");
 
         $data = $statement->fetchAssociative();
