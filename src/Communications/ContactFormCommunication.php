@@ -15,7 +15,7 @@ final class ContactFormCommunication extends Communication
             ->setEmail($message['email'])
             ->setName($message['name']);
         $recipient = (new Recipient())
-            ->setEmail('iampersistent@gmail.com');
+            ->setEmail('Americas.Mailbox@gmail.com');
         $this->addRecipient($recipient);
 
         $this->context
