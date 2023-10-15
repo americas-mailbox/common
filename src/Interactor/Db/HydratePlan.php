@@ -16,6 +16,7 @@ final class HydratePlan
 
     public function hydrate(array $planData): Plan
     {
+        $sku = $this->findSkuByName->find($planData['sku']);
         $startingSku = $this->findSkuByName->find($planData['starting_sku']);
 
         return (new Plan())
@@ -27,6 +28,7 @@ final class HydratePlan
             ->setPrice((new JsonToMoney)($planData['price']))
             ->setRenewalFrequency(new RenewalFrequency($planData['renewal_frequency']))
             ->setSetUpFee((new JsonToMoney)($planData['set_up_fee']))
+            ->setSku($sku)
             ->setStartingSku($startingSku)
             ->setTitle($planData['title']);
     }
