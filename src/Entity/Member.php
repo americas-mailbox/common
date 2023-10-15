@@ -16,15 +16,14 @@ final class Member implements UserInterface
     private Account $account;
     /** @var MemberStatus */
     private $active;
-    /** @var string|null */
-    private $alternateEmail;
+    private ?string $alternateEmail = null;
     /** @var string|null */
     private $alternateName;
     /** @var string|null */
     private $alternatePhone;
     private ?string $comment;
     private ?Recipient $communicationRecipient = null;
-    private string $email = '';
+    private ?string $email = null;
     /** @var string */
     private $firstName;
     /** @var int */
@@ -39,6 +38,8 @@ final class Member implements UserInterface
     private string|null $pmb = null;
     /** @var string|null */
     private $pin = null;
+    private ?string $previousAltEmail = null;
+    private ?string $previousEmail = null;
     /** @var Carbon|null */
     private $renewDate;
     private ?RapidCityTime $returnToSenderDate = null;
@@ -83,6 +84,7 @@ final class Member implements UserInterface
 
     public function setAlternateEmail(?string $alternateEmail): Member
     {
+        $this->previousEmail = $this->alternateEmail;
         $this->alternateEmail = $alternateEmail;
 
         return $this;
@@ -141,8 +143,9 @@ final class Member implements UserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): Member
+    public function setEmail(?string $email): Member
     {
+        $this->previousEmail = $this->email;
         $this->email = $email;
 
         return $this;
@@ -306,6 +309,16 @@ final class Member implements UserInterface
         $this->returnToSenderDate = $returnToSenderDate;
 
         return $this;
+    }
+
+    public function getPreviousAltEmail(): ?string
+    {
+        return $this->previousAltEmail;
+    }
+
+    public function getPreviousEmail(): ?string
+    {
+        return $this->previousEmail;
     }
 
     public function getShippingInstructions(): string

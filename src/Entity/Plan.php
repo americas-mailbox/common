@@ -23,6 +23,7 @@ final class Plan
     private $renewalFrequency;
     /** @var \Money\Money */
     private $setUpFee;
+    private Product $sku;
     private Product $startingSku;
     /** @var string */
     private $title;
@@ -119,6 +120,18 @@ final class Plan
     public function setSetUpFee(Money $setUpFee): Plan
     {
         $this->setUpFee = $setUpFee;
+
+        return $this;
+    }
+
+    public function getSku(): Product
+    {
+        return $this->sku;
+    }
+
+    public function setSku(Product $sku): Plan
+    {
+        $this->sku = $sku;
 
         return $this;
     }
