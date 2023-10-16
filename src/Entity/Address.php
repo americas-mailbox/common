@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace AMB\Entity;
 
+use Domain\Membership\Entity\Membership;
+
 final class Address
 {
     /** @var string */
@@ -21,8 +23,7 @@ final class Address
     private $inCareOf;
     /** @var string|null */
     private $locationName;
-    /** @var \AMB\Entity\Membership */
-    private $membership;
+    private Membership $membership;
     /** @var string */
     private $plus4;
     /** @var string */
@@ -218,7 +219,7 @@ final class Address
 
         return $this;
     }
-      
+
     public function getUser(): User
     {
         return $this->user;

@@ -5,7 +5,6 @@ namespace AMB\Factory\ShippingEvent;
 
 use AMB\Entity\Address;
 use AMB\Entity\LegacyMember;
-use AMB\Entity\Member;
 use AMB\Entity\Shipping\DeliveryMethod;
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\RapidCityTime;
