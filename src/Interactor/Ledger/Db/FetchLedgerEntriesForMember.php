@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Ledger\Db;
 
-use AMB\SQLBuilder\AbstractFetchData;
-use AMB\SQLBuilder\Builder\LedgerEntrySQLBuilder;
-use AMB\SQLBuilder\Transformer\LedgerEntryEntityTransformer;
 use Doctrine\DBAL\Connection;
+use Infrastructure\SQLBuilder\AbstractFetchData;
+use Infrastructure\SQLBuilder\Builder\LedgerEntrySQLBuilder;
+use Infrastructure\SQLBuilder\Transformer\LedgerEntryEntityTransformer;
 
 class FetchLedgerEntriesForMember extends AbstractFetchData
 {

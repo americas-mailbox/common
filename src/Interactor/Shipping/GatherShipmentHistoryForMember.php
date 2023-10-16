@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace AMB\Interactor\Shipping;
 
 use App\Entity\Paginate;
-use AMB\SQLBuilder\PaginateToSQL;
 use Doctrine\DBAL\Connection;
+use Infrastructure\SQLBuilder\PaginateToSQL;
 
 final class GatherShipmentHistoryForMember
 {
