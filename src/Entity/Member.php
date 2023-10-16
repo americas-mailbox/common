@@ -19,8 +19,7 @@ final class Member implements UserInterface
     private ?string $alternateEmail = null;
     /** @var string|null */
     private $alternateName;
-    /** @var string|null */
-    private $alternatePhone;
+    private ?string $alternatePhone = null;
     private ?string $comment;
     private ?Recipient $communicationRecipient = null;
     private ?string $email = null;
@@ -33,8 +32,7 @@ final class Member implements UserInterface
     /** @var string|null */
     private $middleName;
     private ?MemberPlan $memberPlan = null;
-    /** @var string */
-    private $phone;
+    private ?string $phone = null;
     private string|null $pmb = null;
     /** @var string|null */
     private $pin = null;
@@ -251,12 +249,12 @@ final class Member implements UserInterface
         return $this;
     }
 
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function setPhone(string $phone): Member
+    public function setPhone(?string $phone): Member
     {
         $this->phone = $phone;
 
