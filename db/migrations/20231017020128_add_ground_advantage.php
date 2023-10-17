@@ -26,7 +26,7 @@ final class AddGroundAdvantage extends AbstractMigration
         $this->table('delivery_methods_services')->insert($serviceData)->save();
 
         $product = [
-            'id' => 143,
+            'id' => 153,
             'active' => 1,
             'description' => "USPS Ground Advantage",
             'name' => 'USPS_GND_ADV',
@@ -36,7 +36,7 @@ final class AddGroundAdvantage extends AbstractMigration
         $this->table('products')->insert($product)->save();
         $category = [
             'category_id' => 2,
-            'product_id' => 143
+            'product_id' => 153,
         ];
     }
 }
