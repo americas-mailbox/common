@@ -47,6 +47,7 @@ final class UpdateMember
             'pin'          => $member->getPIN(),
             'phone'        => $member->getPhone(),
             'pmb'          => $member->getPMB(),
+            'renewDate'    => $member->getRenewDate()->toDateString(),
             'shipinst'     => $member->getShippingInstructions(),
             'startDate'    => $member->getStartDate()->format('Y-m-d'),
             'suspended'    => (new BoolToSQL)($member->isSuspended()),
@@ -55,7 +56,6 @@ final class UpdateMember
         if ($plan = $member->getMemberPlan()) {
             $data['level_id'] = $plan->getPlan()->getId();
             $data['renewal_frequency'] = $plan->getRenewalFrequency()->getValue();
-            $data['renewDate'] = $plan->getRenewsOn()->toDateString();
         }
         $this->connection->update('members', $data, ['member_id' => $member->getId()]);
         $this->updateAuthLookup($member);
