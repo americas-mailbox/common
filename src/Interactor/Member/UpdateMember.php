@@ -47,9 +47,9 @@ final class UpdateMember
             'pin'          => $member->getPIN(),
             'phone'        => $member->getPhone(),
             'pmb'          => $member->getPMB(),
-            'renewDate'    => $member->getRenewDate()->toDateString(),
+            'renewDate'    => $member->getRenewDate()?->toDateString(),
             'shipinst'     => $member->getShippingInstructions(),
-            'startDate'    => $member->getStartDate()->format('Y-m-d'),
+            'startDate'    => $member->getStartDate()?->format('Y-m-d'),
             'suspended'    => (new BoolToSQL)($member->isSuspended()),
             'suffix'       => $member->getSuffix(),
         ];

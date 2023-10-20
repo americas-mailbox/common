@@ -331,12 +331,12 @@ final class Member implements UserInterface
         return $this;
     }
 
-    public function getStartDate(): Carbon
+    public function getStartDate(): ?Carbon
     {
         return $this->startDate;
     }
 
-    public function setStartDate(Carbon $startDate): Member
+    public function setStartDate(?Carbon $startDate): Member
     {
         $this->startDate = $startDate;
 
