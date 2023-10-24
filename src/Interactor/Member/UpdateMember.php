@@ -7,7 +7,7 @@ use AMB\Entity\Member;
 use AMB\Interactor\Account\UpdateAccount;
 use AMB\Interactor\Db\BoolToSQL;
 use AMB\Interactor\Ledger\SaveLedger;
-use App\Authentication\Entity\NewAuthLookup;
+use App\Auth\NewAuthLookup;
 use App\Authentication\Interactor\CreateAuthLookup;
 use App\Authentication\Interactor\UpdateAuthLookup;
 use Doctrine\DBAL\Connection;
@@ -72,8 +72,12 @@ final class UpdateMember
         $this->handleAuthLookup($altEmail, $previousAltEmail, $member);
     }
 
-    private function handleAuthLookup(string $email, ?string $previousEmail, Member $member): void
+    private function handleAuthLookup(?string $email, ?string $previousEmail, Member $member): void
     {
+        if (!$email || !$previousEmail) {
+            return;
+        }
+
         if (!$previousEmail) {
             $newAuthLookup = new NewAuthLookup(
                 $email,
