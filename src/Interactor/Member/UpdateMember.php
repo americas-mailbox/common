@@ -37,6 +37,7 @@ final class UpdateMember
         $this->updateAccount->update($member->getAccount());
         $data = [
             'active'       => $member->getActive()->getValue(),
+            'alternate_name'    => $member->getAlternateName(),
             'alt_email'    => $member->getAlternateEmail(),
             'alt_phone'    => $member->getAlternatePhone(),
             'comment'      => $member->getComment(),
