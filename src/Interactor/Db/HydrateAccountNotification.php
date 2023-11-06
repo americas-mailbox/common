@@ -10,16 +10,16 @@ final class HydrateAccountNotification
 {
     public function hydrate(array $data): Notifications
     {
-        $lastLowBalanceNotificationDate = $this->hydrateDate($data['lastLowBalanceNotificationDate']);
-        $lastSuspendedNotificationDate = $this->hydrateDate($data['lastSuspendedNotificationDate']);
+        $lastLowBalanceNotificationDate = $this->hydrateDate($data['lastLowBalanceNotificationDate']??null);
+        $lastSuspendedNotificationDate = $this->hydrateDate($data['lastSuspendedNotificationDate']??null);
 
         return (new Notifications())
             ->setLastLowBalanceNotificationDate($lastLowBalanceNotificationDate)
             ->setLastSuspendedNotificationDate($lastSuspendedNotificationDate)
-            ->setLowBalanceNotificationCount($data['lowBalanceNotificationCount'])
-            ->setReasonForSuspension($data['reasonForSuspension'])
-            ->setSuspendedNotificationCount($data['suspendedNotificationCount'])
-            ->setSuspensionCodes($data['suspensionCodes']);
+            ->setLowBalanceNotificationCount($data['lowBalanceNotificationCount']??0)
+            ->setReasonForSuspension($data['reasonForSuspension']??'')
+            ->setSuspendedNotificationCount($data['suspendedNotificationCount']??0)
+            ->setSuspensionCodes($data['suspensionCodes']??[]);
     }
 
     private function hydrateDate(?string $date): ?RapidCityTime
