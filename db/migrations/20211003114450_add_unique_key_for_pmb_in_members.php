@@ -5,7 +5,6 @@ use Phinx\Migration\AbstractMigration;
 
 final class AddUniqueKeyForPmbInMembers extends AbstractMigration
 {
-
     public function up()
     {
         $this->table('members')
