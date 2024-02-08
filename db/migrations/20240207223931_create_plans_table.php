@@ -16,6 +16,7 @@ final class CreatePlansTable extends AbstractMigration
             ->addColumn('company_id', 'integer', ['signed' => false, 'null' => false])
             ->addColumn('location_id', 'integer', ['signed' => false, 'null' => true])
             ->addColumn('title', 'char')
+            ->addColumn('html_color', 'char', ['null' => true])
             ->addColumn('first_line', 'char')
             ->addColumn('second_line', 'char')
             ->addColumn('third_line', 'char')
