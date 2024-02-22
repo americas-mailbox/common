@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
@@ -12,14 +13,15 @@ final class CreateCompanyLocationTable extends AbstractMigration
             ->addColumn('name', 'char')
             ->addColumn('company_id', 'integer', ['signed' => false])
             ->addColumn('location_identifier', 'char')
+            ->addColumn('timezone', 'char')
             ->addTimestamps()
             ->create();
-
         $data = [
             [
-                'company_id' => 1,
+                'company_id'          => 1,
                 'location_identifier' => 'SD',
-                'name' => 'SD',
+                'name'                => 'SD',
+                'timezone'            => 'America/Denver',
             ],
         ];
         $this->table('company_locations')->insert($data)->save();
