@@ -25,8 +25,7 @@ final class ShippingEvent
     private $endDate;
     /** @var DayOfTheWeek|null */
     private $firstWeekdayOfTheMonth;
-    /** @var int */
-    private $id;
+    private ?int $id = null;
     /** @var DayOfTheWeek|null */
     private $lastWeekdayOfTheMonth;
     /** @var \AMB\Entity\LegacyMember */
@@ -136,7 +135,7 @@ final class ShippingEvent
         return $this;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

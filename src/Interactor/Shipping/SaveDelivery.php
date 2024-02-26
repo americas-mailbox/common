@@ -6,7 +6,6 @@ namespace AMB\Interactor\Shipping;
 use AMB\Entity\Shipping\Delivery;
 use Doctrine\DBAL\Connection;
 use IamPersistent\Ledger\Interactor\DBal\MoneyToJson;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
 
 final class SaveDelivery
 {
@@ -16,10 +15,9 @@ final class SaveDelivery
 
     public function save(Delivery $delivery)
     {
-        if ((new ObjectHasId)($delivery)) {
+        if ($delivery->getId()) {
             // update
             $this->updateData($delivery);
-            $delivery->getId();
         } else {
             $this->insertData($delivery);
         }

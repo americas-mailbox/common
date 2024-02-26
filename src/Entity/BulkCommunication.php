@@ -12,8 +12,7 @@ final class BulkCommunication
     private ?string $csvFilename = null;
     /** @var string */
     private $emailBody;
-    /** @var int */
-    private $id;
+    private ?int $id = null;
     /** @var \AMB\Interactor\RapidCityTime */
     private $scheduledFor;
     /** @var array */
@@ -61,7 +60,7 @@ final class BulkCommunication
         return $this;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

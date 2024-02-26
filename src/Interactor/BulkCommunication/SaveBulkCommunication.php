@@ -7,7 +7,6 @@ use AMB\Entity\BulkCommunication;
 use AMB\Interactor\Db\BoolToSQL;
 use Doctrine\DBAL\Connection;
 use Exception;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
 
 final class SaveBulkCommunication
 {
@@ -18,7 +17,7 @@ final class SaveBulkCommunication
 
     public function save(BulkCommunication $bulkCommunication)
     {
-        if ((new ObjectHasId)($bulkCommunication)) {
+        if ($bulkCommunication->getId()) {
             $this->update($bulkCommunication);
 
             return;

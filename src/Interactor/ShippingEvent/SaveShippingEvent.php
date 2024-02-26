@@ -9,7 +9,6 @@ use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use Doctrine\DBAL\Connection;
 use Exception;
 use IamPersistent\SimpleShop\Interactor\DBal\BoolToSQL;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
 
 final class SaveShippingEvent implements SaveShippingEventInterface
 {
@@ -17,12 +16,12 @@ final class SaveShippingEvent implements SaveShippingEventInterface
         private Connection $connection,
     ) { }
 
-    public function save(ShippingEvent $shippingEvent)
+    public function save(ShippingEvent $calendarEvent)
     {
-        if ((new ObjectHasId)($shippingEvent)) {
-            $this->updateData($shippingEvent);
+        if ($calendarEvent->getId()) {
+            $this->updateData($calendarEvent);
         } else {
-            $this->insertData($shippingEvent);
+            $this->insertData($calendarEvent);
         }
     }
 

@@ -10,7 +10,7 @@ final class Delivery
     /** @var DeliveryCharges */
     private $charges;
     /** @var mixed */
-    private $id;
+    private $id = null;
     /** @var string|null */
     private $packageCode;
     /** @var \AMB\Entity\Shipping\PackageSize|null */

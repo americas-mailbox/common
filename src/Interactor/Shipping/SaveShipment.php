@@ -6,7 +6,6 @@ namespace AMB\Interactor\Shipping;
 use AMB\Entity\Shipping\Shipment;
 use AMB\Interactor\Db\BoolToSQL;
 use Doctrine\DBAL\Connection;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
 
 final class SaveShipment
 {
@@ -17,7 +16,7 @@ final class SaveShipment
 
     public function save(Shipment $shipment)
     {
-        if ((new ObjectHasId)($shipment)) {
+        if ($shipment->getId()) {
             $this->updateData($shipment);
         } else {
             $this->insertData($shipment);

@@ -24,7 +24,7 @@ final class Shipment
     /** @var int | null */
     private $fulfilledLedgerItemId;
     /** @var mixed */
-    private $id;
+    private $id = null;
     /** @var \AMB\Entity\Member */
     private $member;
     /** @var string | null */

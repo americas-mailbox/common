@@ -7,5 +7,5 @@ use AMB\Entity\Shipping\ShippingEvent;
 
 interface SaveShippingEventInterface
 {
-    public function save(ShippingEvent $shippingEvent);
+    public function save(ShippingEvent $calendarEvent);
 }
