@@ -65,7 +65,7 @@ final class ShippingEventFactory
         if ('pickup' === $data['deliveryGroup']) {
             $data['addressId'] = 1;
         } else {
-            $data['addressId'] = $this->hashids->decode($data['addressId'])[0];
+//            $data['addressId'] = $this->hashids->decode($data['addressId'])[0];
         }
         $address = (new Address())
             ->setId((int) $data['addressId']);
