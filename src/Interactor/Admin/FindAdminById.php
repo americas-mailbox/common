@@ -26,6 +26,6 @@ final class FindAdminById implements FindUserByIdInterface
 
     public function findById($id): ?UserInterface
     {
-        return $this->find($id)
+        return $this->find($id);
     }
 }
