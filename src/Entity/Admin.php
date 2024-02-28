@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace AMB\Entity;
 
 use AMB\Interactor\Admin\RoleCheck;
-use Zestic\Contracts\User\UserInterface;
+use Zestic\Authentication\Interface\UserInterface;
 
 final class Admin implements UserInterface
 {
@@ -74,6 +74,14 @@ final class Admin implements UserInterface
         $this->lastName = $lastName;
 
         return $this;
+    }
+
+    public function getName(): string
+    {
+        $name = $this->firstName ? $this->firstName.' ' : '';
+        $name .= $this->lastName ? $this->lastName : '';
+
+        return $name;
     }
 
     public function getRole(): AdminRole
