@@ -5,8 +5,8 @@ namespace AMB\Interactor\Admin;
 
 use AMB\Entity\Admin;
 use AMB\Interactor\Db\HydrateAdmin;
-use Zestic\Contracts\User\FindUserByIdInterface;
-use Zestic\Contracts\User\UserInterface;
+use Mezzio\Authentication\UserInterface;
+use Zestic\Authentication\Interface\FindUserByIdInterface;
 
 final class FindAdminById implements FindUserByIdInterface
 {
@@ -22,5 +22,10 @@ final class FindAdminById implements FindUserByIdInterface
         }
 
         return (new HydrateAdmin())->hydrate($data);
+    }
+
+    public function findById($id): ?UserInterface
+    {
+        return $this->find($id)
     }
 }
