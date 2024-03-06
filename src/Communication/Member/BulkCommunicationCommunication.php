@@ -6,6 +6,7 @@ namespace AMB\Communication\Member;
 use AMB\Communication\MemberCommunication;
 use AMB\Entity\BulkCommunication;
 use AMB\Entity\Member;
+use Symfony\Component\Notifier\Notification\Notification;
 
 final class BulkCommunicationCommunication extends MemberCommunication
 {
@@ -17,6 +18,14 @@ final class BulkCommunicationCommunication extends MemberCommunication
         $this->send();
 
         return true;
+    }
+    
+    public function getNotification(Member $member, BulkCommunication $communication): Notification
+    {
+        $this->setValuesFromMember($member);
+        $this->setTemplateContext($member, $communication);
+
+        return $this->createNotification('email');
     }
 
     private function setTemplateContext(Member $member, BulkCommunication $communication)
