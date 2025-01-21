@@ -14,17 +14,6 @@
     "ramsey/uuid": "^4.1",
     "zestic/contracts": "v0.2.0"
   },
-  "require-dev": {
-    "amb/codeception-amb": "^1.7",
-    "codeception/codeception": "^4.0",
-    "codeception/module-asserts": "^1.3"
-  },
-  "repositories": {
-    "amb/codeception-amb": {
-      "type": "vcs",
-      "url": "git@github.com:americas-mailbox/codeception-amb.git"
-    }
-  },
   "autoload": {
     "psr-4": {
       "AMB\\": "src"
