@@ -9,7 +9,7 @@
     "php": "^8.0",
     "doctrine/dbal": "^2.13.7",
     "iampersistent/ledger": "^v0.4.0",
-    "iampersistent/simple-shop": "^v0.6.0",
+    "olps/simple-shop": "^v0.2",
     "myclabs/php-enum": "^1.7",
     "ramsey/uuid": "^4.1",
     "zestic/contracts": "v0.2.0"
