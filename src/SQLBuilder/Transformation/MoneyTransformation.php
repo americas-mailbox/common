@@ -5,8 +5,8 @@ namespace AMB\SQLBuilder\Transformation;
 
 use AMB\SQLBuilder\TransformationInterface;
 use IamPersistent\Ledger\Interactor\DBal\MoneyToJson;
-use OLPS\Money\Interactor\JsonToArray;
-use OLPS\Money\Interactor\JsonToString;
+use OLPS\Money\JsonToArray;
+use OLPS\Money\JsonToString;
 
 final class MoneyTransformation implements TransformationInterface
 {

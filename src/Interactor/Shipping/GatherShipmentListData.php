@@ -6,7 +6,7 @@ namespace AMB\Interactor\Shipping;
 use AMB\Interactor\FullName;
 use Carbon\Carbon;
 use Doctrine\DBAL\Connection;
-use OLPS\Money\Interactor\JsonToString;
+use OLPS\Money\JsonToString;
 
 final class GatherShipmentListData
 {

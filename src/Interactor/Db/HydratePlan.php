@@ -5,7 +5,7 @@ namespace AMB\Interactor\Db;
 
 use AMB\Entity\Plan;
 use AMB\Entity\RenewalFrequency;
-use OLPS\Money\Interactor\JsonToMoney;
+use OLPS\Money\JsonToMoney;
 use OLPS\SimpleShop\Interactor\DBal\FindProductByName;
 
 final class HydratePlan

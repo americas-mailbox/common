@@ -6,7 +6,7 @@ namespace AMB\Interactor\SiteOptions;
 use AMB\Entity\SiteOptions;
 use AMB\Interactor\RapidCityTime;
 use Communication\Recipient;
-use OLPS\Money\Interactor\ArrayToMoney;
+use OLPS\Money\ArrayToMoney;
 use IamPersistent\SwiftMailer\Context\PartyContext;
 use Money\Money;
 

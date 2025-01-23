@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Transformer;
 
-use OLPS\Money\Interactor\MoneyToArray;
+use OLPS\Money\MoneyToArray;
 use OLPS\SimpleShop\Entity\Product;
 
 final class TransformProduct

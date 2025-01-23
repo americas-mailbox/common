@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace AMB\SQLBuilder\Transformation;
 
 use AMB\SQLBuilder\TransformationInterface;
-use OLPS\Money\Interactor\JsonToArray;
+use OLPS\Money\JsonToArray;
 
 final class JsonToArrayTransformation implements TransformationInterface
 {

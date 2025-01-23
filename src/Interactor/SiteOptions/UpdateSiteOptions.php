@@ -7,7 +7,7 @@ use AMB\Factory\DbalConnection;
 use AMB\Interactor\DbalConnectionTrait;
 use AMB\Interactor\RapidCityTime;
 use Exception;
-use OLPS\Money\Interactor\NumberToJson;
+use OLPS\Money\NumberToJson;
 
 final class UpdateSiteOptions implements DbalConnection
 {

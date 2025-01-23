@@ -5,7 +5,7 @@ namespace AMB\Transformer;
 
 use AMB\Entity\Admin;
 use AMB\Entity\Member;
-use OLPS\Money\Interactor\MoneyToArray;
+use OLPS\Money\MoneyToArray;
 use OLPS\SimpleShop\Entity\Invoice;
 
 final class TransformInvoice
