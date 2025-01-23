@@ -8,7 +8,7 @@ use AMB\Interactor\Admin\ActiveAdmin;
 use Exception;
 use IamPersistent\Ledger\Entity\Entry;
 use IamPersistent\Ledger\Interactor\AddEntryToLedger as BaseAddEntry;
-use IamPersistent\SimpleShop\Interactor\DBal\FindProductById;
+use OLPS\SimpleShop\Interactor\DBal\FindProductById;
 
 final class AddEntryToLedger
 {

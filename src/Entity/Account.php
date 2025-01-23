@@ -6,7 +6,7 @@ namespace AMB\Entity;
 use AMB\Entity\Account\Notifications;
 use Carbon\Carbon;
 use IamPersistent\Ledger\Entity\Ledger;
-use IamPersistent\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Entity\CreditCard;
 use Money\Money;
 
 class Account

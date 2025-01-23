@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace AMB\Interactor\Ledger;
 
 use IamPersistent\Ledger\Entity\Item;
-use IamPersistent\SimpleShop\Interactor\DBal\FindProductByName;
+use OLPS\SimpleShop\Interactor\DBal\FindProductByName;
 
 final class CreateItemFromSKU
 {

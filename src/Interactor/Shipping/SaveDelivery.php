@@ -6,7 +6,7 @@ namespace AMB\Interactor\Shipping;
 use AMB\Entity\Shipping\Delivery;
 use Doctrine\DBAL\Connection;
 use IamPersistent\Ledger\Interactor\DBal\MoneyToJson;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
+use OLPS\SimpleShop\Interactor\ObjectHasId;
 
 final class SaveDelivery
 {

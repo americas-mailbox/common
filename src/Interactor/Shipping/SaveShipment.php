@@ -6,7 +6,7 @@ namespace AMB\Interactor\Shipping;
 use AMB\Entity\Shipping\Shipment;
 use AMB\Interactor\Db\BoolToSQL;
 use Doctrine\DBAL\Connection;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
+use OLPS\SimpleShop\Interactor\ObjectHasId;
 
 final class SaveShipment
 {

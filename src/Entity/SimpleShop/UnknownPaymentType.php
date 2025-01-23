@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Entity\SimpleShop;
 
-use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
+use OLPS\SimpleShop\Entity\PaymentMethodInterface;
 
 final class UnknownPaymentType implements PaymentMethodInterface
 {

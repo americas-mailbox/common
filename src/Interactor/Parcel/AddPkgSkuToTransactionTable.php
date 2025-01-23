@@ -7,7 +7,7 @@ use AMB\Entity\Member;
 use AMB\Interactor\RapidCityTime;
 use Doctrine\DBAL\Connection;
 use IamPersistent\Ledger\Entity\Entry;
-use IamPersistent\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Entity\Product;
 use Zestic\Contracts\User\UserInterface;
 
 final class AddPkgSkuToTransactionTable

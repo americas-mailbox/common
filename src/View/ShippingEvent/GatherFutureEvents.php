@@ -14,7 +14,7 @@ use AMB\View\ShippingEvent\Handler\HandleLastWeekdayOfMonth;
 use AMB\View\ShippingEvent\Handler\HandleMonthly;
 use AMB\View\ShippingEvent\Handler\HandleWeekly;
 use AMB\View\ShippingEvent\Handler\SetDateInEventData;
-use IamPersistent\SimpleShop\Interactor\CamelCase;
+use OLPS\SimpleShop\Interactor\CamelCase;
 
 final class GatherFutureEvents
 {

@@ -6,7 +6,7 @@ namespace AMB\Interactor\Shipping;
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\OfficeClosure\IsOfficeClosed;
 use AMB\Interactor\RapidCityTime;
-use IamPersistent\SimpleShop\Interactor\CamelCase;
+use OLPS\SimpleShop\Interactor\CamelCase;
 
 final class GetPreviousDate
 {

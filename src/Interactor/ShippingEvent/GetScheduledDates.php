@@ -7,7 +7,7 @@ use AMB\Entity\Shipping\DayOfTheWeek;
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interactor\Db\HydrateShippingEvent;
 use AMB\Interactor\RapidCityTime;
-use IamPersistent\SimpleShop\Interactor\PascalCase;
+use OLPS\SimpleShop\Interactor\PascalCase;
 
 final class GetScheduledDates
 {

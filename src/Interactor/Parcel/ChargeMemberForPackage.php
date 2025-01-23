@@ -8,7 +8,7 @@ use AMB\Interactor\Ledger\AddEntryToLedger;
 use AMB\Interactor\Ledger\CreateItemFromProduct;
 use AMB\Interactor\RapidCityTime;
 use IamPersistent\Ledger\Factory\EntryFactory;
-use IamPersistent\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Entity\Product;
 
 final class ChargeMemberForPackage
 {

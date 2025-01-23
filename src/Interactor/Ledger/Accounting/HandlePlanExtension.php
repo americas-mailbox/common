@@ -7,7 +7,7 @@ use AMB\Entity\Member;
 use AMB\Interactor\Ledger\SkuHandlerInterface;
 use AMB\Interactor\Plan\HandlePlanExtensionSku;
 use IamPersistent\Ledger\Entity\Entry;
-use IamPersistent\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Entity\Product;
 use Zestic\Contracts\User\UserInterface;
 
 final class HandlePlanExtension implements SkuHandlerInterface

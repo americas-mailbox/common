@@ -5,7 +5,7 @@ namespace AMB\Interactor\Ledger;
 
 use AMB\Entity\SiteOptions;
 use IamPersistent\Ledger\Entity\Item;
-use IamPersistent\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Entity\Product;
 use Money\Currency;
 use Money\Money;
 

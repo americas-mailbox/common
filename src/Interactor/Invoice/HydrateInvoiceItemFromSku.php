@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace AMB\Interactor\Invoice;
 
-use IamPersistent\SimpleShop\Entity\InvoiceItem;
-use IamPersistent\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Entity\InvoiceItem;
+use OLPS\SimpleShop\Entity\Product;
 
 final class HydrateInvoiceItemFromSku
 {

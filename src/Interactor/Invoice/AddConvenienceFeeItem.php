@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace AMB\Interactor\Invoice;
 
 use AMB\Interactor\Finance\CalculateConvenienceFee;
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Interactor\DBal\FindProductByName;
-use IamPersistent\SimpleShop\Interactor\TotalInvoice;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Interactor\DBal\FindProductByName;
+use OLPS\SimpleShop\Interactor\TotalInvoice;
 
 final class AddConvenienceFeeItem
 {

@@ -9,7 +9,7 @@ use AMB\Interactor\Member\FindMemberById;
 use AMB\Interactor\RapidCityTime;
 use Doctrine\DBAL\Connection;
 use IamPersistent\Ledger\Factory\EntryFactory;
-use IamPersistent\SimpleShop\Interactor\DBal\FindProductById;
+use OLPS\SimpleShop\Interactor\DBal\FindProductById;
 
 final class VoidPackageDeliveryCharge
 {

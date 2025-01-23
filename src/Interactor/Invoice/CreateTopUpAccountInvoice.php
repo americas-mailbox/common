@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace AMB\Interactor\Invoice;
 
 use AMB\Entity\Member;
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Interactor\DBal\FindProductByName;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Interactor\DBal\FindProductByName;
 use Money\Money;
 
 final class CreateTopUpAccountInvoice

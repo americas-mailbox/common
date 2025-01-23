@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace AMB\Entity;
 
-use IamPersistent\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Entity\Product;
 use Money\Money;
 
 final class Plan

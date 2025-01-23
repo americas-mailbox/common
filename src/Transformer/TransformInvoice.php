@@ -5,8 +5,8 @@ namespace AMB\Transformer;
 
 use AMB\Entity\Admin;
 use AMB\Entity\Member;
-use IamPersistent\Money\Interactor\MoneyToArray;
-use IamPersistent\SimpleShop\Entity\Invoice;
+use OLPS\Money\Interactor\MoneyToArray;
+use OLPS\SimpleShop\Entity\Invoice;
 
 final class TransformInvoice
 {

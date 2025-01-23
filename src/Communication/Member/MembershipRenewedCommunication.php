@@ -8,7 +8,7 @@ use AMB\Entity\Member;
 use AMB\Entity\RenewalFrequency;
 use AMB\Interactor\FormatMoney;
 use App\Log\Description\MembershipRenewedEvent;
-use IamPersistent\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\Invoice;
 
 final class MembershipRenewedCommunication extends MemberCommunication
 {

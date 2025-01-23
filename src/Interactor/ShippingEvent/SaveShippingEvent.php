@@ -8,8 +8,8 @@ use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use Doctrine\DBAL\Connection;
 use Exception;
-use IamPersistent\SimpleShop\Interactor\DBal\BoolToSQL;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
+use OLPS\SimpleShop\Interactor\DBal\BoolToSQL;
+use OLPS\SimpleShop\Interactor\ObjectHasId;
 
 final class SaveShippingEvent implements SaveShippingEventInterface
 {

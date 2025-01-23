@@ -7,7 +7,7 @@ use AMB\Entity\Account;
 use AMB\Interactor\RapidCityTime;
 use IamPersistent\Ledger\Interactor\DBal\FindLedgerById;
 use IamPersistent\Ledger\Interactor\DBal\JsonToMoney;
-use IamPersistent\SimpleShop\Interactor\DBal\FindCardById;
+use OLPS\SimpleShop\Interactor\DBal\FindCardById;
 
 final class HydrateAccount
 {

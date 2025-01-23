@@ -6,8 +6,8 @@ namespace AMB\Interactor\Ledger;
 use AMB\Interactor\Ledger\Accounting\HandlePkg;
 use AMB\Interactor\Ledger\Accounting\HandlePlan;
 use AMB\Interactor\Ledger\Accounting\HandlePlanExtension;
-use IamPersistent\SimpleShop\Entity\Product;
-use IamPersistent\SimpleShop\Interactor\PascalCase;
+use OLPS\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Interactor\PascalCase;
 use Psr\Container\ContainerInterface;
 
 final class GetSkuHandlerClass

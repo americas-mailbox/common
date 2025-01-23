@@ -7,7 +7,7 @@ use AMB\Entity\BulkCommunication;
 use AMB\Interactor\Db\BoolToSQL;
 use Doctrine\DBAL\Connection;
 use Exception;
-use IamPersistent\SimpleShop\Interactor\ObjectHasId;
+use OLPS\SimpleShop\Interactor\ObjectHasId;
 
 final class SaveBulkCommunication
 {

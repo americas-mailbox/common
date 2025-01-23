@@ -6,8 +6,8 @@ namespace AMB\Interactor\Account;
 use AMB\Entity\Member;
 use AMB\Interactor\RapidCityTime;
 use Doctrine\DBAL\Connection;
-use IamPersistent\SimpleShop\Entity\CreditCard;
-use IamPersistent\SimpleShop\Interactor\DBal\HydrateCreditCard;
+use OLPS\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Interactor\DBal\HydrateCreditCard;
 
 final class GetDefaultCardForPayment
 {

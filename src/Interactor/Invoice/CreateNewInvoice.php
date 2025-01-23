@@ -6,7 +6,7 @@ namespace AMB\Interactor\Invoice;
 use AMB\Entity\Member;
 use AMB\Entity\SiteOptions;
 use DateTime;
-use IamPersistent\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\Invoice;
 use Money\Currency;
 use Money\Money;
 

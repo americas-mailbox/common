@@ -11,7 +11,7 @@ use AMB\Entity\Shipping\Carrier;
 use AMB\Entity\Shipping\Delivery;
 use AMB\Entity\Shipping\DeliveryCharges;
 use AMB\Entity\Shipping\Shipment;
-use IamPersistent\SimpleShop\Entity\CreditCard;
+use OLPS\SimpleShop\Entity\CreditCard;
 use Money\Currency;
 use Money\Money;
 use Symfony\Component\Console\Command\Command;

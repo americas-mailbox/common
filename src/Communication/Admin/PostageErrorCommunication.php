@@ -5,7 +5,7 @@ namespace AMB\Communication\Admin;
 
 use AMB\Communication\AdminCommunication;
 use AMB\Entity\Shipping\Shipment;
-use IamPersistent\Money\Interactor\MoneyToString;
+use OLPS\Money\Interactor\MoneyToString;
 use Money\Money;
 
 final class PostageErrorCommunication extends AdminCommunication

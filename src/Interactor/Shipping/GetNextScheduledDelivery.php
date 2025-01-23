@@ -8,7 +8,7 @@ use AMB\Interactor\DetermineWorkDay;
 use AMB\Interactor\RapidCityTime;
 use Carbon\Carbon;
 use Doctrine\DBAL\Connection;
-use IamPersistent\SimpleShop\Interactor\CamelCase;
+use OLPS\SimpleShop\Interactor\CamelCase;
 
 final class GetNextScheduledDelivery
 {

@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace AMB\Cli\Communication;
 
 use AMB\Communication\Member\MembershipRenewedCommunication;
-use IamPersistent\SimpleShop\Entity\Invoice;
-use IamPersistent\SimpleShop\Entity\Paid;
+use OLPS\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\Paid;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

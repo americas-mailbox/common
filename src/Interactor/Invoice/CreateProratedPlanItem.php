@@ -5,7 +5,7 @@ namespace AMB\Interactor\Invoice;
 
 use AMB\Entity\Plan;
 use AMB\Interactor\RapidCityTime;
-use IamPersistent\SimpleShop\Interactor\DBal\FindProductByName;
+use OLPS\SimpleShop\Interactor\DBal\FindProductByName;
 use Money\Currency;
 use Money\Money;
 

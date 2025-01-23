@@ -7,7 +7,7 @@ use AMB\Communication\MemberCommunication;
 use AMB\Entity\Member;
 use AMB\Interactor\FormatMoney;
 use App\Log\Description\MembershipRenewalFailedEvent;
-use IamPersistent\SimpleShop\Entity\PaymentMethodInterface;
+use OLPS\SimpleShop\Entity\PaymentMethodInterface;
 use Money\Money;
 
 final class MembershipRenewalFailedCommunication extends MemberCommunication

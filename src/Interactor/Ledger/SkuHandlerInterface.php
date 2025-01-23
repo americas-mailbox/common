@@ -5,7 +5,7 @@ namespace AMB\Interactor\Ledger;
 
 use AMB\Entity\Member;
 use IamPersistent\Ledger\Entity\Entry;
-use IamPersistent\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Entity\Product;
 use Zestic\Contracts\User\UserInterface;
 
 interface SkuHandlerInterface

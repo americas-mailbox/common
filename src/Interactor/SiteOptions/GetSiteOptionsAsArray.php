@@ -5,7 +5,7 @@ namespace AMB\Interactor\SiteOptions;
 
 use AMB\Factory\DbalConnection;
 use AMB\Interactor\DbalConnectionTrait;
-use IamPersistent\Money\Interactor\ArrayToNumber;
+use OLPS\Money\Interactor\ArrayToNumber;
 
 final class GetSiteOptionsAsArray implements DbalConnection
 {

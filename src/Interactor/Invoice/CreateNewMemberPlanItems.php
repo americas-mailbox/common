@@ -6,9 +6,9 @@ namespace AMB\Interactor\Invoice;
 use AMB\Entity\Plan;
 use AMB\Interactor\Plan\FindPlanByStartingSku;
 use AMB\Interactor\RapidCityTime;
-use IamPersistent\SimpleShop\Entity\InvoiceItem;
-use IamPersistent\SimpleShop\Entity\Product;
-use IamPersistent\SimpleShop\Interactor\DBal\FindProductByName;
+use OLPS\SimpleShop\Entity\InvoiceItem;
+use OLPS\SimpleShop\Entity\Product;
+use OLPS\SimpleShop\Interactor\DBal\FindProductByName;
 
 final class CreateNewMemberPlanItems
 {

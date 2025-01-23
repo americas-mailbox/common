@@ -5,7 +5,7 @@ namespace AMB\Interactor\Invoice;
 
 use AMB\Entity\Member;
 use AMB\Entity\Member\Plan;
-use IamPersistent\SimpleShop\Entity\Invoice;
+use OLPS\SimpleShop\Entity\Invoice;
 
 final class CreateRenewMembershipInvoice
 {
