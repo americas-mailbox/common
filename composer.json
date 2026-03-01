@@ -7,7 +7,7 @@
   "minimum-stability": "dev",
   "require": {
     "php": "^8.1",
-    "doctrine/dbal": "^2.13.7",
+    "doctrine/dbal": "^3.6",
     "myclabs/php-enum": "^1.7",
     "ramsey/uuid": "^4.1",
     "zestic/contracts": "v0.2.0"
