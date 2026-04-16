@@ -4,11 +4,12 @@ declare(strict_types=1);
 namespace AMB\Interactor\ShippingEvent;
 
 use AMB\Entity\Shipping\ShippingEvent;
+use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 
 final class DeleteAllEvents
 {
     public function __construct(
-        private SaveShippingEvent $saveShippingEvent,
+        private SaveShippingEventInterface $saveShippingEvent,
     ) {
     }
 

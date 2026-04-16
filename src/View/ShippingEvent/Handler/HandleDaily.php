@@ -4,14 +4,14 @@ declare(strict_types=1);
 namespace AMB\View\ShippingEvent\Handler;
 
 use AMB\Entity\Shipping\ShippingEvent;
-use AMB\Interactor\OfficeClosure\IsOfficeClosed;
+use AMB\Interactor\OfficeClosure\IsOfficeClosedInterface;
 use AMB\Interactor\RapidCityTime;
 
 final class HandleDaily implements RecurrenceHandlerInterface
 {
     public function __construct(
         private SetDateInEventData $setDateInEvent,
-        private IsOfficeClosed $isOfficeClosed,
+        private IsOfficeClosedInterface $isOfficeClosed,
     ) { }
 
     public function handle(ShippingEvent $shippingEvent, RapidCityTime $startDate, RapidCityTime $endDate): array

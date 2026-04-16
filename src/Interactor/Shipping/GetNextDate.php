@@ -4,19 +4,18 @@ declare(strict_types=1);
 namespace AMB\Interactor\Shipping;
 
 use AMB\Entity\Shipping\ShippingEvent;
-use AMB\Interactor\OfficeClosure\IsOfficeClosed;
+use AMB\Interactor\OfficeClosure\IsOfficeClosedInterface;
 use AMB\Interactor\RapidCityTime;
-use OLPS\SimpleShop\Interactor\CamelCase;
 
 final class GetNextDate
 {
     public function __construct(
-        private IsOfficeClosed $isOfficeClosed,
+        private IsOfficeClosedInterface $isOfficeClosed,
     ) {}
 
     public function __invoke(ShippingEvent $event, RapidCityTime $startingDate, bool $avoidClosures = false): RapidCityTime
     {
-        $getNextDate = (new CamelCase)($event->getRecurrenceType()->getValue());
+        $getNextDate = $this->camelize($event->getRecurrenceType()->getValue());
 
         $nextDate = $startingDate->clone();
 
@@ -30,6 +29,13 @@ final class GetNextDate
         }
 
         return $nextDate;
+    }
+
+    private function camelize(string $value): string
+    {
+        $normalized = str_replace(' ', '', ucwords(str_replace('_', ' ', $value)));
+
+        return lcfirst($normalized);
     }
 
     public function get(ShippingEvent $event, RapidCityTime $startingDate, bool $avoidClosures = false): RapidCityTime

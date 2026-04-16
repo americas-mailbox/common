@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 final class FormatDate
 {
-    public function __invoke($date = null, string $format = 'default'): string
+    public function __invoke(mixed $date = null, string $format = 'default'): string
     {
         if (!$date instanceof Carbon) {
             $date = new RapidCityTime($date);

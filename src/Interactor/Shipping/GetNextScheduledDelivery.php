@@ -8,7 +8,6 @@ use AMB\Interactor\DetermineWorkDay;
 use AMB\Interactor\RapidCityTime;
 use Carbon\Carbon;
 use Doctrine\DBAL\Connection;
-use OLPS\SimpleShop\Interactor\CamelCase;
 
 final class GetNextScheduledDelivery
 {
@@ -226,10 +225,17 @@ SQL;
 
     private function determineNextRecurringDelivery(array $data, Carbon $todaysDate): Carbon
     {
-        $recurringMethod = (new CamelCase())('determineNext_'. $data['recurrence_type'] . 'Delivery');
+        $recurringMethod = $this->camelize('determineNext_'. $data['recurrence_type'] . 'Delivery');
         $workingDate = $todaysDate->clone();
 
         return $this->$recurringMethod($data, $workingDate);
+    }
+
+    private function camelize(string $value): string
+    {
+        $normalized = str_replace(' ', '', ucwords(str_replace('_', ' ', $value)));
+
+        return lcfirst($normalized);
     }
 
     private function getSoonestOneTimeEvent($memberId, RapidCityTime $date): ?array

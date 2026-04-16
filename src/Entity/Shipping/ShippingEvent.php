@@ -196,7 +196,9 @@ final class ShippingEvent
 
     public function getRecurrenceType(): RecurrenceType
     {
-        return $this->recurrenceType;
+        if ($this->recurrenceType instanceof RecurrenceType) {
+            return $this->recurrenceType;
+        }
 
         if (true === $this->daily) {
             return RecurrenceType::DAILY();

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace AMB\View\ShippingEvent\Handler;
 
 use AMB\Entity\Shipping\ShippingEvent;
-use AMB\Interactor\OfficeClosure\IsOfficeClosed;
+use AMB\Interactor\OfficeClosure\IsOfficeClosedInterface;
 use AMB\Interactor\RapidCityTime;
 use Doctrine\DBAL\Connection;
 
@@ -16,7 +16,7 @@ final class SetDateInEventData
 
     public function __construct(
         private Connection $connection,
-        private IsOfficeClosed $isOfficeClosed,
+        private IsOfficeClosedInterface $isOfficeClosed,
     ) { }
 
     public function set(ShippingEvent $event, array &$data, RapidCityTime $eventDate): string

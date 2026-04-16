@@ -4,7 +4,10 @@ declare(strict_types=1);
 namespace Unit\Interactor\Events;
 
 use AMB\Interactor\RapidCityTime;
+use AMB\Interactor\Shipping\GetNextDate;
+use AMB\Interactor\Shipping\GetPreviousDate;
 use AMB\Interactor\ShippingEvent\DeleteDateInRecurringEvent;
+use Helper\Mock\IsOfficeClosed;
 use Helper\Mock\SaveShippingEvent;
 use Helper\Setup\CreateRecurringShipment;
 use UnitTester;
@@ -21,8 +24,13 @@ class DeleteDateInRecurringEventCest
     protected function _inject(SaveShippingEvent $saveShippingEvent)
     {
         $this->saveShippingEvent = $saveShippingEvent;
+        $isOfficeClosed = new IsOfficeClosed();
 
-        $this->deleteDateInRecurringEvent = new DeleteDateInRecurringEvent($this->saveShippingEvent);
+        $this->deleteDateInRecurringEvent = new DeleteDateInRecurringEvent(
+            new GetNextDate($isOfficeClosed),
+            new GetPreviousDate($isOfficeClosed),
+            $this->saveShippingEvent
+        );
         $this->createShipment = new CreateRecurringShipment($saveShippingEvent);
     }
 

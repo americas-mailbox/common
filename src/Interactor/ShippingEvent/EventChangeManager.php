@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AMB\Interactor\ShippingEvent;
 
 use AMB\Entity\Shipping\ShippingEvent;
+use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use Carbon\Carbon;
 
 final class EventChangeManager
@@ -16,7 +17,7 @@ final class EventChangeManager
     private $deleteThisAndFollowingEvent;
 
     public function __construct(
-        private SaveShippingEvent $saveShippingEvent
+        private SaveShippingEventInterface $saveShippingEvent
     ) {
         $this->deleteDateInRecurringEvent = new DeleteDateInRecurringEvent($this->saveShippingEvent);
         $this->deleteOneTimeEvent = new DeleteOneTimeEvent($this->saveShippingEvent);

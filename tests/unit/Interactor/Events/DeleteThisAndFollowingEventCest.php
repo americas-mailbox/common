@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace Unit\Interactor\Events;
 
 use AMB\Interactor\RapidCityTime;
+use AMB\Interactor\Shipping\GetPreviousDate;
 use AMB\Interactor\ShippingEvent\DeleteThisAndFollowingEvent;
+use Helper\Mock\IsOfficeClosed;
 use Helper\Mock\SaveShippingEvent;
 use Helper\Setup\CreateRecurringShipment;
 use UnitTester;
@@ -22,8 +24,16 @@ class DeleteThisAndFollowingEventCest
     {
         $this->saveShippingEvent = $saveShippingEvent;
 
-        $this->deleteThisAndFollowingEvent = new DeleteThisAndFollowingEvent($this->saveShippingEvent);
+        $this->deleteThisAndFollowingEvent = new DeleteThisAndFollowingEvent(
+            new GetPreviousDate(new IsOfficeClosed()),
+            $this->saveShippingEvent
+        );
         $this->createShipment = new CreateRecurringShipment($saveShippingEvent);
+    }
+
+    public function _before(UnitTester $I): void
+    {
+        $this->saveShippingEvent->reset();
     }
 
     public function testDeleteOnStartDate(UnitTester $I)

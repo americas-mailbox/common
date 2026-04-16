@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Helper\Mock;
 
 use AMB\Entity\Shipping\ShippingEvent;
-use AMB\Interfaces\ShippingEvent\SaveShippingEventInterface;
+use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use ReflectionProperty;
 
 final class SaveShippingEvent implements SaveShippingEventInterface

@@ -14,7 +14,6 @@ use AMB\View\ShippingEvent\Handler\HandleLastWeekdayOfMonth;
 use AMB\View\ShippingEvent\Handler\HandleMonthly;
 use AMB\View\ShippingEvent\Handler\HandleWeekly;
 use AMB\View\ShippingEvent\Handler\SetDateInEventData;
-use OLPS\SimpleShop\Interactor\CamelCase;
 
 final class GatherFutureEvents
 {
@@ -50,9 +49,16 @@ final class GatherFutureEvents
 
     private function handleShippingEvent(ShippingEvent $shippingEvent, RapidCityTime $startDate, RapidCityTime $endDate): array
     {
-        $recurrenceType = ucfirst((new CamelCase)($shippingEvent->getRecurrenceType()->getValue()));
+        $recurrenceType = ucfirst($this->camelize($shippingEvent->getRecurrenceType()->getValue()));
         $handler = 'handle' . $recurrenceType;
 
         return $this->$handler->handle($shippingEvent, $startDate, $endDate);
+    }
+
+    private function camelize(string $value): string
+    {
+        $normalized = str_replace(' ', '', ucwords(str_replace('_', ' ', $value)));
+
+        return lcfirst($normalized);
     }
 }

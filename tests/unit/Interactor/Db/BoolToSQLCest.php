@@ -10,7 +10,7 @@ class BoolToSQLCest
 {
     public function testInvoke(UnitTester $I)
     {
-        $I->assertIsInt(1, (new BoolToSQL)(true));
-        $I->assertIsInt(0, (new BoolToSQL)(false));
+        $I->assertIsInt((new BoolToSQL)(true));
+        $I->assertIsInt((new BoolToSQL)(false));
     }
 }

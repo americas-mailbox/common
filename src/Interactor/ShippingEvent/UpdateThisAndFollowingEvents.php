@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AMB\Interactor\ShippingEvent;
 
 use AMB\Entity\Shipping\ShippingEvent;
+use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use AMB\Interactor\RapidCityTime;
 
 final class UpdateThisAndFollowingEvents
@@ -11,7 +12,7 @@ final class UpdateThisAndFollowingEvents
     public function __construct(
         private CloneEvent $cloneEvent,
         private DeleteThisAndFollowingEvent $deleteThisAndFollowingEvent,
-        private SaveShippingEvent $saveShippingEvent,
+        private SaveShippingEventInterface $saveShippingEvent,
         private UpdateEvent $updateEvent,
     ) {}
 

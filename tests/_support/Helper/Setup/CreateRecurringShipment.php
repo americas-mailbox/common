@@ -19,8 +19,8 @@ final class CreateRecurringShipment
     }
 
     public function daily(
-        Carbon $startDate = null,
-        Carbon $endDate = null
+        ?Carbon $startDate = null,
+        ?Carbon $endDate = null
     ): ShippingEvent {
         if (!$startDate) {
             $startDate = new RapidCityTime('2020-01-29');
@@ -39,10 +39,20 @@ final class CreateRecurringShipment
     }
 
     public function weekly(
-        Carbon $startDate,
-        Carbon $endDate,
-        Carbon $nextWeekly = null
+        ?Carbon $startDate = null,
+        ?Carbon $endDate = null,
+        ?Carbon $nextWeekly = null
     ): ShippingEvent {
+        if (!$startDate) {
+            $startDate = new RapidCityTime('2020-01-29');
+        }
+        if (!$endDate) {
+            $endDate = new RapidCityTime('2020-02-26');
+        }
+        if (!$nextWeekly) {
+            $nextWeekly = $startDate->clone()->addWeeks(2);
+        }
+
         return $this->recurring(1, $startDate, $endDate, $nextWeekly);
     }
 
@@ -50,7 +60,7 @@ final class CreateRecurringShipment
         int $weeksBetween,
         Carbon $startDate,
         Carbon $endDate,
-        Carbon $nextWeekly = null
+        ?Carbon $nextWeekly = null
     ): ShippingEvent {
         if (!$nextWeekly) {
             $nextWeekly = $startDate->clone();

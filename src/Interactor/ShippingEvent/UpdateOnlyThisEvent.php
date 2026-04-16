@@ -5,6 +5,7 @@ namespace AMB\Interactor\ShippingEvent;
 
 use AMB\Entity\Shipping\ShippingEvent;
 use AMB\Factory\ShippingEvent\OneTimeShippingEventFactory;
+use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use AMB\Interactor\RapidCityTime;
 use AMB\Interactor\Shipping\GetNextDate;
 use AMB\Interactor\Shipping\GetPreviousDate;
@@ -15,7 +16,7 @@ final class UpdateOnlyThisEvent
         private CloneEvent $cloneEvent,
         private GetNextDate $getNextDate,
         private GetPreviousDate $getPreviousDate,
-        private SaveShippingEvent $saveShippingEvent,
+        private SaveShippingEventInterface $saveShippingEvent,
         private UpdateEvent $updateEvent,
     ) {
     }

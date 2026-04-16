@@ -6,12 +6,13 @@ namespace AMB\Interactor\ShippingEvent;
 use AMB\Entity\Address;
 use AMB\Entity\Shipping\DeliveryMethod;
 use AMB\Entity\Shipping\ShippingEvent;
+use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 
 final class UpdateEvent
 {
     public function __construct(
         private DeleteAllEvents $deleteAllEvents,
-        private SaveShippingEvent $saveShippingEvent,
+        private SaveShippingEventInterface $saveShippingEvent,
     ) {}
 
     public function update(ShippingEvent $shippingEvent, array $data): array

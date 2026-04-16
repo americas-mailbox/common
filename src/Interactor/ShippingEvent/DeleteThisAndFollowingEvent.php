@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace AMB\Interactor\ShippingEvent;
 
 use AMB\Entity\Shipping\ShippingEvent;
+use AMB\Interface\ShippingEvent\SaveShippingEventInterface;
 use AMB\Interactor\Shipping\GetPreviousDate;
 use Carbon\Carbon;
 
@@ -13,7 +14,7 @@ final class DeleteThisAndFollowingEvent
 
     public function __construct(
         private GetPreviousDate $getPreviousDate,
-        private SaveShippingEvent $saveShippingEvent,
+        private SaveShippingEventInterface $saveShippingEvent,
     ) {
     }
 

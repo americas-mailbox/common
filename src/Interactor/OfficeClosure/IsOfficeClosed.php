@@ -6,7 +6,7 @@ namespace AMB\Interactor\OfficeClosure;
 use AMB\Interactor\RapidCityTime;
 use Doctrine\DBAL\Connection;
 
-final class IsOfficeClosed
+final class IsOfficeClosed implements IsOfficeClosedInterface
 {
     /** @var string[] */
     private $closureDates;

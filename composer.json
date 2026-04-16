@@ -2,17 +2,25 @@
   "name": "amb/common",
   "description": "AMB common code",
   "config": {
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
   },
   "minimum-stability": "dev",
   "require": {
     "php": "^8.0",
+    "nesbot/carbon": "^3.8",
     "doctrine/dbal": "^2.13.7",
     "iampersistent/ledger": "^v0.4.0",
     "olps/simple-shop": "^v0.2",
     "myclabs/php-enum": "^1.7",
     "ramsey/uuid": "^4.1",
     "zestic/contracts": "v0.2.0"
+  },
+  "require-dev": {
+    "codeception/codeception": "^5.3",
+    "codeception/module-asserts": "^3.2"
   },
   "autoload": {
     "psr-4": {
