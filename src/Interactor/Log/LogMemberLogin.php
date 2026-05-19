@@ -9,23 +9,19 @@ use AMB\Entity\UserType;
 use AMB\Interactor\RapidCityTime;
 use AMB\Interactor\User\ActiveUser;
 
-final class LogMemberLogin
+final readonly class LogMemberLogin
 {
-    /** @var \AMB\Interactor\Log\InsertActivity */
-    private $insertActivity;
-
-    public function __construct(InsertActivity $insertActivity)
+    public function __construct(private InsertActivity $insertActivity)
     {
-        $this->insertActivity = $insertActivity;
     }
 
     public function log(string $message)
     {
-        $actor = (new ActiveUser())->get();
+        $actor = new ActiveUser()->get();
 
-        $target = (new ActiveUser())->get();
+        $target = new ActiveUser()->get();
 
-        $activity = (new Activity())
+        $activity = new Activity()
             ->setActor($actor)
             ->setCookie($this->getCookie('ci_session'))
             ->setDate(new RapidCityTime())

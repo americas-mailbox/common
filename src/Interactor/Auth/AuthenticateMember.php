@@ -16,7 +16,7 @@ use App\Authentication\Interactor\UpdatePasswordByUsername;
 use App\Message\Mutation\AuthenticateMemberMessage;
 use Doctrine\DBAL\Connection;
 
-final class AuthenticateMember
+final readonly class AuthenticateMember
 {
     public function __construct(
         private AuthenticateUsernamePassword $authenticateMember,
@@ -152,7 +152,7 @@ WHERE pmb = {$member->getPMB()};
 SQL;
         $memberPassword = $this->connection->fetchOne($sql);
 
-        return sha1($password) === $memberPassword;
+        return sha1((string) $password) === $memberPassword;
     }
 
     private function removeOldPasswordFromMember($pmb)

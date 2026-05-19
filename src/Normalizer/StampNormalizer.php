@@ -46,7 +46,7 @@ final class StampNormalizer implements NormalizerInterface, DenormalizerInterfac
      *
      * @return bool
      */
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null, array $context = [])
     {
         return false;
     }
@@ -86,7 +86,7 @@ final class StampNormalizer implements NormalizerInterface, DenormalizerInterfac
      *
      * @return bool
      */
-    public function supportsDenormalization($data, $type, $format = null)
+    public function supportsDenormalization($data, $type, $format = null, array $context = [])
     {
         $className = $this->getClassName($type);
 

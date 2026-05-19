@@ -7,7 +7,7 @@ use AMB\Entity\Shipping\Delivery;
 use Doctrine\DBAL\Connection;
 use IamPersistent\Ledger\Interactor\DBal\MoneyToJson;
 
-final class SaveDelivery
+final readonly class SaveDelivery
 {
     public function __construct(
         private Connection $connection,

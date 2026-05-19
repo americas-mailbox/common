@@ -11,24 +11,16 @@ use Symfony\Component\Notifier\Message\MessageOptionsInterface;
 
 final class ActivityLogMessage extends MemberMessage implements MessageInterface
 {
-    /** @var \AMB\Notification\Context\ActivityLogContext */
-    private $context;
-    /** @var array */
-    private $data;
-
     public function __construct(
-        ActivityLogContext $context,
-        array $data
+        private readonly ActivityLogContext $context,
+        private array $data
     ) {
-        $this->context = $context;
-        $this->data = $data;
-
         parent::__construct();
     }
 
     public function __call(string $name, array $arguments)
     {
-        if (0 !== strpos( $name , 'get' )) {
+        if (!str_starts_with($name, 'get')) {
             throw new \Exception("Unknown method \"$name\"");
         }
 

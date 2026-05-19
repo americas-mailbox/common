@@ -13,7 +13,7 @@ final class EmailTemplateHandler
     private Template $template;
 
     public function __construct(
-        private Connection $connection,
+        private readonly Connection $connection,
     ) {
     }
 
@@ -33,7 +33,7 @@ final class EmailTemplateHandler
 
         $data = $statement->fetchAssociative();
 
-        return (new Template())
+        return new Template()
             ->setId($data['id'])
             ->setName($data['name'])
             ->setSubject($data['subject'])
@@ -46,7 +46,7 @@ final class EmailTemplateHandler
         $context = $emailContext->getBodyContext();
 
         $replace = function($matches) use ($context) {
-            $key = trim($matches[1]);
+            $key = trim((string) $matches[1]);
 
             return $context[$key] ?? null;
         };

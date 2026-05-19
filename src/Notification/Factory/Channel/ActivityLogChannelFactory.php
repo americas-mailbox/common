@@ -10,12 +10,8 @@ use Symfony\Component\Notifier\Channel\ChannelInterface;
 
 final class ActivityLogChannelFactory
 {
-    private $config;
-
-    public function __construct(
-        $config
-    ) {
-        $this->config = $config;
+    public function __construct(private $config)
+    {
     }
 
     public function __invoke(ContainerInterface $container): ChannelInterface

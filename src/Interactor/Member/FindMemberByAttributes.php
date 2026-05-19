@@ -8,7 +8,7 @@ use AMB\Entity\Member;
 use AMB\Interactor\Db\HydrateMember;
 use Doctrine\DBAL\Connection;
 
-final class FindMemberByAttributes
+final readonly class FindMemberByAttributes
 {
     public function __construct(
         private Connection $connection,
@@ -43,9 +43,7 @@ final class FindMemberByAttributes
         $whereCondition = implode(
             $operator === 'OR' ? ' OR ' : ' AND ',
             array_map(
-                function ($e) {
-                    return $e . '= ?';
-                },
+                fn($e) => $e . '= ?',
                 array_keys($attributes)
             )
         );

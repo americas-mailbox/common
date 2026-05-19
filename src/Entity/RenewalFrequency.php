@@ -5,10 +5,10 @@ namespace AMB\Entity;
 
 use MyCLabs\Enum\Enum;
 
-final class RenewalFrequency extends Enum
+enum RenewalFrequency : string
 {
-    const ANNUAL = 'annual';
-    const BIANNUAL = 'biannual';
-    const MONTH = 'month';
-    const QUARTER = 'quarter';
+    case ANNUAL = 'annual';
+    case BIANNUAL = 'biannual';
+    case MONTH = 'month';
+    case QUARTER = 'quarter';
 }

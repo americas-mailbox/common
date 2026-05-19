@@ -10,11 +10,11 @@ final class RoleCheck
     public function __invoke($adminRole, $requiredRole): bool
     {
         if (!is_object($adminRole)) {
-            $adminRole = new AdminRole($adminRole);
+            $adminRole = \AMB\Entity\AdminRole::from($adminRole);
         }
 
         if (!is_object($requiredRole)) {
-            $requiredRole = new AdminRole($requiredRole);
+            $requiredRole = \AMB\Entity\AdminRole::from($requiredRole);
         }
 
         // quickest path out for a single role matching the admin role
@@ -23,12 +23,12 @@ final class RoleCheck
         }
 
         // A master can do anything
-        if ($adminRole->equals(AdminRole::MASTER())) {
+        if ($adminRole->equals(\AMB\Entity\AdminRole::MASTER)) {
             return true;
         }
 
         // A manager can do the staff role
-        if ($adminRole->equals(AdminRole::MANAGER()) && AdminRole::STAFF()->equals($requiredRole)) {
+        if ($adminRole->equals(\AMB\Entity\AdminRole::MANAGER) && \AMB\Entity\AdminRole::STAFF->equals($requiredRole)) {
             return true;
         }
 

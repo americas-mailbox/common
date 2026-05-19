@@ -12,16 +12,13 @@ final class CommandDispatch
 {
     /** @var ActiveUser */
     private $activeUser;
-    /** @var MessageBus */
-    private $commandBus;
     /** @var ActivityLog */
     private $activityLog;
 
-    public function __construct(MessageBus $commandBus, ActivityLog $activityLog, ActiveUser $activeUser)
+    public function __construct(private readonly MessageBus $commandBus, ActivityLog $activityLog, ActiveUser $activeUser)
     {
         $this->activeUser = $activeUser;
         $this->activityLog = $activityLog;
-        $this->commandBus = $commandBus;
     }
 
     public function dispatch($message): Envelope

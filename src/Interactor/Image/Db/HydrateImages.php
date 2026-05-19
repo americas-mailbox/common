@@ -5,7 +5,7 @@ namespace AMB\Interactor\Image\Db;
 
 use AMB\Interactor\Db\HydrateImage;
 
-final class HydrateImages
+final readonly class HydrateImages
 {
     public function __construct (
         private HydrateImage $hydrateImage,

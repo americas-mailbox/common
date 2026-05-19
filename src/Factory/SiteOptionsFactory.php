@@ -15,7 +15,7 @@ final class SiteOptionsFactory
         /** @var \Doctrine\DBAL\Connection */
         $connection = $container->get(Connection::class);
         $data = $connection->fetchOne('SELECT data FROM site_options');
-        $options = json_decode($data, true);
+        $options = json_decode((string) $data, true);
 
         return (new HydrateSiteOptions)($options);
     }

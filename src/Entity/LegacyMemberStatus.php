@@ -6,11 +6,14 @@ namespace AMB\Entity;
 
 use MyCLabs\Enum\Enum;
 
-final class LegacyMemberStatus extends Enum
+enum LegacyMemberStatus : int
 {
     // members table have column active.
-    const ACTIVE = 1; // user can login.
-    const CLOSED = 0; // user can not login.
-    const UNVERIFIED = 2; // New member can not login.
-    const UNPAID = 3; // New member got registered from frontend without making any payment.
+    case ACTIVE = 1;
+    // user can login.
+    case CLOSED = 0;
+    // user can not login.
+    case UNVERIFIED = 2;
+    // New member can not login.
+    case UNPAID = 3;
 }

@@ -11,7 +11,7 @@ final class CreateActivityFromMessage
 {
     public function create(Message $message): Activity
     {
-        return (new Activity())
+        return new Activity()
             ->setDate(new RapidCityTime())
             ->setPmb($message->getPmb())
             ->setTarget($message->getTarget());

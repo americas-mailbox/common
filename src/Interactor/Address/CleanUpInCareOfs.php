@@ -6,9 +6,9 @@ namespace AMB\Interactor\Address;
 use AMB\Interactor\UpdateManager;
 use Doctrine\DBAL\Connection;
 
-final class CleanUpInCareOfs
+final readonly class CleanUpInCareOfs
 {
-    private const KEY_NAME = 'cleanUpInCareOfId';
+    private const string KEY_NAME = 'cleanUpInCareOfId';
 
     public function __construct(
         private Connection $connection,
@@ -66,8 +66,8 @@ SQL;
     private function determineInCareOf(array $address): string
     {
         foreach ([0, 1, 2] as $index) {
-            if (str_starts_with(strtolower($address[$index]), 'c/o')) {
-                $inCareOf = trim(substr($address[$index], 3));
+            if (str_starts_with(strtolower((string) $address[$index]), 'c/o')) {
+                $inCareOf = trim(substr((string) $address[$index], 3));
                 if (empty($inCareOf) && $index < 2) {
                     $inCareOf = $address[$index + 1];
                 }
@@ -84,7 +84,7 @@ SQL;
         $addressLine = '';
         $suite = '';
         foreach ([0, 1, 2] as $index) {
-            if (str_starts_with(strtolower($address[$index]), 'c/o')) {
+            if (str_starts_with(strtolower((string) $address[$index]), 'c/o')) {
                 if ($index === 2) {
                     $addressLine = $address[0];
                     $suite = $address[1];

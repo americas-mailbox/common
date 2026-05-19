@@ -6,7 +6,7 @@ namespace AMB\Interactor\Location;
 use AMB\Interactor\Parcel\ParcelSQL;
 use Doctrine\DBAL\Connection;
 
-final class FetchLocationByLabel
+final readonly class FetchLocationByLabel
 {
     public function __construct(
         private Connection $connection

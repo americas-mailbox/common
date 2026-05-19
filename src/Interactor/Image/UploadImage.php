@@ -10,7 +10,7 @@ use Psr\Http\Message\UploadedFileInterface;
 use Ramsey\Uuid\Uuid;
 use Zestic\Flysystem\Files;
 
-final class UploadImage
+final readonly class UploadImage
 {
     public function __construct(
         private Connection $connection,

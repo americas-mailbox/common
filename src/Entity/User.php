@@ -19,7 +19,7 @@ final class User
         return $this->id;
     }
 
-    public function setId(int $id = null): User
+    public function setId(?int $id = null): User
     {
         $this->id = $id;
 

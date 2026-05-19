@@ -33,7 +33,7 @@ trait MemberMessageTrait
     public function setValuesFromMember(Member $member)
     {
         $pmb = $member->getPMB();
-        $user = (new User())
+        $user = new User()
             ->setId($member->getId())
             ->setPmb($pmb)
             ->setType(new UserType('member'));

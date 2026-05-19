@@ -5,9 +5,9 @@ namespace AMB\Entity;
 
 use MyCLabs\Enum\Enum;
 
-final class ActionType extends Enum
+enum ActionType : string
 {
-    const CREATED = 'created';
-    const UPDATED = 'updated';
-    const DELETED = 'deleted';
+    case CREATED = 'created';
+    case UPDATED = 'updated';
+    case DELETED = 'deleted';
 }

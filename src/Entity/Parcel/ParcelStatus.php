@@ -5,10 +5,7 @@ namespace AMB\Entity\Parcel;
 
 use MyCLabs\Enum\Enum;
 
-/**
- * @method static ParcelStatus TO_SHIP()
- */
-final class ParcelStatus extends Enum
+enum ParcelStatus : string
 {
-    const TO_SHIP = 'toShip';
+    case TO_SHIP = 'toShip';
 }

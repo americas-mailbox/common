@@ -16,7 +16,7 @@ final class ZipcodeLookup
 
     public function fromData(array $data)
     {
-        $address = (new Address())
+        $address = new Address()
             ->setCity($data['city'])
             ->setCountry($data['country'])
             ->setState($data['state'])
@@ -94,7 +94,7 @@ final class ZipcodeLookup
 
     private function lookup(Address $address): array
     {
-        $uspsAddress = (new USPSAddress())
+        $uspsAddress = new USPSAddress()
             ->setAddress($address->getAddress())
             ->setCity($address->getCity())
             ->setState($address->getState());

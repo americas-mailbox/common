@@ -8,7 +8,7 @@ use AMB\Interactor\Db\BoolToSQL;
 use Doctrine\DBAL\Connection;
 use Exception;
 
-final class SaveBulkCommunication
+final readonly class SaveBulkCommunication
 {
     public function __construct(
         private Connection $connection,
@@ -36,7 +36,7 @@ final class SaveBulkCommunication
             }
             $id = (int)$this->connection->lastInsertId();
             $bulkCommunication->setId($id);
-        } catch (Exception $e) {
+        } catch (Exception) {
             $this->connection->rollBack();
 
             return false;
@@ -51,7 +51,7 @@ final class SaveBulkCommunication
         try {
             $this->connection->beginTransaction();
             $response = $this->connection->update('bulk_communications', $data, ['id' => $bulkCommunication->getId()]);
-        } catch (Exception $e) {
+        } catch (Exception) {
             $this->connection->rollBack();
 
             return false;

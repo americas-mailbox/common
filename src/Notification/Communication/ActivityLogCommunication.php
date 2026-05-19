@@ -8,15 +8,11 @@ use Symfony\Component\Notifier\Notification\Notification as Communication;
 
 final class ActivityLogCommunication extends Communication
 {
-    protected $message;
-
     public function __construct(
-        ActivityLogMessage $message,
+        protected ActivityLogMessage $message,
         string $subject = '',
         array $channels = []
     ) {
-        $this->message = $message;
-
         parent::__construct($subject, $channels);
     }
 

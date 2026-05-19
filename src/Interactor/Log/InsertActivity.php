@@ -6,7 +6,7 @@ namespace AMB\Interactor\Log;
 use AMB\Entity\Log\Activity;
 use Doctrine\DBAL\Connection;
 
-final class InsertActivity
+final readonly class InsertActivity
 {
     public function __construct(
         private Connection $connection,
@@ -70,7 +70,7 @@ final class InsertActivity
     {
         if (function_exists('get_instance')) {
             $CI =& get_instance();
-            $activity->setSessionId(substr($CI->session->session_id,1,6))
+            $activity->setSessionId(substr((string) $CI->session->session_id,1,6))
                 ->setBrowser($CI->agent->browser() . ' ' . $CI->agent->version())
                 ->setIpAddress($CI->input->ip_address())
                 ->setOs($CI->agent->platform());

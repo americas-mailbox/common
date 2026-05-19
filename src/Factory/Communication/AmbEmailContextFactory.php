@@ -15,7 +15,7 @@ final class AmbEmailContextFactory implements ContextFactoryInterface
         $messageFactory = $container->get($config['messageFactory']);
         $siteOptions = $container->get(SiteOptions::class);
 
-        return (new EmailContext($messageFactory))
+        return new EmailContext($messageFactory)
             ->setBcc($siteOptions->getBccRecipients())
             ->setFrom($siteOptions->getFromRecipient());
     }

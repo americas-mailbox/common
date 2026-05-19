@@ -21,9 +21,7 @@ final class SaveShippingEvent implements SaveShippingEventInterface
 
     public function getSortedEvents(): array
     {
-        $sort = function($a, $b) {
-            return $a->getStartDate()->gt($b->getStartDate()) ? 1 : -1;
-        };
+        $sort = (fn($a, $b) => $a->getStartDate()->gt($b->getStartDate()) ? 1 : -1);
         $events = $this->savedEvents;
         uasort($events, $sort);
 
@@ -39,7 +37,6 @@ final class SaveShippingEvent implements SaveShippingEventInterface
     public function save(ShippingEvent $shippingEvent)
     {
         $idProperty = new ReflectionProperty($shippingEvent, 'id');
-        $idProperty->setAccessible(true);
         $id = $idProperty->getValue($shippingEvent);
         if (null === $id) {
             $shippingEvent->setId($this->nextId);

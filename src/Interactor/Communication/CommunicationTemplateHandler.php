@@ -13,7 +13,7 @@ final class CommunicationTemplateHandler
     private Template $template;
 
     public function __construct(
-        private Connection $connection,
+        private readonly Connection $connection,
     )  {
     }
 
@@ -31,7 +31,7 @@ final class CommunicationTemplateHandler
 
         $data = $statement->fetchAssociative();
 
-        $this->template = (new Template())
+        $this->template = new Template()
             ->setChannel('email')
             ->setId($data['id'])
             ->setName($data['name'])
@@ -47,7 +47,7 @@ final class CommunicationTemplateHandler
         $context = $notificationContext->toArray();
 
         $replace = function($matches) use ($context) {
-            $key = trim($matches[1]);
+            $key = trim((string) $matches[1]);
 
             return $context[$key] ?? '';
         };

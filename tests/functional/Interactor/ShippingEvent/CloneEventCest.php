@@ -16,7 +16,7 @@ class CloneEventCest extends SaveShippingEventBase
     public function testClone(FunctionalTester $I)
     {
         $shippingEvent = $this->setUpEvent();
-        $clone = (new CloneEvent())->clone($shippingEvent);
+        $clone = new CloneEvent()->clone($shippingEvent);
         $id = ReflectionHelper::readPrivateProperty($clone, 'id');
         $I->assertNull($id);
     }
@@ -24,11 +24,11 @@ class CloneEventCest extends SaveShippingEventBase
     public function testSplit(FunctionalTester $I)
     {
         $shippingEvent = $this->setUpEvent();
-        $clone = (new CloneEvent())->split($shippingEvent, new RapidCityTime('2021-06-15'));
-        $I->assertTrue((new RapidCityTime('2021-06-01'))->eq($shippingEvent->getStartDate()));
-        $I->assertTrue((new RapidCityTime('2021-06-08'))->eq($shippingEvent->getEndDate()));
-        $I->assertTrue((new RapidCityTime('2021-06-15'))->eq($clone->getStartDate()));
-        $I->assertTrue((new RapidCityTime('2100-01-01'))->eq($clone->getEndDate()));
+        $clone = new CloneEvent()->split($shippingEvent, new RapidCityTime('2021-06-15'));
+        $I->assertTrue(new RapidCityTime('2021-06-01')->eq($shippingEvent->getStartDate()));
+        $I->assertTrue(new RapidCityTime('2021-06-08')->eq($shippingEvent->getEndDate()));
+        $I->assertTrue(new RapidCityTime('2021-06-15')->eq($clone->getStartDate()));
+        $I->assertTrue(new RapidCityTime('2100-01-01')->eq($clone->getEndDate()));
     }
 
     private function setUpEvent(): ShippingEvent

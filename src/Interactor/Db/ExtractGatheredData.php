@@ -17,7 +17,7 @@ final class ExtractGatheredData
 
         $extracted = [];
         foreach ($data as $property => $value) {
-            if (str_starts_with($property, $prefix)) {
+            if (str_starts_with((string) $property, $prefix)) {
                 $propertyName = $extractPropertyName($property);
                 $extracted[$propertyName] = $value;
                 unset($data[$property]);

@@ -18,7 +18,7 @@ abstract class MemberCommunication extends AmbCommunication
 
     public function setValuesFromMember(Member $member): self
     {
-        $user = (new User())
+        $user = new User()
             ->setId($member->getId())
             ->setPmb($member->getPMB())
             ->setType(new UserType('member'));

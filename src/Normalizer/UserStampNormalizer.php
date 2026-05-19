@@ -47,7 +47,7 @@ final class UserStampNormalizer implements NormalizerInterface, DenormalizerInte
      *
      * @return bool
      */
-    public function supportsNormalization($data, $format = null)
+    public function supportsNormalization($data, $format = null, array $context = [])
     {
         return false;
     }
@@ -72,7 +72,7 @@ final class UserStampNormalizer implements NormalizerInterface, DenormalizerInte
      */
     public function denormalize($data, $class, $format = null, array $context = [])
     {
-        $userType = new UserType($data['0']['user']['type']['value']);
+        $userType = \AMB\Entity\UserType::from($data['0']['user']['type']['value']);
         $user = (new User)
             ->setId($data['0']['user']['id'])
             ->setType($userType);
@@ -89,7 +89,7 @@ final class UserStampNormalizer implements NormalizerInterface, DenormalizerInte
      *
      * @return bool
      */
-    public function supportsDenormalization($data, $type, $format = null)
+    public function supportsDenormalization($data, $type, $format = null, array $context = [])
     {
         return (UserStamp::class === $this->getClassName($type));
     }

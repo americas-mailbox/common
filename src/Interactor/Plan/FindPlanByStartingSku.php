@@ -7,7 +7,7 @@ use AMB\Entity\Plan;
 use AMB\Interactor\Db\HydratePlan;
 use Doctrine\DBAL\Connection;
 
-final class FindPlanByStartingSku
+final readonly class FindPlanByStartingSku
 {
     public function __construct(
         private Connection $connection,

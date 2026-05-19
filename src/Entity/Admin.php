@@ -79,7 +79,7 @@ final class Admin implements UserInterface
     public function getName(): string
     {
         $name = $this->firstName ? $this->firstName.' ' : '';
-        $name .= $this->lastName ? $this->lastName : '';
+        $name .= $this->lastName ?: '';
 
         return $name;
     }

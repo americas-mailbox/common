@@ -8,7 +8,7 @@ use Doctrine\DBAL\Connection;
 use Zestic\Contracts\User\CreateUserInterface;
 use Zestic\Contracts\User\UserInterface;
 
-final class CreateAdmin implements CreateUserInterface
+final readonly class CreateAdmin implements CreateUserInterface
 {
     public function __construct(
         private Connection $connection,
@@ -20,8 +20,8 @@ final class CreateAdmin implements CreateUserInterface
         $adminData = $data->getData();
         $this->connection->insert('administrators', $adminData);
         $adminData['id'] = (int) $this->connection->lastInsertId();
-        $adminData['password'] = sha1($adminData['password']);
+        $adminData['password'] = sha1((string) $adminData['password']);
 
-        return (new HydrateAdmin())->hydrate($adminData);
+        return new HydrateAdmin()->hydrate($adminData);
     }
 }

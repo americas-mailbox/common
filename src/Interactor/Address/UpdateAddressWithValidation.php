@@ -6,7 +6,7 @@ namespace AMB\Interactor\Address;
 use AMB\Entity\Address\AddressVerification;
 use Doctrine\DBAL\Connection;
 
-final class UpdateAddressWithValidation
+final readonly class UpdateAddressWithValidation
 {
     public function __construct(
         private Connection $connection,

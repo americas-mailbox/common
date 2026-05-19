@@ -15,11 +15,12 @@ final class AmbEmailMessageFactory extends EmailMessageFactory
 {
     public function __construct(
         BodyRenderer $renderer,
-        private EmailTemplateHandler $templateHandler,
+        private readonly EmailTemplateHandler $templateHandler,
     ) {
         parent::__construct($renderer);
     }
 
+    #[\Override]
     public function createMessage(
         EmailContext|CommunicationContextInterface $emailContext,
     ): EmailMessage|MessageInterface

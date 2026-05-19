@@ -26,7 +26,7 @@ final class VerifyAddress
     public function verifyFromApiData(array $data): AddressVerification
     {
         // order matters
-        $uspsAddress = (new UspsAddress())
+        $uspsAddress = new UspsAddress()
             ->setFirmName($data['locationName'] ?? '')
             ->setApt($data['suite'] ?? '')
             ->setAddress($data['address'])
@@ -35,7 +35,7 @@ final class VerifyAddress
 
         if ($data['country'] === 'US') {
             if (empty($data['plus4'])) {
-                $parts = explode('-', $data['postcode']);
+                $parts = explode('-', (string) $data['postcode']);
                 if (isset($parts[1])) {
                     $data['postcode'] = $parts[0];
                     $data['plus4'] = $parts[1];
@@ -57,7 +57,7 @@ final class VerifyAddress
     public function verify(Address $address): AddressVerification
     {
         // order matters
-        $uspsAddress = (new UspsAddress())
+        $uspsAddress = new UspsAddress()
             ->setFirmName($address->getLocationName())
             ->setApt($address->getSuite())
             ->setAddress($address->getAddress())
@@ -124,7 +124,7 @@ final class VerifyAddress
         $response = $verify->getArrayResponse();
         $addressData = $this->getAddressDataFromResponse($response);
 
-        return (new AddressVerification())
+        return new AddressVerification()
             ->setAddressData($addressData)
             ->setAddressId($addressId)
             ->setError($verify->isError())

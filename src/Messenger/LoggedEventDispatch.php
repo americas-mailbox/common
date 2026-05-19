@@ -15,14 +15,11 @@ final class LoggedEventDispatch
     private $activeUser;
     /** @var ActivityLog */
     private $activityLog;
-    /** @var MessageBus */
-    private $eventBus;
 
-    public function __construct(MessageBus $eventBus, ActivityLog $activityLog, ActiveUser $activeUser)
+    public function __construct(private readonly MessageBus $eventBus, ActivityLog $activityLog, ActiveUser $activeUser)
     {
         $this->activeUser = $activeUser;
         $this->activityLog = $activityLog;
-        $this->eventBus = $eventBus;
     }
 
     public function dispatch(Message $message): Envelope

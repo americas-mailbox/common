@@ -5,7 +5,7 @@ namespace AMB\Interactor\Address;
 
 use Doctrine\DBAL\Connection;
 
-final class DeleteAddress
+final readonly class DeleteAddress
 {
     public function __construct(
         private Connection $connection,

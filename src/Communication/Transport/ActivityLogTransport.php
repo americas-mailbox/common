@@ -13,7 +13,7 @@ use Symfony\Component\Notifier\Message\MessageInterface;
 use Symfony\Component\Notifier\Message\SentMessage;
 use Symfony\Component\Notifier\Transport\TransportInterface;
 
-final class ActivityLogTransport implements TransportInterface
+final readonly class ActivityLogTransport implements TransportInterface
 {
     public function __construct(
         private ActiveUser $activeUser,
@@ -44,7 +44,7 @@ final class ActivityLogTransport implements TransportInterface
         $formatter = $message->getFormatter();
         $activityMessage = (new $formatter)($message);
 
-        $activity = (new CreateActivityFromMessage())->create($message);
+        $activity = new CreateActivityFromMessage()->create($message);
         $activity
             ->setActor($actor)
             ->setLevel($level)

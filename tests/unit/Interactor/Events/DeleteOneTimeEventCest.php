@@ -26,7 +26,7 @@ class DeleteOneTimeEventCest
     public function testDelete(UnitTester $I)
     {
         $date = new RapidCityTime('2020-02-26');
-        $shippingEvent = (new ShippingEvent())
+        $shippingEvent = new ShippingEvent()
             ->setActive(true)
             ->setId(1)
             ->setStartDate($date)

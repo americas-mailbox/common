@@ -6,9 +6,9 @@ namespace AMB\Interactor\Address;
 use AMB\Interactor\UpdateManager;
 use Doctrine\DBAL\Connection;
 
-final class VerifyExistingAddresses
+final readonly class VerifyExistingAddresses
 {
-    private const KEY_NAME = 'addressVerificationAddressId';
+    private const string KEY_NAME = 'addressVerificationAddressId';
 
     public function __construct(
         private Connection $connection,
@@ -69,7 +69,7 @@ SQL;
     private function getMembershipIds(): array
     {
         $nextMembershipId = $this->updateManager->get(self::KEY_NAME);
-        $nextMembershipId = $nextMembershipId ?? 120000;
+        $nextMembershipId ??= 120000;
         $sql = <<<SQL
 SELECT member_id
 FROM members

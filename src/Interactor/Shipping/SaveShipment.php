@@ -7,7 +7,7 @@ use AMB\Entity\Shipping\Shipment;
 use AMB\Interactor\Db\BoolToSQL;
 use Doctrine\DBAL\Connection;
 
-final class SaveShipment
+final readonly class SaveShipment
 {
     public function __construct(
         private Connection $connection,

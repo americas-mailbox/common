@@ -10,12 +10,12 @@ final class CountryLookup
         $countries = $this->getCountries();
         $code = strtolower($name);
         foreach ($countries as $country) {
-            if ($code === strtolower($country['name']) ||
+            if ($code === strtolower((string) $country['name']) ||
                 $code === $country['alpha3']
             ) {
                 $code = $country['alpha2'];
 
-                return $upperCase ? strtoupper($code) : $code;
+                return $upperCase ? strtoupper((string) $code) : $code;
             }
         }
 
@@ -25,7 +25,7 @@ final class CountryLookup
     public function getName($code): ?string
     {
         $countries = $this->getCountries();
-        $code = strtolower($code);
+        $code = strtolower((string) $code);
         foreach ($countries as $country) {
             if ($code === $country['alpha2'] ||
                 $code === $country['alpha3']

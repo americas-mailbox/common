@@ -6,7 +6,7 @@ namespace AMB\Interactor\Address;
 use AMB\Interactor\Member\FindMemberById;
 use Doctrine\DBAL\Connection;
 
-final class SetAddressAsDefault
+final readonly class SetAddressAsDefault
 {
     public function __construct(
         private Connection $connection,

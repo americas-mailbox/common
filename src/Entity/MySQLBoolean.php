@@ -5,6 +5,6 @@ namespace AMB\Entity;
 
 final class MySQLBoolean
 {
-    CONST FALSE = 0;
-    CONST TRUE = 1;
+    CONST int FALSE = 0;
+    CONST int TRUE = 1;
 }

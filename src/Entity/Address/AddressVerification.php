@@ -7,14 +7,14 @@ final class AddressVerification
 {
     /** @var array */
     private $addressData;
-    private string|int|null $addressId;
+    private string|int|null $addressId = null;
     private bool $error = true;
-    private string|null $errorMessage;
+    private string|null $errorMessage = null;
     /** @var bool */
     private $match;
     /** @var array */
     private $rawData;
-    private string|null $warningMessage;
+    private string|null $warningMessage = null;
 
     public function getAddressData(): array
     {

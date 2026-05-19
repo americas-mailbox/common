@@ -6,7 +6,7 @@ namespace AMB\Interactor\Finance;
 use AMB\Entity\SiteOptions;
 use Money\Money;
 
-final class CalculateConvenienceFee
+final readonly class CalculateConvenienceFee
 {
     public function __construct(
         private SiteOptions $siteOptions,

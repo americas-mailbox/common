@@ -10,6 +10,7 @@ abstract class AmbCommunication extends Communication
 {
     protected ?string $activityLogFormatter = null;
 
+    #[\Override]
     public function send()
     {
         if ($this->activityLogFormatter) {

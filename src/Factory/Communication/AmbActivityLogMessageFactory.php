@@ -11,13 +11,10 @@ use Symfony\Bridge\Twig\Mime\BodyRenderer;
 use Symfony\Component\Notifier\Message\EmailMessage;
 use Symfony\Component\Notifier\Message\MessageInterface;
 
-final class AmbActivityLogMessageFactory implements MessageFactoryInterface
+final readonly class AmbActivityLogMessageFactory implements MessageFactoryInterface
 {
-    public function __construct(
-        BodyRenderer $renderer,
-        private EmailTemplateHandler $templateHandler,
-    ) {
-        parent::__construct($renderer);
+    public function __construct(BodyRenderer $renderer, private EmailTemplateHandler $templateHandler)
+    {
     }
 
     public function createMessage(

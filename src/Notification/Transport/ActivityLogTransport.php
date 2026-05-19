@@ -22,18 +22,15 @@ final class ActivityLogTransport implements TransportInterface
     private $activeUser;
     /** @var \AMB\Interactor\Log\CreateActivityFromMessage */
     private $createActivityFromMessage;
-    /** @var \AMB\Interactor\Log\InsertActivity */
-    private $insertActivity;
 
     public function __construct(
         ActivityLog $activityLog,
         ActiveUser $activeUser,
-        InsertActivity $insertActivity
+        private readonly InsertActivity $insertActivity
     ) {
         $this->activityLog = $activityLog;
         $this->activeUser = $activeUser;
         $this->createActivityFromMessage = new CreateActivityFromMessage();
-        $this->insertActivity = $insertActivity;
     }
 
     public function send(MessageInterface $message): ?SentMessage

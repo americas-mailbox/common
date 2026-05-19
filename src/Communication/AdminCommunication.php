@@ -17,7 +17,7 @@ abstract class AdminCommunication extends Communication
         ];
 
         foreach ($emails as $email) {
-            $recipient = (new Recipient())
+            $recipient = new Recipient()
                 ->setEmail($email);
             $this->addRecipient($recipient);
         }

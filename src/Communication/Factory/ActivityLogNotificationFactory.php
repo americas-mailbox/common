@@ -12,7 +12,7 @@ use Symfony\Component\Notifier\Notification\Notification;
 
 final class ActivityLogNotificationFactory implements NotificationFactoryInterface
 {
-    public function create(ActivityLogContext|CommunicationContextInterface $context, string $channel): Notification
+    public function create(ActivityLogContext|CommunicationContextInterface $context, ?string $channel = null): Notification
     {
         $message = $this->createMessage($context);
 

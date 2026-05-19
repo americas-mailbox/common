@@ -6,14 +6,10 @@ namespace AMB\Messenger;
 use AMB\Entity\User;
 use Symfony\Component\Messenger\Stamp\StampInterface;
 
-final class UserStamp implements StampInterface
+final readonly class UserStamp implements StampInterface
 {
-    /** @var User */
-    private $user;
-
-    public function __construct(User $user)
+    public function __construct(private User $user)
     {
-        $this->user = $user;
     }
 
     public function getUser(): User

@@ -13,7 +13,7 @@ use Symfony\Component\Notifier\Message\MessageOptionsInterface;
 final class ActivityLogMessage extends MemberMessage implements MessageInterface
 {
     public function __construct(
-        private ActivityLogContext $context,
+        private readonly ActivityLogContext $context,
         private array $data,
     ) {
         parent::__construct();

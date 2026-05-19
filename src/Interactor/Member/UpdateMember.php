@@ -9,7 +9,7 @@ use AMB\Interactor\Db\BoolToSQL;
 use AMB\Interactor\Ledger\SaveLedger;
 use Doctrine\DBAL\Connection;
 
-final class UpdateMember
+final readonly class UpdateMember
 {
     public function __construct(
         private Connection $connection,

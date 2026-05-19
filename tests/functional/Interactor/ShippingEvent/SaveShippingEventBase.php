@@ -44,14 +44,14 @@ abstract class SaveShippingEventBase
 
     protected function getShippingEvent(): ShippingEvent
     {
-        $address = (new Address())
+        $address = new Address()
             ->setId(1);
-        $deliveryMethod = (new DeliveryMethod())
+        $deliveryMethod = new DeliveryMethod()
             ->setId(5);
-        $member = (new Member())
+        $member = new Member()
             ->setId(1);
 
-        return (new ShippingEvent())
+        return new ShippingEvent()
             ->setAddress($address)
             ->setDeliveryMethod($deliveryMethod)
             ->setMember($member);

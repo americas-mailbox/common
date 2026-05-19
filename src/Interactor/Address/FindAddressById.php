@@ -7,7 +7,7 @@ use AMB\Entity\Address;
 use AMB\Interactor\Db\HydrateAddress;
 use Doctrine\DBAL\Connection;
 
-final class FindAddressById
+final readonly class FindAddressById
 {
     public function __construct(
         private Connection $connection,

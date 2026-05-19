@@ -5,10 +5,10 @@ namespace AMB\Entity;
 
 use MyCLabs\Enum\Enum;
 
-final class UserType extends Enum
+enum UserType : string
 {
-    const ADMIN = 'admin';
-    const MEMBER = 'member';
-    const SYSTEM = 'system';
-    const UNKNOWN = 'unknown';
+    case ADMIN = 'admin';
+    case MEMBER = 'member';
+    case SYSTEM = 'system';
+    case UNKNOWN = 'unknown';
 }

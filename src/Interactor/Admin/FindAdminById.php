@@ -8,7 +8,7 @@ use AMB\Interactor\Db\HydrateAdmin;
 use Mezzio\Authentication\UserInterface;
 use Zestic\Authentication\Interface\FindUserByIdInterface;
 
-final class FindAdminById implements FindUserByIdInterface
+final readonly class FindAdminById implements FindUserByIdInterface
 {
     public function __construct(
         private GatherAdminDataById $gatherAdminData,
@@ -21,7 +21,7 @@ final class FindAdminById implements FindUserByIdInterface
             return null;
         }
 
-        return (new HydrateAdmin())->hydrate($data);
+        return new HydrateAdmin()->hydrate($data);
     }
 
     public function findById($id): ?UserInterface
